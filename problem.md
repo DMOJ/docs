@@ -39,7 +39,7 @@ def grade(case, process, case_input=None, case_output=None, point_value=0, **kwa
 #### Returns
 
 A `Result` object (`from judge import Result`).
-A result object has a `result_flag` field that stores a mask defining the current testcase result code. `proc_output` contains a list of lines that will be displayed in the partial output pane. 
+A result object has a `result_flag` field that stores a mask defining the current testcase result code. `proc_output` contains the string that will be displayed in the partial output pane. 
 
 To illustrate, in a problem where the process must a line of echo input, an interactive approach would look like the following.
 
@@ -58,10 +58,10 @@ def grade(case, process, case_input=None, case_output=None, point_value=0, **kwa
   
   if output == inp:
     res.result_flag = Result.AC
-    res.proc_output = ['Correct answer! This will be displayed in the partial output pane.']
+    res.proc_output = 'Correct answer! This will be displayed in the partial output pane.'
   else:
     res.result_flag = Result.WA
-    res.proc_output = ['Wrong answer! :(']
+    res.proc_output = 'Wrong answer! :('
   
   return res
 ```
@@ -82,3 +82,26 @@ The associated `init.json` for this problem would look like the following.
 ```
 
 Since we use no input or output files (our testcase is hardcoded), we do not need to specify the `archive` or related `in` and `out` fields.
+
+
+### Problems and Custom Checkers - `grader`
+
+A problem with many possible outputs (e.g. not a single possible answer, with score based on accuracy) may benefit from the `checker` field in the `init.json` object. A checker is a Python script that is executed per-case, like an interactive grader, but which runs post-execution - it grades the output of a process but does not interact with it.
+
+A `checker` Python script must implement a function that is called by the judge:
+
+```python
+def check(proc_output, judge_output, judge_input, point_value, submission_source, **kwargs)
+```
+
+#### Parameters
+
+* `proc_output` contains the submission's output, as a string.
+* `judge_output` contains the contents of the specified `out` file.
+* `judge_input` contains the contents of the specified `in` file.
+* `point_value` is the point value for the current case, as specified for the current testcase.
+* `submission_source` contains the submission's source as a string. Useful for code golf problems.
+
+#### Returns
+
+A `CheckerResult` object (`from judge import CheckerResult`). A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, partial_output='')`.
