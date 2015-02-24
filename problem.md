@@ -84,7 +84,7 @@ The associated `init.json` for this problem would look like the following.
 Since we use no input or output files (our testcase is hardcoded), we do not need to specify the `archive` or related `in` and `out` fields.
 
 
-### Problems and Custom Checkers - `grader`
+### Custom Checkers - `grader`
 
 A problem with many possible outputs (e.g. not a single possible answer, with score based on accuracy) may benefit from the `checker` field in the `init.json` object. A checker is a Python script that is executed per-case, like an interactive grader, but which runs post-execution - it grades the output of a process but does not interact with it.
 
@@ -105,3 +105,26 @@ def check(proc_output, judge_output, judge_input, point_value, submission_source
 #### Returns
 
 A `CheckerResult` object (`from judge import CheckerResult`). A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, partial_output='')`.
+
+### Checkers or Interactors for Computationally-Heavy Problems
+
+Sometimes, problems that require checkers or interactive grading may also be computationally expensive. In such cases, it is often beneficial to move answer checking from the slow Python problem module and into a native language. For maximum interoperability, the judge system requires a Python script to handle raw interaction prompts, but the script itself may use the judge's compilation and execution API to spawn native processes.
+
+To illustrate, a problem that requires a computationally expensive validator can easily be implemented as shown below.
+
+```python
+from judge import executors, get_problem_root
+import os
+
+# Locate the validator source file. get_problem_root returns the root directory of the problem passed by name.
+validator_path = os.path.join(get_problem_root('problem_id'), 'validator.cpp')
+# Read all source into memory
+validator_source = open(validator_path, 'r')
+# Execute the compiler - executors[] is a mapping of all executors by language id
+executor = executors['CPP11'].Executor('validator', validator_source.read())
+validator_source.close()
+# Launch the validator in a sandbox - see below
+process = executor.launch(time=60, memory=262144)
+```
+
+Here, `validator.cpp` exists in the problem folder root directory, and `process` is the executed validator - a `Popen`-like object. When using `Executor.launch`, you may pass a time limit (in seconds) along with a memory limit (in Kb). Here, the validator may run for a maximum of 60 seconds and use 256mb before being killed. `launch` uses the same sandboxing system as normal submissions; filesystem, network and interprocess access is denied. If you'd like to avoid the overhead of sandboxing for a validator you are sure will execute safely, you may choose to use `Executor.launch_unsafe` - note, however, that you may not specify time or memory limits if the sandbox is inactive.
