@@ -16,4 +16,6 @@ Each element in the `test_cases` list is a JSON object. It contains the key `poi
 
 For normal cases, the test case JSON object will contain keys `in` and `out`, mapping to the path for the input and output files, respectively. The path is in the zip file if `archive` is defined, otherwise relative to the problem directory.
 
+#### Batched Cases
 
+For batched cases, instead of `in` and `out`, the JSON object will contain `data` key, mapped to a list of objects, each containing `in` and `out`.
