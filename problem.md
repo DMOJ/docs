@@ -119,10 +119,9 @@ import os
 # Locate the validator source file. get_problem_root returns the root directory of the problem passed by name.
 validator_path = os.path.join(get_problem_root('problem_id'), 'validator.cpp')
 # Read all source into memory
-validator_source = open(validator_path, 'r')
-# Execute the compiler - executors[] is a mapping of all executors by language id
-executor = executors['CPP11'].Executor('validator', validator_source.read())
-validator_source.close()
+with open(validator_path, 'r') as validator_source:
+  # Execute the compiler - executors[] is a mapping of all executors by language id
+  executor = executors['CPP11'].Executor('validator', validator_source.read())
 # Launch the validator in a sandbox - see below
 process = executor.launch(time=60, memory=262144)
 ```
