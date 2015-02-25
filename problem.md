@@ -1,6 +1,6 @@
 # DMOJ Problem Format
 
-Each problem is stored in its own directory. That directory must contain one file, `init.json`.
+Each problem is stored in its own directory. That directory must contain a file named `init.json`.
 
 ## `init.json`
 
