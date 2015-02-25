@@ -127,3 +127,65 @@ process = executor.launch(time=60, memory=262144)
 ```
 
 Here, `validator.cpp` exists in the problem folder root directory, and `process` is the executed validator - a `Popen`-like object. When using `Executor.launch`, you may pass a time limit (in seconds) along with a memory limit (in Kb). Here, the validator may run for a maximum of 60 seconds and use 256mb before being killed. `launch` uses the same sandboxing system as normal submissions; filesystem, network and interprocess access is denied. If you'd like to avoid the overhead of sandboxing for a validator you are sure will execute safely, you may choose to use `Executor.launch_unsafe` - note, however, that you may not specify time or memory limits if the sandbox is inactive.
+
+### Function Signature Grading (IOI-style)
+
+Signature grading is used for problems where users should implement an online algorithm or interact with the grader directly without the need for traditional input and output routines. This is commonly seen in competitions such as the IOI, where all input is passed through function arguments and output is replaced with return values or directly modifying specifically allocated memory for the computed answer. Currently, C and C++ are supported for this mode. `handler` should be a top-level node that contains `entry` and `header`. `entry` is a C or C++ file that contains the `main` function. It should read input from `stdin`, call the user's implemented functions specified in `header`, and write output to `stdout`. You may specify a custom `checker` to interpret the `entry`'s output. If no custom checker is specified, it will be compared to the output file using the default checker.
+
+The user's submission will be automatically modified to include the file `header`, and the symbol `main` is redefined as `main_GUID` where `GUID` is a randomly generated GUID. This is so users testing their program do not have to manually remove their `main` function before submissions; it does not protect against the preprocessor directive `#undef main`.
+
+The global variables in the `entry` should be declared static to prevent name collisions. Optimally, `header` should have an include guard, in case it contains something other than function prototypes.
+
+Note that both the `entry` and the user's code will be compiled with C++11 regardless of whether C, C++, C++0x, or C++11 is selected as the language. Issues that may arise from this are naming variables like `class` in a C program, which otherwise whould be allowed.
+
+An example of the `init.json`:
+
+```json
+{
+    "handler":
+    {
+        "entry": "handler.c",
+        "header": "header.h"
+    },
+    "test_cases":
+    [
+        {
+            "in": "siggrade.1.in",
+            "out": "siggrade.1.out",
+            "points": 50
+        },
+        {
+            "in": "siggrade.2.in",
+            "out": "siggrade.2.out",
+            "points": 50
+        }
+    ]
+}
+```
+
+An example of the `entry` file:
+
+```c
+#include "header.h"
+#include <stdio.h>
+#include <stdbool.h>
+
+static int n;
+
+int main()
+{
+    scanf("%d", &n);
+    bool valid = is_valid(n); // Defined in header
+    printf(valid ? "correct" : "wrong");
+    return 0;
+}
+```
+
+An example of the `header` file:
+```c
+#ifndef _GRADER_HEADER_INCLUDED
+#define _GRADER_HEADER_INCLUDED
+#include <stdbool.h>
+bool is_valid(int);
+#endif
+```
