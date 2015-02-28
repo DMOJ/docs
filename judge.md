@@ -1,7 +1,8 @@
 # Judge Configuration
 
-To run the judge, simply do `python main.py <bridge hostname> -p <bridge port>`.
-But before you run the judge, you must configure it.
+To run the judge, simply do `python main.py <bridge hostname> -p <bridge port> [-c <config path>]`.
+But before you run the judge, you must configure it. You are recommended to pass the absolute path
+to `judge.json` on the command line.
 
 ## `judge.json`
 
