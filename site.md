@@ -15,6 +15,7 @@ Create a virtualenv by using the following command 'virtualenv env'.
 This environment will be enabled using the following command in the folder you ran 'virtualenv env': 'source env/bin/activate'
 
 Now the command line should look like this:
+
 '''
 (env)walle256@server ~:
 '''
