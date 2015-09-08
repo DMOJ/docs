@@ -1,7 +1,7 @@
 #Notes   
 This tutorial is based on my experience installing DMOJ Django based site. This guide is intended for linux machines. Might work on other systems, but I offer no guarantee.   
 This tutorial is supposed to work on a Ubuntu machine.
-I will use <text> as a command for your preferred text editor. This can be vim, nano etc.
+I will use `<text>` as a command for your preferred text editor. This can be vim, nano etc.
 
 #Requirements
 * Python 2
