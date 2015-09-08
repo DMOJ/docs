@@ -9,6 +9,25 @@ to `judge.json` on the command line.
 `judge.json` is the only configuration file for the DMOJ judge. It specifies directories to search for
 problems, and also defines the execution environment.
 
+Example:
+
+```
+{
+    "id": "ID",
+    "key": "Key from site.",
+    "problem_storage_root": [
+        "/home/judge/Dropbox/"
+    ],
+    "tempdir": "/home/judge/data/temp",
+    "runtime": {
+        "python": "/usr/bin/python",
+        "gcc": "/usr/bin/gcc",
+        "g++": "/usr/bin/g++",
+        "pypy": "/usr/bin/pypy"
+    }
+}
+```
+
 ### Authentication
 
 All judges are authenticated to the bridge in order to avoid rogue judges returning false data.
