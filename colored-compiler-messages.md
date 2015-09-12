@@ -6,11 +6,10 @@ This document assumes you have an environment variable `$JUDGE_HOME` set to the 
 
 ## Enabling Colors in GCC 4.9+
 
-GCC has native support for message coloring since version 4.9. It can be enabled by passing the flag `-fdiagnostics-color=always` to the GCC executable. You can enable this for the judge user, or system wide with an alias.
+GCC has native support for message coloring since version 4.9. It can be enabled by passing the flag `-fdiagnostics-color=always` to the GCC executable. You can enable this for the judge user with an alias.
 
 ```sh
-# Change the judge user .bashrc to /etc/bash.bashrc
-# if you desire colors to be enabled globally
+# Change the judge user .bashrc to /etc/bash.bashrc if you desire colors to be enabled globally
 echo 'alias gcc=gcc -fdiagnostics-color=always' >> $JUDGE_HOME/.bashrc
 ```
 
