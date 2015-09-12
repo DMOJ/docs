@@ -6,6 +6,13 @@ The DMOJ judge component understands ANSI codes, and can display them in HTML fo
 
 This document assumes you have an environment variable `$JUDGE_HOME` set to the home directory of the judge user.
 
+## Setting up the Judge
+ANSI coloring works *almost* out of the box: DMOJ has a soft-dependency on `ansi2html`. Install it on the judging server and you're all set.
+
+```sh
+pip install ansi2html
+```
+
 ## Enabling Colors in GCC 4.9+
 
 GCC has native support for message coloring since version 4.9. It can be enabled by passing the flag `-fdiagnostics-color=always` to the GCC executable. You can enable this for the judge user with an alias.
