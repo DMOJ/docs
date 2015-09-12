@@ -84,7 +84,7 @@ The associated `init.json` for this problem would look like the following.
 Since we use no input or output files (our testcase is hardcoded), we do not need to specify the `archive` or related `in` and `out` fields.
 
 
-### Custom Checkers - `grader`
+### Custom Checkers - `checker`
 
 A problem with many possible outputs (e.g. not a single possible answer, with score based on accuracy) may benefit from the `checker` field in the `init.json` object. A checker is a Python script that is executed per-case, like an interactive grader, but which runs post-execution - it grades the output of a process but does not interact with it.
 
