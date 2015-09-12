@@ -2,6 +2,8 @@
 
 The DMOJ judge component understands ANSI codes, and can display them in HTML form inside submission status pages for more accessible compiler errors and messages.
 
+![colored compiler messages in action](https://sc-cdn.scaleengine.net/i/c1b33b24338f680a6d2356b0c734789c.png)
+
 This document assumes you have an environment variable `$JUDGE_HOME` set to the home directory of the judge user.
 
 ## Enabling Colors in GCC 4.9+
