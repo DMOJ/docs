@@ -14,6 +14,8 @@ Documentation for the [DMOJ judge](https://github.com/DMOJ/judge) system.
   * [Checkers or Interactors for Computationally-Heavy Problems (subprocessing C++)](/problem.md#checkers-or-interactors-for-computationally-heavy-problems)
   * [Function Signature Grading (IOI-style)](/problem.md#function-signature-grading-ioi-style)
 
+For examples of the different problem types, see [the sample problems provided](/problem_examples). The related problem statements may be found on <https://dmoj.ca>, under the same codes.
+
 * [**Colored Compiler Messages**](/colored-compiler-messages.md)
   * [Setting up the Judge](/colored-compiler-messages.md#setting-up-the-judge)
   * [Enabling Colors in GCC 4.9+](/colored-compiler-messages.md#enabling-colors-in-gcc-49)
