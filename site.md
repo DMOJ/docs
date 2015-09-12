@@ -10,6 +10,7 @@ I will use `<text>` as a command for your preferred text editor. This can be vim
 * Mysql or MariaDB in CentOS 7
 * Ruby and gem
 * NodeJS and npm
+* RabbitMQ server (apt-get install rabbitmq-server)
 
 #Step 1
 Install virtualenv by using the following command `sudo pip install virtualenv`.
@@ -78,7 +79,10 @@ CACHES = {
 You can customize this template to your liking.
 
 #Step 6
-*TODO*: Add RabbitMQ.
+*TL:DR*:
+* Install RabbitMQ
+* Create a user and a vhost for the site.
+* Add
 
 #Step 7
 
