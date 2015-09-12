@@ -1,0 +1,46 @@
+{
+    "grader": "game1.py",
+    "archive": "game1.zip",
+    "test_cases": [
+        {
+            "in": "game1.1.in",
+            "points": "10"
+        },
+        {
+            "in": "game1.2.in",
+            "points": "10"
+        },
+        {
+            "in": "game1.3.in",
+            "points": "10"
+        },
+        {
+            "in": "game1.4.in",
+            "points": "10"
+        },
+        {
+            "in": "game1.5.in",
+            "points": "10"
+        },
+        {
+            "in": "game1.6.in",
+            "points": "10"
+        },
+        {
+            "in": "game1.7.in",
+            "points": "10"
+        },
+        {
+            "in": "game1.8.in",
+            "points": "10"
+        },
+        {
+            "in": "game1.9.in",
+            "points": "10"
+        },
+        {
+            "in": "game1.10.in",
+            "points": "10"
+        }
+    ]
+}
