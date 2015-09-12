@@ -15,11 +15,11 @@ pip install ansi2html
 
 ## Enabling Colors in GCC 4.9+
 
-GCC has native support for message coloring since version 4.9. It can be enabled by passing the flag `-fdiagnostics-color=always` to the GCC executable. You can enable this for the judge user with an alias.
+GCC has had native support for message coloring since version 4.9. It can be enabled by passing the flag `-fdiagnostics-color=always` to the GCC executable. `alias`ing the `gcc` command is **not** sufficient, since the judge does not invoke `gcc` through shell and hence the `alias` will have no effect. Instead, create a proxy script, and pass its path to the judge configuration in place of GCC's.
 
 ```sh
-# Change the judge user .bashrc to /etc/bash.bashrc if you desire colors to be enabled globally
-echo 'alias gcc=gcc -fdiagnostics-color=always' >> $JUDGE_HOME/.bashrc
+#!/bin/sh
+exec gcc -fdiagnostic-color=true $*
 ```
 
 ## Enabling Colors in GCC < 4.9
