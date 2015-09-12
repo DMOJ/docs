@@ -84,14 +84,14 @@ You can customize this template to your liking.
 * Create a user and a vhost for the site.
 * Set `JUDGE_AMQP_PATH` to `amqp://user:password@host:port/vhost`
 
-Not *TL:DR*
-1. Start by enabling the management plugin. `rabbitmq-plugins enable rabbitmq_management`.
-2. Open your browser and go to: `host:15672`
-3. Login with user guest and password guest.
-4. Now go to Admin, and a a vhost.
-5. Then create a user with rights on that vhost.
-6. (Optional) Change the password of the guest account.
-7. Now set `JUDGE_AMQP_PATH` to `amqp://user:password@host:port/vhost`.
+Not *TL:DR*       
+1. Start by enabling the management plugin. `rabbitmq-plugins enable rabbitmq_management`.    
+2. Open your browser and go to: `host:15672`.     
+3. Login with user guest and password guest.     
+4. Now go to Admin, and a a vhost.     
+5. Then create a user with rights on that vhost.       
+6. (Optional) Change the password of the guest account.       
+7. Now set `JUDGE_AMQP_PATH` to `amqp://user:password@host:port/vhost`.       
 
 #Step 7
 
