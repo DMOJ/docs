@@ -4,17 +4,17 @@
         {
             "in": "aplusb.1.in",
             "out": "aplusb.1.out",
-            "points": "5"
+            "points": 5
         },
         {
             "in": "aplusb.2.in",
             "out": "aplusb.2.out",
-            "points": "20"
+            "points": 20
         },
         {
             "in": "aplusb.3.in",
             "out": "aplusb.3.out",
-            "points": "75"
+            "points": 75
         }
     ]
 }
