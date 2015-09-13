@@ -1,7 +1,5 @@
 # Installing the DMOJ Site   
-This tutorial is based on my experience installing DMOJ Django based site. This guide is intended for linux machines. Might work on other systems, but I offer no guarantee.   
-This tutorial is supposed to work on a Ubuntu machine.
-I will use `<text>` as a command for your preferred text editor. This can be vim, nano etc.
+This guide is intended for Linux machines, specifically those running Debian or derivatives (e.g. Ubuntu). Your mileage may vary with other distros.
 
 ## Requirements
 * Python 2
@@ -98,12 +96,12 @@ You can customize this template to your liking.
 
 Not *TL:DR*       
 1. Start by enabling the management plugin. `rabbitmq-plugins enable rabbitmq_management`.    
-2. Open your browser and go to: `host:15672`.     
+2. Open your browser and go to: `<host>:15672`.     
 3. Login with user guest and password guest.     
 4. Now go to Admin, and add a vhost.     
 5. Then create a user with rights on that vhost.       
 6. (Optional) Change the password of the guest account.       
-7. Now set `JUDGE_AMQP_PATH` to `amqp://user:password@host:port/vhost`.       
+7. Now set `JUDGE_AMQP_PATH` in `local_settings.py` to `amqp://user:password@host:port/vhost`.       
 
 ## Step 6
 
