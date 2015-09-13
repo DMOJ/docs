@@ -4,6 +4,7 @@ Documentation for the [DMOJ judge](https://github.com/DMOJ/judge) system.
 
 ## Table of Contents
 * [**Judge configuration format (judge.json)**](/judge.md)
+  * [Sample Judge Configuration File](/sample_judge_conf.yml) 
   
 * [**Problem file format**](/problem.md)
   * [`test_cases` node](/problem.md#test_cases)
