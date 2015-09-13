@@ -1,58 +1,58 @@
-#Notes   
-This tutorial is based on my experience installing DMOJ Django based site. This guide is intended for linux machines. Might work on other systems, but I offer no guarantee.   
-This tutorial is supposed to work on a Ubuntu machine.
-I will use `<text>` as a command for your preferred text editor. This can be vim, nano etc.
+# Installing the DMOJ Site   
+This guide is intended for Linux machines, specifically those running Debian or derivatives (e.g. Ubuntu). Your mileage may vary with other distros.
 
-#Requirements
+## Requirements
 * Python 2
-* pip
-* git
-* Mysql or MariaDB in CentOS 7
-* Ruby and gem
-* NodeJS and npm
-* RabbitMQ server (apt-get install rabbitmq-server)
+* `virtualenv` (`pip install virtualenv`)
+* `pip`
+* `git`
+* MySQL or MariaDB database in CentOS 7
+* Ruby and `gem`
+* NodeJS and `npm`
+* RabbitMQ server (`apt-get install rabbitmq-server`)
 
-#Step 1
-Install virtualenv by using the following command `sudo pip install virtualenv`.
+## Step 1 - clone the repository and create a virtualenv for the site
+This step is simple. Choose a location to install the site to, clone the repository and create a virtualenv. In this document, we'll install the site to `/code/site/`.
 
-#Step 2
-Create a virtualenv by using the following command `virtualenv env`.
-This environment will be enabled using the following command in the folder you ran `virtualenv env`: `source env/bin/activate`
-
-Now the command line should look like this:
-
+```sh
+$ mkdir /code/
+$ cd /code/
+$ git clone https://github.com/DMOJ/site.git
+$ git submodule update --init
+$ virtualenv site
+$ cd /code/site/
+$ source bin/activate
 ```
-(env)walle256@server ~:
+
+## Step 2 - installing the requirements
+This step is a bit tricky, since usually you won't have all the required libraries already installed.
+
+```sh
+$ pip install -r requirements.txt
 ```
 
-#Step 3
-Run: `git clone https://github.com/DMOJ/site`, `cd site`, and then `git submodule update --init`
+If, for example, you are missing `Python.h`, you should run `apt-get install python-dev` to fix the error. In this step, Google is your best friend to resolving errors.
 
-#Step 4
-Run: `pip install -r requirements.txt`
-This step is a bit tricky, usually, you don't have all the libs that are required, but, for example if you don't have `Python.h`, run `apt-get install python-dev`.
-In this step, Google is your best friend.
+## Step 3 - local settings for Django
+It's recommended that you add your settings in `dmoj/local_settings.py` rather than modifying `dmoj/settings.py` directly. `settings.py` will automatically read `local_settings.py` and `exec` it, so write your configuration there.
 
-#Step 5
-It's recommended that you add your settings in `dmoj/local_settings.py`, so start by writing `<text> dmoj/local_settings.py`.
-I will give you a template of what should local_settings.py should contain.
+Below is a template of what `local_settings.py` should contain. You may peruse `settings.py` for a list of possible configuration options.
 
 ```python
 SITE_NAME = 'DMOJ'
+SITE_LONG_NAME = 'Don Mills Online Judge'
+SITE_ADMIN_EMAIL = 'admin@dmoj.ca'
+
 ACE_URL = '//dmoj.ml/ace/'
 
-#This is where problem PDFs are created.
-PROBLEM_PDF_CACHE = "/root/arena/site/pdf/"
-WEBKIT_PDF = True
-
-#COMPRESS_ROOT != STATIC_ROOT
+# COMPRESS_ROOT != STATIC_ROOT
 COMPRESS_ROOT = '/root/arena/site/compress'
 
 INSTALLED_APPS += (
     'django_select2',
 )
 
-#Add database credentials
+# Add database credentials
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -68,7 +68,7 @@ BRIDGED_DJANGO_HOST = '0.0.0.0'
 
 DEFAULT_USER_TIME_ZONE = 'Europe/Bucharest'
 
-#Add cache. You can use memcached.
+# Add cache. You can use memcached.
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
@@ -78,25 +78,37 @@ CACHES = {
 ```
 You can customize this template to your liking.
 
-#Step 6
-*TL:DR*:
-* Install RabbitMQ
-* Create a user and a vhost for the site.
-* Set `JUDGE_AMQP_PATH` to `amqp://user:password@host:port/vhost`
+<!--*TODO*: wkhtmltopdf installation instructions.-->
 
-Not *TL:DR*       
-1. Start by enabling the management plugin. `rabbitmq-plugins enable rabbitmq_management`.    
-2. Open your browser and go to: `host:15672`.     
-3. Login with user guest and password guest.     
-4. Now go to Admin, and add a vhost.     
-5. Then create a user with rights on that vhost.       
-6. (Optional) Change the password of the guest account.       
-7. Now set `JUDGE_AMQP_PATH` to `amqp://user:password@host:port/vhost`.       
+## Step 4 - installing RabbitMQ
+The DMOJ uses the RabbitMQ AMQP framework to communicate with the event server (for live updates) and bridge server (for judging).
 
-#Step 7
+First, install `rabbitmq-server`.
 
-For building the CSS, you need to install SASS 'gem install sass' and Pleeease 'npm install -g pleeease-cli'.
-Now run `./make_style.sh`.
+```sh
+$ apt-get install rabbitmq-server
+```
 
-#Step 8 and more
+Now, we need to enable the administration panel so we can add a user for DMOJ.
+
+```
+$ rabbitmq-plugins enable rabbitmq_management
+```
+
+This will start the administration panel on `<host>:15672`. In your browser, log in with the user `guest` and the password `guest`. Navigate to the *Admin* view, add a vhost, and create a privileged user on it. After doing so, you should change the password of the guest account.
+
+Finally, we need to tell DMOJ about the RabbitMQ vhost. We can do so by setting `JUDGE_AMQP_PATH` in `local_settings.py` to `amqp://user:password@host:port/vhost`.
+
+## Step 5 - compiling the SASS-y stylesheets
+
+Compiling the CSS from SASS is a fairly painless procedure. For added cross-browser compatibility, we also run the generated CSS through Pleeease through the script `make_style.sh`. You'll need to install both SASS and Pleeease before proceeding.
+
+```sh
+$ gem install sass
+$ npm install -h pleeease-cli
+```
+
+Then, run `./make_style.sh`, located in `/code/site`.
+
+## Step 6 and more
 *TODO*: Run project, and add a reverse proxy (NGINX).
