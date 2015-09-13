@@ -18,9 +18,9 @@ This step is simple. Choose a location to install the site to, clone the reposit
 $ mkdir /code/
 $ cd /code/
 $ git clone https://github.com/DMOJ/site.git
-$ git submodule update --init
 $ virtualenv site
 $ cd /code/site/
+$ git submodule update --init
 $ source bin/activate
 ```
 
