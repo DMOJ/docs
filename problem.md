@@ -73,6 +73,7 @@ The associated `init.json` for this problem would look like the following.
 ```json
 {
     "grader": "interactor.py",
+    "unbuffered": true,
     "test_cases": [
         {
             "points": 100
@@ -82,6 +83,8 @@ The associated `init.json` for this problem would look like the following.
 ```
 
 Since we use no input or output files (our testcase is hardcoded), we do not need to specify the `archive` or related `in` and `out` fields.
+
+In this example, it's important to note the `unbuffered` node. If set to `true`, the judge will use a pseudoterminal device for a submission's input and output pipes. Since ptys are not buffered by design, setting `unbuffered` to `true` removes the need for user submissions to `flush()` their output stream to guarantee that the `grader` receives their response. **The `unbuffered` node is not exclusive to interactive grading: it may be specified regardless of judging mode.**
 
 
 ### Custom Checkers - `checker`
