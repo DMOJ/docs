@@ -11,6 +11,10 @@ problems, and also defines the execution environment.
 
 For an example `judge.yml` containing all supported key-value pairs, see [sample_judge_conf.yml](/sample_judge_conf.yml)
 
+### `selftest_sandboxing` node
+
+It may be the case that your judges take a very long time to start up due to self-testing. One way to speed up the boot process once you're confident that the sandboxing is configured correctly is to specify `selftest_sandboxing: false` in `judge.yml`. Doing so will disable all sandboxing during testing. Beware! This may void your warranty, but may end up increasing your mileage.
+
 ### Authentication
 
 All judges are authenticated to the bridge in order to avoid rogue judges returning false data.
