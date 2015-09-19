@@ -8,7 +8,7 @@ The DMOJ site provides support for this through the [Github Camo](https://github
 
 * CoffeeScript (`apt-get install coffeescript`)
 
-## Install atmos/camo to /code
+## Installing Camo to /code
 
 ```shell
 $ cd /code
