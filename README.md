@@ -24,3 +24,7 @@ For examples of the different problem types, see [the sample problems provided](
     * [Using `colorgcc` alongside a GCC 4.9+ installation](/colored-compiler-messages.md#using-colorgcc-alongside-a-gcc-49-installation)
   * [Clang](/colored-compiler-messages.md#clang)
   * [Colors for Other Languages](/colored-compiler-messages.md#colors-for-other-languages)
+
+* [**SSL Proxying for User Content**](/ssl-content-proxy.md)
+  * [Installing camo to /code](/ssl-content-proxy.md#installing-camo-to-code)
+  * [Configuring DMOJ to use Camo](/ssl-content-proxy.md#configuring-dmoj-to-use-camo)
