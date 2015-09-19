@@ -30,13 +30,13 @@ To enable the use of Camo in the DMOJ site, you need to specify a couple of vari
 
 ```python
 # The URL on which Camo is listening
-CAMO_URL = "https://example.com:<port>"
+CAMO_URL = "https://example.com[:port]"
 # The key you specified for running Camo
 CAMO_KEY = "<key>"
 # Domains to exclude from Camo proxying. Typically, these would be your own domains which you use
 # for content delivery, and you know to already be secure.
 CAMO_EXCLUDE = ("https://dmoj.ml", "https://dmoj.ca")
-# Whether Camo should use HTTPS (you probably want this)
+# Whether Camo should use HTTPS for protocol neutral URIs (you probably want this)
 CAMO_HTTPS = True
 ```
 
