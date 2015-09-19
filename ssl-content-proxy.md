@@ -2,11 +2,7 @@
 
 User-generated content (e.g., comments) poses a threat to site security, and may cause mixed-content warnings. If your site is served over HTTPS, this may be suboptimal - routing user content through an HTTPS server can help.
 
-The DMOJ site provides support for this through the [Github Camo](https://github.com/atmos/camo) project.
-
-## Requirements
-
-* CoffeeScript (`apt-get install coffeescript`)
+The DMOJ site provides support for this through the [Github Camo](https://github.com/atmos/camo) project, which requires CoffeeScript to be installed (`apt-get install coffeescript`).
 
 ## Installing Camo to /code
 
