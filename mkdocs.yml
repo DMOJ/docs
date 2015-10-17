@@ -7,6 +7,8 @@ pages:
 - Judge:
   - 'Configuration': 'judge/configuration.md'
   - 'Problem Format': 'judge/problem_format.md'
+  - 'Problem Examples': 'judge/problem_examples.md'
+  - 'Supported Languages': 'judge/supported-languages.md'
 - About:
     - 'License': 'about/license.md'
 theme: readthedocs
