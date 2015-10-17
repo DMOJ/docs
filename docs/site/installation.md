@@ -1,4 +1,3 @@
-# Installing the DMOJ Site   
 This guide is intended for Linux machines, specifically those running Debian or derivatives (e.g. Ubuntu). Your mileage may vary with other distros.
 
 ## Requirements

@@ -1,0 +1,10 @@
+site_name: DMOJ Docs
+pages:
+- Home: index.md
+- Site:
+  - 'Installing the site': 'site/installation.md'
+- Judge:
+  - 'Problem Format': 'judge/problem_format.md'
+- About:
+    - 'License': 'about/license.md'
+theme: readthedocs

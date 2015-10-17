@@ -39,7 +39,7 @@ def grade(case, process, case_input=None, case_output=None, point_value=0, **kwa
 #### Returns
 
 A `Result` object (`from judge import Result`).
-A result object has a `result_flag` field that stores a mask defining the current testcase result code. `proc_output` contains the string that will be displayed in the partial output pane. 
+A result object has a `result_flag` field that stores a mask defining the current testcase result code. `proc_output` contains the string that will be displayed in the partial output pane.
 
 To illustrate, in a problem where the process must a line of echo input, an interactive approach would look like the following.
 
@@ -51,18 +51,18 @@ def grade(case, process, case_input=None, case_output=None, point_value=0, **kwa
   inp = 'Hello, World!'
   process.stdout.write(inp + '\n')
   process.stdout.flush()
-  
+
   output = process.stdin.readline().strip()
-  
+
   res = Result()
-  
+
   if output == inp:
     res.result_flag = Result.AC
     res.proc_output = 'Correct answer! This will be displayed in the partial output pane.'
   else:
     res.result_flag = Result.WA
     res.proc_output = 'Wrong answer! :('
-  
+
   return res
 ```
 
