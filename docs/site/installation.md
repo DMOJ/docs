@@ -1,7 +1,6 @@
-# Installing the DMOJ Site   
 This guide is intended for Linux machines, specifically those running Debian or derivatives (e.g. Ubuntu). Your mileage may vary with other distros.
 
-## Requirements
+# Requirements
 * Python 2
 * `virtualenv` (`pip install virtualenv`)
 * `pip`
@@ -11,7 +10,8 @@ This guide is intended for Linux machines, specifically those running Debian or 
 * NodeJS and `npm`
 * RabbitMQ server (`apt-get install rabbitmq-server`)
 
-## Step 1 - clone the repository and create a virtualenv for the site
+## Step 1
+### Clone the repository and create a virtualenv for the site
 This step is simple. Choose a location to install the site to, clone the repository and create a virtualenv. In this document, we'll install the site to `/code/site/`.
 
 ```sh
@@ -24,7 +24,8 @@ $ git submodule update --init
 $ source bin/activate
 ```
 
-## Step 2 - installing the requirements
+## Step 2
+### Installing the requirements
 This step is a bit tricky, since usually you won't have all the required libraries already installed.
 
 ```sh
@@ -33,7 +34,8 @@ $ pip install -r requirements.txt
 
 If, for example, you are missing `Python.h`, you should run `apt-get install python-dev` to fix the error. In this step, Google is your best friend to resolving errors.
 
-## Step 3 - local settings for Django
+## Step 3
+### Local settings for Django
 It's recommended that you add your settings in `dmoj/local_settings.py` rather than modifying `dmoj/settings.py` directly. `settings.py` will automatically read `local_settings.py` and `exec` it, so write your configuration there.
 
 Below is a template of what `local_settings.py` should contain. You may peruse `settings.py` for a list of possible configuration options.
@@ -80,7 +82,8 @@ You can customize this template to your liking.
 
 <!--*TODO*: wkhtmltopdf installation instructions.-->
 
-## Step 4 - installing RabbitMQ
+## Step 4
+### Installing RabbitMQ
 The DMOJ uses the RabbitMQ AMQP framework to communicate with the event server (for live updates) and bridge server (for judging).
 
 First, install `rabbitmq-server`.
@@ -99,7 +102,8 @@ This will start the administration panel on `<host>:15672`. In your browser, log
 
 Finally, we need to tell DMOJ about the RabbitMQ vhost. We can do so by setting `JUDGE_AMQP_PATH` in `local_settings.py` to `amqp://user:password@host:port/vhost`.
 
-## Step 5 - compiling the SASS-y stylesheets
+## Step 5
+### Compiling the SASS-y stylesheets
 
 Compiling the CSS from SASS is a fairly painless procedure. For added cross-browser compatibility, we also run the generated CSS through Pleeease through the script `make_style.sh`. You'll need to install both SASS and Pleeease before proceeding.
 

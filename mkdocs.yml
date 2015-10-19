@@ -1,0 +1,15 @@
+site_name: DMOJ Docs
+pages:
+- Home: index.md
+- Site:
+  - 'Installing the site': 'site/installation.md'
+  - 'SSL Proxying for User Content': 'site/ssl-content-proxy.md'
+- Judge:
+  - 'Configuration': 'judge/configuration.md'
+  - 'Colored Compiler Messages': 'judge/colored-compiler-messages.md'
+  - 'Problem Format': 'judge/problem_format.md'
+  - 'Problem Examples': 'judge/problem_examples.md'
+  - 'Supported Languages': 'judge/supported-languages.md'
+- About:
+    - 'License': 'about/license.md'
+theme: readthedocs
