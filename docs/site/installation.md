@@ -26,9 +26,11 @@ $ source bin/activate
 
 ## Step 2
 ### Installing the requirements
-This step is a bit tricky, since usually you won't have all the required libraries already installed.
 
+This step is a bit tricky, since usually you won't have all the required libraries already installed.     
+**NOTE**: @Xyene did not push requirements.txt to the repo, so here is a temporary fix.
 ```sh
+$ wget https://gist.githubusercontent.com/WallE256/f042dac2d070ea757c72/raw/87f0168a899f67bb46f64d1f356c57fa1e5666da/requirements.txt
 $ pip install -r requirements.txt
 ```
 
