@@ -1,14 +1,14 @@
 This guide is intended for Linux machines, specifically those running Debian or derivatives (e.g. Ubuntu). Your mileage may vary with other distros.
 
 # Requirements
-* Python 2
-* `virtualenv` (`pip install virtualenv`)
-* `pip`
-* `git`
-* MySQL or MariaDB database in CentOS 7
-* Ruby and `gem`
-* NodeJS and `npm`
-* RabbitMQ server (`apt-get install rabbitmq-server`)
+- Python 2
+- `virtualenv` (`pip install virtualenv`)
+- `pip`
+- `git`
+- MySQL or MariaDB database in CentOS 7
+- Ruby and `gem`
+- NodeJS and `npm`
+- RabbitMQ server (`apt-get install rabbitmq-server`)
 
 ## Step 1
 ### Clone the repository and create a virtualenv for the site
@@ -26,9 +26,8 @@ $ source bin/activate
 
 ## Step 2
 ### Installing the requirements
+This step is a bit tricky, since usually you won't have all the required libraries already installed.<br>**NOTE**: @Xyene did not push requirements.txt to the repo, so here is a temporary fix.
 
-This step is a bit tricky, since usually you won't have all the required libraries already installed.     
-**NOTE**: @Xyene did not push requirements.txt to the repo, so here is a temporary fix.
 ```sh
 $ wget https://gist.githubusercontent.com/WallE256/f042dac2d070ea757c72/raw/87f0168a899f67bb46f64d1f356c57fa1e5666da/requirements.txt
 $ pip install -r requirements.txt
@@ -80,9 +79,8 @@ CACHES = {
     }
 }
 ```
-You can customize this template to your liking.
 
-<!--*TODO*: wkhtmltopdf installation instructions.-->
+You can customize this template to your liking. <!--*TODO*: wkhtmltopdf installation instructions.-->
 
 ## Step 4
 ### Installing RabbitMQ
@@ -100,13 +98,12 @@ Now, we need to enable the administration panel so we can add a user for DMOJ.
 $ rabbitmq-plugins enable rabbitmq_management
 ```
 
-This will start the administration panel on `<host>:15672`. In your browser, log in with the user `guest` and the password `guest`. Navigate to the *Admin* view, add a vhost, and create a privileged user on it. After doing so, you should change the password of the guest account.
+This will start the administration panel on `<host>:15672`. In your browser, log in with the user `guest` and the password `guest`. Navigate to the _Admin_ view, add a vhost, and create a privileged user on it. After doing so, you should change the password of the guest account.
 
 Finally, we need to tell DMOJ about the RabbitMQ vhost. We can do so by setting `JUDGE_AMQP_PATH` in `local_settings.py` to `amqp://user:password@host:port/vhost`.
 
 ## Step 5
 ### Compiling the SASS-y stylesheets
-
 Compiling the CSS from SASS is a fairly painless procedure. For added cross-browser compatibility, we also run the generated CSS through Pleeease through the script `make_style.sh`. You'll need to install both SASS and Pleeease before proceeding.
 
 ```sh
@@ -117,4 +114,4 @@ $ npm install -h pleeease-cli
 Then, run `./make_style.sh`, located in `/code/site`.
 
 ## Step 6 and more
-*TODO*: Run project, and add a reverse proxy (NGINX).
+_TODO_: Run project, and add a reverse proxy (NGINX).

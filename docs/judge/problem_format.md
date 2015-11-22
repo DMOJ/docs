@@ -1,43 +1,33 @@
 Each problem is stored in its own directory. That directory must contain a file named `init.json`.
 
-### `init.json`
+# `init.json`
+The entire file is a JSON Object. It must contain one key, `test_cases`, which maps to a list of test cases. Optionally, but almost always, will there be an `archive` key, which allows the problem data to be stored, compressed, in a `.zip` file, instead of the problem directory as flat files.
 
-The entire file is a JSON Object. It must contain one key, `test_cases`, which maps to a list of test cases.
-Optionally, but almost always, will there be an `archive` key, which allows the problem data to be stored,
-compressed, in a `.zip` file, instead of the problem directory as flat files.
-
-### `test_cases`
-
+# `test_cases`
 Each element in the `test_cases` list is a JSON object. It contains the key `points`, mapped to an integer specifying the number of points that test case is worth.
 
-#### Normal Cases
-
+## Normal Cases
 For normal cases, the test case JSON object will contain keys `in` and `out`, mapping to the path for the input and output files, respectively. The path is in the zip file if `archive` is defined, otherwise relative to the problem directory.
 
-#### Batched Cases
-
+## Batched Cases
 For batched cases, instead of `in` and `out`, the JSON object will contain `data` key, mapped to a list of objects, each containing `in` and `out`.
 
-### Interactive Problems - `grader`
-
+# Interactive Problems - `grader`
 An `init.json` object can contain a top-level `grader` node, which contains a path to a Python file to be executed as a grader for the problem. The grader has access to the archive specified in `archive`. A `grader` Python script must implement a function that is called by the judge:
 
 ```python
 def grade(case, process, case_input=None, case_output=None, point_value=0, **kwargs)
 ```
 
-#### Parameters
+## Parameters
+- `case` is an integer, the current test case with a zero-based index.
+- `process` is a `Popen`-like object with which the grader may interact. `process.stdin` is a file-like object representing the submission's `stdin` handle, and `process.stdout` wraps the process' `stdout`. Input is given to the process through `process.stdin` and output is typically read from `process.stdout`.
+- `case_input` is a buffer containing the contents of the `in` file specified for the current case in `init.json`. May be empty, if no case input file was specified.
+- `case_output` is a buffer containing the contents of the `out` file specified for the current case in `init.json`. May be empty, if no case output file was specified.
+- `point_value` is an integer, the max points that can be awarded for the current testcase.
 
-* `case` is an integer, the current test case with a zero-based index.
-* `process` is a `Popen`-like object with which the grader may interact. `process.stdin` is a file-like object representing the submission's `stdin` handle, and `process.stdout` wraps the process' `stdout`. Input is given to the process through `process.stdin` and output is typically read from `process.stdout`.
-* `case_input` is a buffer containing the contents of the `in` file specified for the current case in `init.json`. May be empty, if no case input file was specified.
-* `case_output` is a buffer containing the contents of the `out` file specified for the current case in `init.json`. May be empty, if no case output file was specified.
-* `point_value` is an integer, the max points that can be awarded for the current testcase.
-
-#### Returns
-
-A `Result` object (`from judge import Result`).
-A result object has a `result_flag` field that stores a mask defining the current testcase result code. `proc_output` contains the string that will be displayed in the partial output pane.
+## Returns
+A `Result` object (`from judge import Result`). A result object has a `result_flag` field that stores a mask defining the current testcase result code. `proc_output` contains the string that will be displayed in the partial output pane.
 
 To illustrate, in a problem where the process must a line of echo input, an interactive approach would look like the following.
 
@@ -84,9 +74,7 @@ Since we use no input or output files (our testcase is hardcoded), we do not nee
 
 In this example, it's important to note the `unbuffered` node. If set to `true`, the judge will use a pseudoterminal device for a submission's input and output pipes. Since ptys are not buffered by design, setting `unbuffered` to `true` removes the need for user submissions to `flush()` their output stream to guarantee that the `grader` receives their response. **The `unbuffered` node is not exclusive to interactive grading: it may be specified regardless of judging mode.**
 
-
-### Custom Checkers - `checker`
-
+# Custom Checkers - `checker`
 A problem with many possible outputs (e.g. not a single possible answer, with score based on accuracy) may benefit from the `checker` field in the `init.json` object. A checker is a Python script that is executed per-case, like an interactive grader, but which runs post-execution - it grades the output of a process but does not interact with it.
 
 A `checker` Python script must implement a function that is called by the judge:
@@ -95,20 +83,17 @@ A `checker` Python script must implement a function that is called by the judge:
 def check(proc_output, judge_output, judge_input, point_value, submission_source, **kwargs)
 ```
 
-#### Parameters
+## Parameters
+- `proc_output` contains the submission's output, as a string.
+- `judge_output` contains the contents of the specified `out` file.
+- `judge_input` contains the contents of the specified `in` file.
+- `point_value` is the point value for the current case, as specified for the current testcase.
+- `submission_source` contains the submission's source as a string. Useful for code golf problems.
 
-* `proc_output` contains the submission's output, as a string.
-* `judge_output` contains the contents of the specified `out` file.
-* `judge_input` contains the contents of the specified `in` file.
-* `point_value` is the point value for the current case, as specified for the current testcase.
-* `submission_source` contains the submission's source as a string. Useful for code golf problems.
-
-#### Returns
-
+## Returns
 A `CheckerResult` object (`from judge import CheckerResult`). A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, partial_output='')`.
 
-### Checkers or Interactors for Computationally-Heavy Problems
-
+# Checkers or Interactors for Computationally-Heavy Problems
 Sometimes, problems that require checkers or interactive grading may also be computationally expensive. In such cases, it is often beneficial to move answer checking from the slow Python problem module and into a native language. For maximum interoperability, the judge system requires a Python script to handle raw interaction prompts, but the script itself may use the judge's compilation and execution API to spawn native processes.
 
 To illustrate, a problem that requires a computationally expensive validator can easily be implemented as shown below.
@@ -129,8 +114,7 @@ process = executor.launch(time=60, memory=262144)
 
 Here, `validator.cpp` exists in the problem folder root directory, and `process` is the executed validator - a `Popen`-like object. When using `Executor.launch`, you may pass a time limit (in seconds) along with a memory limit (in Kb). Here, the validator may run for a maximum of 60 seconds and use 256mb before being killed. `launch` uses the same sandboxing system as normal submissions; filesystem, network and interprocess access is denied. If you'd like to avoid the overhead of sandboxing for a validator you are sure will execute safely, you may choose to use `Executor.launch_unsafe` - note, however, that you may not specify time or memory limits if the sandbox is inactive.
 
-### Function Signature Grading (IOI-style)
-
+# Function Signature Grading (IOI-style)
 Signature grading is used for problems where users should implement an online algorithm or interact with the grader directly without the need for traditional input and output routines. This is commonly seen in competitions such as the IOI, where all input is passed through function arguments and output is replaced with return values or directly modifying specifically allocated memory for the computed answer. Currently, C and C++ are supported for this mode. `handler` should be a top-level node that contains `entry` and `header`. `entry` is a C or C++ file that contains the `main` function. It should read input from `stdin`, call the user's implemented functions specified in `header`, and write output to `stdout`. You may specify a custom `checker` to interpret the `entry`'s output. If no custom checker is specified, it will be compared to the output file using the default checker.
 
 The user's submission will be automatically modified to include the file `header`, and the symbol `main` is redefined as `main_GUID` where `GUID` is a randomly generated GUID. This is so users testing their program do not have to manually remove their `main` function before submissions; it does not protect against the preprocessor directive `#undef main`.
@@ -183,6 +167,7 @@ int main()
 ```
 
 An example of the `header` file:
+
 ```c
 #ifndef _GRADER_HEADER_INCLUDED
 #define _GRADER_HEADER_INCLUDED

@@ -2,7 +2,7 @@ User-generated content (e.g., comments) poses a threat to site security, and can
 
 The DMOJ site provides support for this through the [Github Camo](https://github.com/atmos/camo) project, which requires CoffeeScript to be installed (`apt-get install coffeescript`).
 
-## Installing Camo to /code
+# Installing Camo to /code
 
 ```shell
 $ cd /code
@@ -15,11 +15,10 @@ Now, Camo may be started by running `/code/camo/server.coffee`.
 $ PORT="<port>" CAMO_KEY="<key>" coffee /code/camo/server.coffee
 ```
 
-* Camo will listen on `<port>`.
-* `<key>` is the HMAC secret key used for digests. Set it to anything you want.
+- Camo will listen on `<port>`.
+- `<key>` is the HMAC secret key used for digests. Set it to anything you want.
 
-## Configuring DMOJ to use Camo
-
+# Configuring DMOJ to use Camo
 To enable the use of Camo in the DMOJ site, you need to specify a couple of variables in your `local_settings.py`.
 
 ```python

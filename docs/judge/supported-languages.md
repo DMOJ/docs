@@ -1,6 +1,6 @@
 #Supported Languages
 
-The DMOJ supports grading in [38 languages](https://github.com/DMOJ/judge/tree/master/executors): Ada, AWK, C, Clang, Clang++, COBOL, C++/0x/11/14, D, Dart, Fortran, Go, Haskell, Java 7/8, Lua, Mono C#, Mono F#, Mono VB, NASM, Objective-C, OCaml, Pascal, Perl, PHP, Python 2/3, PyPy 2/3, Ruby 2.1, Rust, Scheme, Tcl, Turing, V8 JavaScript, and Brain***. All these languages are tested in production on <https://dmoj.ca>.
+The DMOJ supports grading in [38 languages](https://github.com/DMOJ/judge/tree/master/executors): Ada, AWK, C, Clang, Clang++, COBOL, C++/0x/11/14, D, Dart, Fortran, Go, Haskell, Java 7/8, Lua, Mono C#, Mono F#, Mono VB, NASM, Objective-C, OCaml, Pascal, Perl, PHP, Python 2/3, PyPy 2/3, Ruby 2.1, Rust, Scheme, Tcl, Turing, V8 JavaScript, and Brainf**k. All these languages are tested in production on [https://dmoj.ca](https://dmoj.ca).
 
 As it stands, some languages are used more than others in the scope of competitive programming, so some executors have been tested more than others. As a result, they are more likely to be bug-free than the rest. Below is a list of all languages which we run live, along with the number of submissions in those languages as of October 3, 2015.
 
