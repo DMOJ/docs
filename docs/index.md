@@ -14,6 +14,7 @@
   - [Function Signature Grading (IOI-style)](judge/problem_format/#function-signature-grading-ioi-style)
 
 For examples of the different problem types, see [the sample problems provided](/problem_examples). The related problem statements may be found on [https://dmoj.ca](https://dmoj.ca), under the same codes.
+
 - [**Colored Compiler Messages**](judge/colored-compiler-messages)
   - [Setting up the Judge](judge/colored-compiler-messages/#setting-up-the-judge)
   - [Enabling Colors in GCC 4.9+](judge/colored-compiler-messages/#enabling-colors-in-gcc-49)
