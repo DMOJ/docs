@@ -114,18 +114,18 @@ Now add the folowing things to this file:
 
 ```
 [
-{rabbit, [
-{auth_backends, [rabbit_auth_backend_internal, rabbit_auth_backend_http]}
-]},
-{rabbitmq_auth_backend_http, [
-{user_path, "http://localhost/api/judge/auth/rabbitmq/user"},
-{vhost_path, "http://localhost/api/judge/auth/rabbitmq/vhost"},
-{resource_path, "http://localhost/api/judge/auth/rabbitmq/resource"}
-]}
+  {rabbit, [
+    {auth_backends, [rabbit_auth_backend_internal, rabbit_auth_backend_http]}
+  ]},
+  {rabbitmq_auth_backend_http, [
+    {user_path, "http://localhost/api/judge/auth/rabbitmq/user"},
+    {vhost_path, "http://localhost/api/judge/auth/rabbitmq/vhost"},
+    {resource_path, "http://localhost/api/judge/auth/rabbitmq/resource"}
+  ]}
 ].
 ```
 
-Where `localhost` is a way to access the Django setup.
+Where `localhost` is a way to access the Django setup. You should replace the URLs with a versio that is accessible from RabbitMQ server. You may try running `curl <url>` to test, and the expected result for all three should be `deny`.
 
 ## Step 5
 ### Compiling the SASS-y stylesheets
