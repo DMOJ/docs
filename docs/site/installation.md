@@ -88,7 +88,8 @@ The DMOJ uses the RabbitMQ AMQP framework to communicate with the event server (
 First, install `rabbitmq-server`.
 
 ```sh
-$ apt-get install rabbitmq-server
+$ curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.deb.sh | sudo bash
+$ sudo apt-get install rabbitmq-server=3.5.7-1
 ```
 
 Now, we need to enable the administration panel so we can add a user for DMOJ.
@@ -100,6 +101,31 @@ $ rabbitmq-plugins enable rabbitmq_management
 This will start the administration panel on `<host>:15672`. In your browser, log in with the user `guest` and the password `guest`. Navigate to the _Admin_ view, add a vhost, and create a privileged user on it. After doing so, you should change the password of the guest account.
 
 Finally, we need to tell DMOJ about the RabbitMQ vhost. We can do so by setting `JUDGE_AMQP_PATH` in `local_settings.py` to `amqp://user:password@host:port/vhost`.
+
+But still, we are not done yet. We now need to add Django as a authentication service.<br/>
+
+```sh
+cd /usr/lib/rabbitmq/lib/rabbitmq_server-3.5.7/plugins/
+wget http://www.rabbitmq.com/community-plugins/v3.5.x/rabbitmq_auth_backend_http-3.5.x-fe9401c6.ez
+cd /etc/rabbitmq
+```
+
+Now add the folowing things to this file:
+
+```
+[
+{rabbit, [
+{auth_backends, [rabbit_auth_backend_internal, rabbit_auth_backend_http]}
+]},
+{rabbitmq_auth_backend_http, [
+{user_path, "http://localhost/api/judge/auth/rabbitmq/user"},
+{vhost_path, "http://localhost/api/judge/auth/rabbitmq/vhost"},
+{resource_path, "http://localhost/api/judge/auth/rabbitmq/resource"}
+]}
+].
+```
+
+Where `localhost` is a way to access the Django setup.
 
 ## Step 5
 ### Compiling the SASS-y stylesheets
