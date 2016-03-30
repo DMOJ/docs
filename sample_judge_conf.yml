@@ -3,7 +3,7 @@ id: ExampleJudge
 # The key this judge will use to authenticate with the site server, generated from the admin panel
 key: "-t_qBN}_zr@WF_O(j>A]9:JR,-]@FMPN38(9Y:CDD]`ZT.|dYdH03q#;cN8?5s(gvu0LeSBMy3cc;06)pF)<nX]C=.Us^{#7w!9:"
 # Where to look for problems on the local filesystem.
-# This directory is scanned recursively, and any directory containing an init.json file is assumed to
+# This directory /not/ scanned recursively, and any directory containing an init.json file is assumed to
 # be a problem directory.
 problem_storage_root:
   - /home/sync/problems
