@@ -101,5 +101,14 @@ $ npm install -h pleeease-cli
 
 Then, run `./make_style.sh`, located in `/code/site`.
 
-## Step 6 and more
-_TODO_: Run project, and add a reverse proxy (NGINX).
+## Step 6
+### Migrating the database
+Before trying to start the site, we need to initialize the database with the structure that we need. For that you need to run:
+```sh
+$ python manage.py migrate
+```
+
+## Step 7
+### Running the site
+**NOTE**: The following method is for debug proposes only. I will cover the `uwsgi` way of running the site in a different part of the docs. <br/>
+For running the site now you just need to run `python manage.py runserver`.
