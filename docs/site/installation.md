@@ -8,7 +8,6 @@ This guide is intended for Linux machines, specifically those running Debian or 
 - MySQL or MariaDB database in CentOS 7
 - Ruby and `gem`
 - NodeJS and `npm`
-- RabbitMQ server (`apt-get install rabbitmq-server`)
 
 ## Step 1
 ### Clone the repository and create a virtualenv for the site
@@ -66,7 +65,9 @@ DATABASES = {
 }
 
 BRIDGED_JUDGE_HOST = '0.0.0.0'
+BRIDGED_JUDGE_PORT = 9999
 BRIDGED_DJANGO_HOST = '0.0.0.0'
+BRIDGED_DJANGO_PORT = 9998
 
 DEFAULT_USER_TIME_ZONE = 'Europe/Bucharest'
 
@@ -82,50 +83,12 @@ CACHES = {
 You can customize this template to your liking. <!--*TODO*: wkhtmltopdf installation instructions.-->
 
 ## Step 4
-### Installing RabbitMQ
-The DMOJ uses the RabbitMQ AMQP framework to communicate with the event server (for live updates) and bridge server (for judging).
-
-First, install `rabbitmq-server`.
-
+### Running the bridge
+Running the bridge is required for connecting judges to the Django setup. Even though this seems hard, it's actually just a command that must stay running for the judges to communicate with the site.
 ```sh
-$ curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.deb.sh | sudo bash
-$ sudo apt-get install rabbitmq-server=3.5.7-1
+$ python manage.py runbridged
 ```
-
-Now, we need to enable the administration panel so we can add a user for DMOJ.
-
-```
-$ rabbitmq-plugins enable rabbitmq_management
-```
-
-This will start the administration panel on `<host>:15672`. In your browser, log in with the user `guest` and the password `guest`. Navigate to the _Admin_ view, add a vhost, and create a privileged user on it. After doing so, you should change the password of the guest account.
-
-Finally, we need to tell DMOJ about the RabbitMQ vhost. We can do so by setting `JUDGE_AMQP_PATH` in `local_settings.py` to `amqp://user:password@host:port/vhost`.
-
-But still, we are not done yet. We now need to add Django as a authentication service.<br/>
-
-```sh
-cd /usr/lib/rabbitmq/lib/rabbitmq_server-3.5.7/plugins/
-wget http://www.rabbitmq.com/community-plugins/v3.5.x/rabbitmq_auth_backend_http-3.5.x-fe9401c6.ez
-cd /etc/rabbitmq
-```
-
-Now add the folowing things to this file:
-
-```
-[
-  {rabbit, [
-    {auth_backends, [rabbit_auth_backend_internal, rabbit_auth_backend_http]}
-  ]},
-  {rabbitmq_auth_backend_http, [
-    {user_path, "http://localhost/api/judge/auth/rabbitmq/user"},
-    {vhost_path, "http://localhost/api/judge/auth/rabbitmq/vhost"},
-    {resource_path, "http://localhost/api/judge/auth/rabbitmq/resource"}
-  ]}
-].
-```
-
-Where `localhost` is a way to access the Django setup. You should replace the URLs with a versio that is accessible from RabbitMQ server. You may try running `curl <url>` to test, and the expected result for all three should be `deny`.
+The port that is used by the bridge is defined by the `BRIDGED_JUDGE_PORT` variable in `local_settings.py`. This port must be accessible by the judges for them to connect to the site.
 
 ## Step 5
 ### Compiling the SASS-y stylesheets
