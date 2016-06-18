@@ -109,6 +109,10 @@ $ python manage.py migrate
 ```
 
 ## Step 7
+### Preparing i18n
+**TODO**
+
+## Step 8
 ### Running the site
 **NOTE**: The following method is for debug proposes only. I will cover the `uwsgi` way of running the site in a different part of the docs. <br/>
 For running the site now you just need to run `python manage.py runserver`.
