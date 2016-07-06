@@ -11,6 +11,7 @@ pages:
   - 'Problem Format': 'judge/problem_format.md'
   - 'Problem Examples': 'judge/problem_examples.md'
   - 'Supported Languages': 'judge/supported-languages.md'
+  - 'Status Codes': 'judge/status_codes.md'
 - About:
     - 'License': 'about/license.md'
 theme: readthedocs
