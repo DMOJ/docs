@@ -1,4 +1,3 @@
----
 generator: generator.cpp
 test_cases:
 - in: ds3.1.in
