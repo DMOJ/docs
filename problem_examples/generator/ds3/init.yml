@@ -1,0 +1,43 @@
+generator: generator.cpp
+points: 5
+test_cases:
+- in: ds3.1.in
+  out: ds3.1.out
+- in: ds3.2.in
+  out: ds3.2.out
+- in: ds3.3.in
+  out: ds3.3.out
+- in: ds3.4.in
+  out: ds3.4.out
+- in: ds3.5.in
+  out: ds3.5.out
+- in: ds3.6.in
+  out: ds3.6.out
+- in: ds3.7.in
+  out: ds3.7.out
+- in: ds3.8.in
+  out: ds3.8.out
+- in: ds3.9.in
+  out: ds3.9.out
+- in: ds3.10.in
+  out: ds3.10.out
+- in: ds3.11.in
+  out: ds3.11.out
+- in: ds3.12.in
+  out: ds3.12.out
+- in: ds3.13.in
+  out: ds3.13.out
+- in: ds3.14.in
+  out: ds3.14.out
+- in: ds3.15.in
+  out: ds3.15.out
+- in: ds3.16.in
+  out: ds3.16.out
+- in: ds3.17.in
+  out: ds3.17.out
+- in: ds3.18.in
+  out: ds3.18.out
+- in: ds3.19.in
+  out: ds3.19.out
+- in: ds3.20.in
+  out: ds3.20.out
