@@ -4,12 +4,14 @@ pages:
 - Site:
   - 'Installing the site': 'site/installation.md'
   - 'SSL Proxying for User Content': 'site/ssl-content-proxy.md'
+  - 'Running the site with `uwsgi`': 'site/uwsgi.md'
 - Judge:
   - 'Configuration': 'judge/configuration.md'
   - 'Colored Compiler Messages': 'judge/colored-compiler-messages.md'
   - 'Problem Format': 'judge/problem_format.md'
   - 'Problem Examples': 'judge/problem_examples.md'
   - 'Supported Languages': 'judge/supported-languages.md'
+  - 'Status Codes': 'judge/status_codes.md'
 - About:
     - 'License': 'about/license.md'
 theme: readthedocs
