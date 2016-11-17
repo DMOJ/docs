@@ -1,16 +1,17 @@
 site_name: DMOJ Docs
 pages:
-- Home: index.md
+- Home: README.md
 - Site:
   - 'Installing the site': 'site/installation.md'
-  - 'SSL Proxying for User Content': 'site/ssl-content-proxy.md'
+  - 'SSL Proxying for User Content': 'site/ssl_content_proxy.md'
   - 'Running the site with `uwsgi`': 'site/uwsgi.md'
 - Judge:
-  - 'Configuration': 'judge/configuration.md'
-  - 'Colored Compiler Messages': 'judge/colored-compiler-messages.md'
+  - 'Installation': 'judge/installation.md'
+  - 'Windows Installation': 'judge/windows_installation.md'
+  - 'Colored Compiler Messages': 'judge/colored_compiler_messages.md'
   - 'Problem Format': 'judge/problem_format.md'
   - 'Problem Examples': 'judge/problem_examples.md'
-  - 'Supported Languages': 'judge/supported-languages.md'
+  - 'Supported Languages': 'judge/supported_languages.md'
   - 'Status Codes': 'judge/status_codes.md'
 - About:
     - 'License': 'about/license.md'
