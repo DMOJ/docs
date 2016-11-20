@@ -1,6 +1,6 @@
 site_name: DMOJ Docs
 pages:
-- Home: README.md
+- Home: 'index.md'
 - Site:
   - 'Installing the site': 'site/installation.md'
   - 'SSL Proxying for User Content': 'site/ssl_content_proxy.md'
