@@ -1,4 +1,4 @@
-This installation guide is for Linux based machines (WSL included). For installation on Windows click [here](judge/windows_installation).
+This installation guide is for Linux based machines (WSL included). For installation on Windows click [here](windows_installation).
 
 ## Installing the prerequisite
 
