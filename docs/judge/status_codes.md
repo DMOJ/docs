@@ -12,8 +12,8 @@ Your program returned with a nonzero exit code (if you're not using a native lan
 ## RTE - Runtime Exception
 Your program caused a runtime exception to occur. This will only occur for native languages like C or C++. DMOJ maps many common RTEs to more useful descriptions, described below.
 
-| Feedback | Description|
-|----------|------------|
+| Feedback | Description |
+|----------|-------------|
 | `segmentation fault`| Your program was killed by SIGSEGV. Generally, this means you ran out of memory, but it can also mean that you are accessing arrays out of bounds, in some cases. |
 | `floating point exception` | Your program performed a bad arithmetic operation, such as division by zero. |
 | `killed` | Your program was killed by the runtime for some reason (we don’t know). |
