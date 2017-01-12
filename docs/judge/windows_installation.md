@@ -15,7 +15,7 @@ You will need a Python 2.7 installation. Make sure you have `cython` installed, 
 $ python setup.py develop
 ```
 
-Unless you have VC2015 correctly configured, the command will fail as it does not succeed in building the necessary sandbox binaries. However, we provide these binaries [from the official AppVeyor build](https://ci.appveyor.com/project/quantum5/judge/build/artifacts). Note that these are 64 bit
+Unless you have VC2015 correctly configured, the command will fail as it does not succeed in building the necessary sandbox binaries. However, we provide these binaries [from the official AppVeyor build](https://ci.appveyor.com/project/quantum5/judge/build/artifacts). Note that these are for a 64 bit installation of Python.
 
 `_wbox.pyd` goes into `dmoj/wbox`, and `_checker.pyd` optionally goes into `dmoj/checkers`.
 
