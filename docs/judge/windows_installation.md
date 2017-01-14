@@ -26,12 +26,14 @@ Running `develop` again should succeed, and a `dmoj-cli.exe` should be placed in
 Now, we need to configure some languages. Still in the judge directory, run:
 
 ```
-$ python -u dmoj/executors/autoconfig.py
+$ python -u dmoj/executors/autoconfig.py -c <yaml file>
 ```
+
+where `<yaml file>` is a `.yml` file with the node `tempdir` set to a folder accesable to all users.
 
 Autoconfig will print out some debug info followed by a YAML declaration for a `runtime` node. Copy it out and add it to a file called `judge.yml`.
 
-Running `dmoj-cli -c judge.yml` should put the judge through selftests. At any point in time, you may add more languages (e.g., through `apt` in WSL), and then use `autoconfig` to generate the necessary configuration.
+Running `dmoj-cli -c judge.yml` should put the judge through selftests. At any point in time, you may add more languages, and then use `autoconfig` to generate the necessary configuration.
 
 Next, you will need to set a `problem_storage_root` node to tell DMOJ where to look for problem data.
 
