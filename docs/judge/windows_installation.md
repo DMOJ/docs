@@ -3,7 +3,7 @@
 ### Windows 10 Anniversary Update
 This is the recommended way to run the DMOJ on Windows, but requires the Windows Subsystem for Linux (WSL) that was added in the Windows 10 Anniversary Update. You will [need to enable the subsystem](https://msdn.microsoft.com/en-us/commandline/wsl/install_guide) before proceeding.
 
-[Afterwards, follow the Linux Installation Instructions](installation)
+Afterwards, follow the [Linux installation instructions.](installation.md)
 
 ### All Other Windows
 
