@@ -4,14 +4,14 @@
 
 - [**Supported Languages**](judge/supported_languages.md)
 - [**Problem file format**](judge/problem_format.md)
-  - [`test_cases` node](judge/problem_format/#test_cases)
-    - [Normal Cases](judge/problem_format/#normal-cases)
-    - [Batched Cases](judge/problem_format/#batched-cases)
+  - [`test_cases` node](judge/problem_format.md/#test_cases)
+    - [Normal Cases](judge/problem_format.md/#normal-cases)
+    - [Batched Cases](judge/problem_format.md/#batched-cases)
 
-  - [Interactive Problems - `grader` node](judge/problem_format/#interactive-problems-grader)
-  - [Custom Checkers - `checker` node](judge/problem_format/#custom-checkers-checker)
-  - [Checkers or Interactors for Computationally-Heavy Problems (subprocessing C++)](judge/problem_format/#checkers-or-interactors-for-computationally-heavy-problems)
-  - [Function Signature Grading (IOI-style)](judge/problem_format/#function-signature-grading-ioi-style)
+  - [Interactive Problems - `grader` node](judge/problem_format.md/#interactive-problems-grader)
+  - [Custom Checkers - `checker` node](judge/problem_format.md/#custom-checkers-checker)
+  - [Checkers or Interactors for Computationally-Heavy Problems (subprocessing C++)](judge/problem_format.md/#checkers-or-interactors-for-computationally-heavy-problems)
+  - [Function Signature Grading (IOI-style)](judge/problem_format.md/#function-signature-grading-ioi-style)
 
 For examples of the different problem types, see [the sample problems provided](/problem_examples). The related problem statements may be found on [https://dmoj.ca](https://dmoj.ca), under the same codes.
 - [**Colored Compiler Messages**](judge/colored_compiler_messages)
