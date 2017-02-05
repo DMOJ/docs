@@ -23,6 +23,6 @@ For examples of the different problem types, see [the sample problems provided](
   - [Clang](judge/colored_compiler_messages.md/#clang)
   - [Colors for Other Languages](judge/colored_compiler_messages.md/#colors-for-other-languages)
 
-- [**SSL Proxying for User Content**](/ssl_content_proxy.md)
+- [**SSL Proxying for User Content**](site/ssl_content_proxy.md)
   - [Installing camo to /code](site/ssl_content_proxy.md/#installing-camo-to-code)
   - [Configuring DMOJ to use Camo](site/ssl_content_proxy.md/#configuring-dmoj-to-use-camo)
