@@ -2,11 +2,10 @@ site_name: DMOJ Docs
 pages:
 - Home: 'index.md'
 - Site:
-  - 'Installing the site': 'site/installation.md'
+  - 'Installing the Site': 'site/installation.md'
   - 'SSL Proxying for User Content': 'site/ssl_content_proxy.md'
-  - 'Running the site with `uwsgi`': 'site/uwsgi.md'
 - Judge:
-  - 'Installation': 'judge/installation.md'
+  - 'Linux Installation': 'judge/installation.md'
   - 'Windows Installation': 'judge/windows_installation.md'
   - 'Colored Compiler Messages': 'judge/colored_compiler_messages.md'
   - 'Problem Format': 'judge/problem_format.md'
