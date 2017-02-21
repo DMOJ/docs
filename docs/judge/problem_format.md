@@ -99,7 +99,8 @@ Sometimes, problems that require checkers or interactive grading may also be com
 To illustrate, a problem that requires a computationally expensive validator can easily be implemented as shown below.
 
 ```python
-from judge import executors, get_problem_root
+from dmoj.executors import executors
+from dmoj.judgeenv get_problem_root
 import os
 
 # Locate the validator source file. get_problem_root returns the root directory of the problem passed by name.
