@@ -125,11 +125,8 @@ At this point, you should attempt to run the server, and see if it all works.
 
 You should Ctrl-C to exit after verifying.
 
-<div class="alert alert-warning">
 **Do not use `runserver` in production!**
-<br/><br/>
 We will set up a proper webserver using Nginx and UWsgi soon.
-</div>
 
 You should also test to see if `bridged` runs.
 
