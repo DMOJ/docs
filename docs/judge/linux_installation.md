@@ -1,4 +1,4 @@
-This installation guide is for Linux based machines (WSL included). For installation on, Windows see the [Windows install instructions](windows_installation).
+This installation guide is for Linux based machines (WSL included). For installation on Windows, see the [Windows install instructions](windows_installation).
 
 ## Installing the prerequisites
 
