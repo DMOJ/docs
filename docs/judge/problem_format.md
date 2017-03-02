@@ -20,11 +20,12 @@ def grade(self, case):
 ```
 
 ## Parameters
-- `case` is a `TestCase` object. `case.points` is the case's point value.
-- `process` is a `Popen`-like object with which the grader may interact. `process.stdin` is a file-like object representing the submission's `stdin` handle, and `process.stdout` wraps the process' `stdout`. Input is given to the process through `process.stdin` and output is typically read from `process.stdout`.
-- `case_input` is a buffer containing the contents of the `in` file specified for the current case in `init.json`. May be empty, if no case input file was specified.
-- `case_output` is a buffer containing the contents of the `out` file specified for the current case in `init.json`. May be empty, if no case output file was specified.
-- `point_value` is an integer, the max points that can be awarded for the current testcase.
+`case` is a `TestCase` object.
+- `case.position` is an integer, the current test case with a zero-based index.
+- `process` is a `Popen`-like object with which the grader may interact. `process.stdin` is a file-like object representing the submission's `stdin` handle, and `process.stdout` wraps the process' `stdout`. Input is given to the process through `process.stdin` and output is typically read from `process.stdout`. (No it's not)
+- `case.input_data()` is a buffer containing the contents of the `in` file specified for the current case in `init.yml`. May be empty, if no case input file was specified.
+- `case.output_data()` is a buffer containing the contents of the `out` file specified for the current case in `init.yml`. May be empty, if no case output file was specified.
+- `case.points` is an integer, the max points that can be awarded for the current testcase.
 
 ## Returns
 A `Result` object (`from dmoj.result import Result`). A result object has a `result_flag` field that stores a mask defining the current testcase result code. `proc_output` contains the string that will be displayed in the partial output pane.
@@ -32,7 +33,7 @@ A `Result` object (`from dmoj.result import Result`). A result object has a `res
 To illustrate, in a problem where the process must a line of echo input, an interactive approach would look like the following.
 
 ```python
-from judge import Result
+from dmoj.result import Result
 
 def grade(case, process, case_input=None, case_output=None, point_value=0, **kwargs):
   print 'Interacting for case %d' % case
