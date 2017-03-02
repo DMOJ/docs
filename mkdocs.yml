@@ -5,7 +5,7 @@ pages:
   - 'Installing the Site': 'site/installation.md'
   - 'SSL Proxying for User Content': 'site/ssl_content_proxy.md'
 - Judge:
-  - 'Linux Installation': 'judge/installation.md'
+  - 'Linux Installation': 'judge/linux_installation.md'
   - 'Windows Installation': 'judge/windows_installation.md'
   - 'Colored Compiler Messages': 'judge/colored_compiler_messages.md'
   - 'Problem Format': 'judge/problem_format.md'
