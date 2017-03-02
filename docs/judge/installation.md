@@ -1,4 +1,4 @@
-This installation guide is for Linux based machines (WSL included). For installation on Windows click [here](windows_installation).
+This installation guide is for Linux based machines (WSL included). For installation on, Windows see the [Windows install instructions](windows_installation).
 
 ## Installing the prerequisite
 
@@ -12,7 +12,7 @@ $ sudo python setup.py develop
 
 ## Making the configuration file
 
-Start by taking the `runtime` block from the output of the command `python -m dmoj.executors.autoconfig` and put it in a new file `config.yml`. Now add a `problem_storage_root` option where you specify where your problem data is located. Here is how your configuration should look like:
+Start by taking the `runtime` block from the output of the command `python -m dmoj.executors.autoconfig` and put it in a new file `config.yml`. Next, add a `problem_storage_root` node where you specify where your problem data is located. 
 
 ```
 problem_storage_root: /judge/problems
@@ -20,4 +20,4 @@ runtime:
    ...
 ```
 
-Now you should be able to run `dmoj-cli -c config.yml`. For additional configuration options, look at the example available [here](https://github.com/DMOJ/docs/blob/master/sample_judge_conf.yml).
+You should now be able to run `dmoj-cli -c config.yml` to enter a CLI environment for the judge. For additional configuration options, an [example configuration file](https://github.com/DMOJ/docs/blob/master/sample_judge_conf.yml) is provided.
