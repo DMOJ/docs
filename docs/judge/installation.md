@@ -1,6 +1,6 @@
 This installation guide is for Linux based machines (WSL included). For installation on, Windows see the [Windows install instructions](windows_installation).
 
-## Installing the prerequisite
+## Installing the prerequisites
 
 ```
 $ sudo apt install git python-dev python-pip build-essential
@@ -10,7 +10,7 @@ $ cd judge
 $ sudo python setup.py develop
 ```
 
-## Making the configuration file
+## Configuring the judge
 
 Start by taking the `runtime` block from the output of the command `python -m dmoj.executors.autoconfig` and put it in a new file `config.yml`. Next, add a `problem_storage_root` node where you specify where your problem data is located. 
 
