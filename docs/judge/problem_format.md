@@ -71,13 +71,15 @@ Since we use no input or output files (our testcase is hardcoded), we do not nee
 In this example, it's important to note the `unbuffered` node. If set to `true`, the judge will use a pseudoterminal device for a submission's input and output pipes. Since ptys are not buffered by design, setting `unbuffered` to `true` removes the need for user submissions to `flush()` their output stream to guarantee that the `grader` receives their response. **The `unbuffered` node is not exclusive to interactive grading: it may be specified regardless of judging mode.**
 
 # Custom Checkers - `checker`
-A problem with many possible outputs (e.g. not a single possible answer, with score based on accuracy) may benefit from the `checker` field in the `init.yml` object. A checker is a Python script that is executed per-case, like an interactive grader, but which runs post-execution - it grades the output of a process but does not interact with it.
+A problem with many possible outputs (e.g. not a single possible answer, with score based on accuracy) may benefit from the `checker` field in the `init.yml` object. A checker is a Python script that is executed per-case, like an interactive grader, but which runs post-execution &mdash; it grades the output of a process but does not interact with it.
 
 A `checker` Python script must implement a function that is called by the judge:
 
 ```python
-def check(proc_output, judge_output, judge_input, point_value, submission_source, **kwargs):
+def check(proc_output, judge_output, **kwargs):
 ```
+
+Variables in global scope will exist throughout the grading process.
 
 ## Parameters
 - `proc_output` contains the submission's output, as a string.
@@ -85,6 +87,8 @@ def check(proc_output, judge_output, judge_input, point_value, submission_source
 - `judge_input` contains the contents of the specified `in` file.
 - `point_value` is the point value for the current case, as specified for the current testcase.
 - `submission_source` contains the submission's source as a string. Useful for code golf problems.
+
+`**kwargs` contains `judge_input`, `point_value`, and `submission_source`.
 
 ## Returns
 A `CheckerResult` object (`from dmoj.result import CheckerResult`). A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, feedback='')`.
