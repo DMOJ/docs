@@ -16,11 +16,11 @@ The batch will contain the keys `points` and `batched`. `batched` will map to a 
 An `init.yml` object can contain a top-level `grader` node, which contains a path to a Python file to be executed as a grader for the problem. The grader has access to the archive specified in `archive`. A `grader` Python script must implement a function that is called by the judge:
 
 ```python
-def grade(case, process, case_input=None, case_output=None, point_value=0, **kwargs)
+def grade(self, case):
 ```
 
 ## Parameters
-- `case` is an integer, the current test case with a zero-based index.
+- `case` is a `TestCase` object. `case.points` is the case's point value.
 - `process` is a `Popen`-like object with which the grader may interact. `process.stdin` is a file-like object representing the submission's `stdin` handle, and `process.stdout` wraps the process' `stdout`. Input is given to the process through `process.stdin` and output is typically read from `process.stdout`.
 - `case_input` is a buffer containing the contents of the `in` file specified for the current case in `init.json`. May be empty, if no case input file was specified.
 - `case_output` is a buffer containing the contents of the `out` file specified for the current case in `init.json`. May be empty, if no case output file was specified.
@@ -75,7 +75,7 @@ A problem with many possible outputs (e.g. not a single possible answer, with sc
 A `checker` Python script must implement a function that is called by the judge:
 
 ```python
-def check(proc_output, judge_output, judge_input, point_value, submission_source, **kwargs)
+def check(proc_output, judge_output, judge_input, point_value, submission_source, **kwargs):
 ```
 
 ## Parameters
@@ -86,7 +86,7 @@ def check(proc_output, judge_output, judge_input, point_value, submission_source
 - `submission_source` contains the submission's source as a string. Useful for code golf problems.
 
 ## Returns
-A `CheckerResult` object (`from dmoj.result import CheckerResult`). A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, partial_output='')`.
+A `CheckerResult` object (`from dmoj.result import CheckerResult`). A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, feedback='')`.
 
 # Checkers or Interactors for Computationally-Heavy Problems
 Sometimes, problems that require checkers or interactive grading may also be computationally expensive. In such cases, it is often beneficial to move answer checking from the slow Python problem module and into a native language. For maximum interoperability, the judge system requires a Python script to handle raw interaction prompts, but the script itself may use the judge's compilation and execution API to spawn native processes.
