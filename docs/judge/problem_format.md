@@ -14,6 +14,23 @@ For normal cases, the test case will contain keys `in` and `out`, mapping to the
 ## Batched Cases
 The batch will contain the keys `points` and `batched`. `batched` will map to a list of batched cases, where each case contains `in` and `out`.
 
+Below is a sample `init.yml`:
+
+```yaml
+archive: tle16p4.zip
+test_cases:
+- {points: 0, in: tle16p4.p0.in, out: tle16p4.p0.out}
+- {points: 10, in: tle16p4.p1.in, out: tle16p4.p1.out}
+- points: 10
+  batched:
+  - {in: tle16p4.0.in, out: tle16p4.0.out}
+  - {in: tle16p4.1.in, out: tle16p4.1.out}
+- points: 10
+  batched:
+  - {in: tle16p4.2.in, out: tle16p4.2.out}
+  - {in: tle16p4.3.in, out: tle16p4.3.out}
+```
+
 # Interactive Problems - `grader`
 An `init.yml` object can contain a top-level `grader` node, which contains a path to a Python file to be executed as a grader for the problem. The grader has access to the archive specified in `archive`. A `grader` Python script must implement a function that is called by the judge:
 
