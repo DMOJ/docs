@@ -1,5 +1,5 @@
 # Table of Contents
-- [**Linux installation**](judge/installation.md)
+- [**Linux installation**](judge/linux_installation.md)
 - [**Windows installation**](judge/windows_installation.md)
 
 - [**Supported Languages**](judge/supported_languages.md)

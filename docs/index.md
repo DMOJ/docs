@@ -1,7 +1,7 @@
 # Table of Contents
 
 ## Judge
-- [**Linux Installation**](judge/installation.md)
+- [**Linux Installation**](judge/linux_installation.md)
 - [**Windows Installation**](judge/windows_installation.md)
 - [**Supported Languages**](judge/supported_languages.md)
 - [**Colored Compiler Messages**](judge/colored_compiler_messages.md)
