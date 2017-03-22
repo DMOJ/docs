@@ -7,7 +7,7 @@
 - [**Colored Compiler Messages**](judge/colored_compiler_messages.md)
 - [**Problem File Format**](judge/problem_format.md)
 
-For examples of the different problem types, see [the sample problems provided](/problem_examples). The related problem statements may be found on [https://dmoj.ca](https://dmoj.ca), under the same codes.
+For examples of the different problem types, see [the sample problems provided](../problem_examples). The related problem statements may be found on [https://dmoj.ca](https://dmoj.ca), under the same codes.
 
 - [**Status Codes**](judge/status_codes.md)
 
