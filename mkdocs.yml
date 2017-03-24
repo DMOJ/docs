@@ -13,5 +13,5 @@ pages:
   - 'Supported Languages': 'judge/supported_languages.md'
   - 'Status Codes': 'judge/status_codes.md'
 - About:
-    - 'License': 'about/LICENSE'
+    - 'License': 'about/LICENSE.md'
 theme: readthedocs
