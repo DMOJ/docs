@@ -20,4 +20,4 @@ runtime:
    ...
 ```
 
-You should now be able to run `dmoj-cli -c config.yml` to enter a CLI environment for the judge. For additional configuration options, an [example configuration file](https://github.com/DMOJ/docs/blob/master/sample_judge_conf.yml) is provided.
+You should now be able to run `dmoj-cli -c config.yml` to enter a CLI environment for the judge. For additional configuration options, an [example configuration file](https://github.com/DMOJ/docs/blob/master/sample_files/judge_conf.yml) is provided.
