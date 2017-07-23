@@ -65,7 +65,7 @@ Install Python dependencies into the `virtualenv`.
 (dmojsite) $ pip install mysqlclient
 ```
 
-You will now need to configure `dmoj/local_settings.py`. You should make a copy from `dmoj/local_settings.example.py` and read through it, making changes as necessary. Most importantly, you will want to update MySQL credentials.
+You will now need to configure `dmoj/local_settings.py`. You should make a copy [of this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MySQL credentials.
 
 <div class="alert alert-info">
 Leave debug mode on for now; we'll disable it later after we've verified that the site works.
@@ -242,7 +242,7 @@ Need to install the dependencies.
 (dmojsite) $ pip install websocket-client
 ```
 
-Now copy `wsevent.conf` to ``/etc/supervisor/conf/wsevent.conf`, changing paths.
+Now copy `wsevent.conf` to `/etc/supervisor/conf/wsevent.conf`, changing paths.
 and then update supervisor.
 
 ```

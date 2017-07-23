@@ -13,7 +13,7 @@
   - [Checkers or Interactors for Computationally-Heavy Problems (subprocessing C++)](judge/problem_format.md/#checkers-or-interactors-for-computationally-heavy-problems)
   - [Function Signature Grading (IOI-style)](judge/problem_format.md/#function-signature-grading-ioi-style)
 
-For examples of the different problem types, see [the sample problems provided](/problem_examples). The related problem statements may be found on [https://dmoj.ca](https://dmoj.ca), under the same codes.
+For examples of the different problem types, see [the sample problems provided](https://github.com/DMOJ/docs/tree/master/problem_examples/). The related problem statements may be found on [https://dmoj.ca](https://dmoj.ca), under the same codes.
 - [**Colored Compiler Messages**](judge/colored_compiler_messages.md)
   - [Setting up the Judge](judge/colored_compiler_messages.md/#setting-up-the-judge)
   - [Enabling Colors in GCC 4.9+](judge/colored_compiler_messages.md/#enabling-colors-in-gcc-49)
