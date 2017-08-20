@@ -1,0 +1,162 @@
+The story, background information, and an outline of problem goes here.
+
+Thanks to [user:quantum], [user:Xyene] and [user:FatalEagle] for supporting users mentions from [user:SourSpinach] to [user:grikukan] to [user:jimgao] to [user:cheesecake] to [user:NoWoDeYo] to [user:Zhenpai] to [user:global_smurf].
+
+Inline math: ~(0 \le N \le 10^9)~
+
+Display math:
+$$f(x) = \begin{cases} 1 & \text{if } x\in\mathbb{Q} \\\\ -1 & \text{if } x\not\in\mathbb{Q} \end{cases}$$
+
+Real ~\LaTeX~ ([use this for diagrams](https://dmoj.ca/problem/ds4)):
+<latex>
+\documentclass{standalone}
+\begin{document}
+\huge $E=mc^2$
+\end{document}
+</latex>
+
+Complexity notation (rarely used for problems): ~\mathcal{O}(N^3 \log K)\ \forall\ N, K \in \mathbb{Z}^{+}~
+
+You can make ~\LaTeX~ treat a word like an operator. Compare ~X \operatorname{word} Y~ with ~X \log Y~.
+
+Mod chart! Refer to this if you're confused about mod.
+
+<table class="table" style="max-width:60%">
+<tr>
+ <th>Command</th>
+ <th>Example</th>
+ <th>Comment</th>
+</tr>
+<tr>
+ <td>`\mod`</td>
+ <td>~1 \mod 2~</td>
+ <td>Should be rarely used.</td>
+</tr>
+<tr>
+ <td>`\bmod`</td>
+ <td>~1 \bmod 2~</td>
+ <td>Should be commonly used.</td>
+</tr>
+<tr>
+ <td>`\pmod`</td>
+ <td>~1 \pmod 2~</td>
+ <td>Should be used normally.</td>
+</tr>
+<tr>
+ <td>`\text{ mod }`</td>
+ <td>~1 \text{ mod } 2~</td>
+ <td>Bulky, should be used as a last resort.<br>Looks identical to `\bmod` in this case.</td>
+</tr>
+</table>
+
+***bold and italic***, **bold**, *italic*
+
+> Block-quote text
+
+ 1. An ordered list item
+ 2. Another ordered list item
+
+* Unordered list item
+   * Nested list item
+
+[Links][1] for interesting references are sometimes used.
+
+![Images are fun too][2]
+
+Code can be syntax-highlighted:
+
+```c++
+#include <cstdio>
+
+int main()
+{
+    puts("Here is a code snippet in C++.");
+    return 0;
+}
+```
+
+You can use HTML and CSS styles:
+<div style="width: 90px; height: 90px; background: red; color: white; font-weight: bold; text-align: center; padding: 5px">this is a box<br/>it is red</div>
+
+Keep your problem statements professional, and do not abuse this!
+
+## Input Specification
+
+A description of the input format goes here.
+
+The first line of the input will contain an integer ~N~, representing the number of elements in array ~A~.
+
+The next ~N~ lines will each contain an element ~a_i~ ~(1 \le i \le N)~, denoting the elements of array ~A~.
+
+## Constraints
+
+A description of the bounds of all defined variables goes here.
+
+**Note:** This is optional, and usually reserved for problems with subtasks.
+
+For all subtasks:
+
+~1 \le a_i \le 100~
+
+### Subtask 1 [20%]
+
+~1 \le N \le 20~
+
+### Subtask 2 [30%]
+
+~1 \le N \le 1\,000~
+
+### Subtask 3 [50%]
+
+~1 \le N \le 10^5~
+
+Alternatively, you may use a table to communicate details in bulk:
+
+<table class="table" style="max-width:50%">
+<thead>
+<tr>
+  <th>Subtask</th>
+  <th>Marks</th>
+  <th>~N~</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>~1~</td>
+  <td>~20\%~</td>
+  <td>~1 \le N \le 20~</td>
+</tr>
+<tr>
+  <td>~2~</td>
+  <td>~30\%~</td>
+  <td>~1 \le N \le 1\,000~</td>
+</tr>
+<tr>
+  <td>~3~</td>
+  <td>~50\%~</td>
+  <td>~1 \le N \le 10^{5}~</td>
+</tr>
+</tbody>
+</table>
+
+## Output Specification
+
+A description of what the user's program should output goes here.
+
+Output the sum of all of the prime numbers in array ~A~.
+
+## Sample Input
+    5
+    1 2 3 4 5
+
+## Sample Output
+    10
+
+## Explanation
+
+Optional: an explanation of how the Sample Output was produced goes here, clarifying details for the user.
+
+A prime number has exactly two divisors: ~1~ and itself. The prime numbers in ~A~ are ~2, 3~ and ~5~, so the output is ~2 + 3 + 5 = 10~.
+
+  [1]: https://google.ca
+  [2]: https://www.google.ca/doodle4google/images/splashes/featured.png
