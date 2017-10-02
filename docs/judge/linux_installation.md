@@ -3,16 +3,16 @@ This installation guide is for Linux based machines (WSL included). For installa
 ## Installing the prerequisites
 
 ```
-$ sudo apt install git python-dev python-pip build-essential
-$ sudo pip install cython
+$ apt install git python-dev python-pip build-essential
 $ git clone https://github.com/DMOJ/judge
 $ cd judge
-$ sudo python setup.py develop
+$ pip install -r requirements.txt
+$ python setup.py develop
 ```
 
 ## Configuring the judge
 
-Start by taking the `runtime` block from the output of the command `python -m dmoj.executors.autoconfig` and put it in a new file `config.yml`. Next, add a `problem_storage_root` node where you specify where your problem data is located. 
+Start by taking the `runtime` block from the output of the command `dmoj-autoconf` and put it in a new file `config.yml`. Next, add a `problem_storage_root` node where you specify where your problem data is located. 
 
 ```
 problem_storage_root: /judge/problems
