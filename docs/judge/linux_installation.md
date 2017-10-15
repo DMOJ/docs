@@ -15,7 +15,8 @@ $ python setup.py develop
 Start by taking the `runtime` block from the output of the command `dmoj-autoconf` and put it in a new file `config.yml`. Next, add a `problem_storage_root` node where you specify where your problem data is located. 
 
 ```
-problem_storage_root: /judge/problems
+problem_storage_root:
+  - /judge/problems
 runtime:
    ...
 ```
