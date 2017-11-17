@@ -14,13 +14,13 @@ Your program caused a runtime exception to occur. This will only occur for nativ
 
 | Feedback | Description |
 |----------|-------------|
-| `segmentation fault`| Your program was killed by SIGSEGV. Generally, this means you ran out of memory, but it can also mean that you are accessing arrays out of bounds, in some cases. |
+| `segmentation fault`, `bus error` | Your program was killed by SIGSEGV or SIGBUS. Generally, this means you ran out of memory, but it can also mean that you are accessing arrays out of bounds, in some cases. |
 | `floating point exception` | Your program performed a bad arithmetic operation, such as division by zero. |
 | `killed` | Your program was killed by the runtime for some reason (we don’t know). |
 | `opening files is not allowed` | Unless a problem specifically says you can, you may not open files — doing so will get you this message. |
 | `{} syscall disallowed` | Unless you are doing something of a dubious nature, you should never see this message. If you do, please [file a ticket] so we can get it sorted out. It is raised when your program attempts to use a disallowed system call. |
 | `std::bad_alloc` | `new` failed to allocate enough memory. |
-| `failed initializing` | Your program uses too much data defined in global scope for it to fit inside the memory constraints at startup. A typical example is code like `int arr[10000][10000]` on a problem with 64mb — the aforementioned array will take 381mb, far above the allowed limit. |
+| `failed initializing` | Your program uses too much data defined in global scope for it to fit inside the memory constraints at startup. A typical example is code like `int arr[10000][10000]` on a problem with a 64mb memory limit — the aforementioned array will take 381mb, far above the allowed limit. |
 
 [file a ticket]: https://github.com/DMOJ/judge/issues
 
@@ -34,5 +34,4 @@ Your program ran out of memory. Sometimes, this might manifest itself as an RTE 
 Your program took too long to execute.
 
 ## IE - Internal Error
-
-If you see this, it means either the judge encountered an error or the problemsetter's configuration is incorrect. Administrators get notified of every internal error by email, and as such there is no need to do anything else — IEs will typically be resolved within 24 hours.
+If you see this, it means either the judge encountered an error or the problemsetter's configuration is incorrect.
