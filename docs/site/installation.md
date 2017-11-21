@@ -67,11 +67,10 @@ Install Python dependencies into the `virtualenv`.
 
 You will now need to configure `dmoj/local_settings.py`. You should make a copy [of this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MySQL credentials.
 
-<div class="alert alert-info">
-Leave debug mode on for now; we'll disable it later after we've verified that the site works.
-<br/><br/>
-Generally, it's recommended that you add your settings in `dmoj/local_settings.py` rather than modifying `dmoj/settings.py` directly. `settings.py` will automatically read `local_settings.py` load it, so write your configuration there.
-</div>
+!!! info
+    Leave debug mode on for now; we'll disable it later after we've verified that the site works.
+    
+    Generally, it's recommended that you add your settings in `dmoj/local_settings.py` rather than modifying `dmoj/settings.py` directly. `settings.py` will automatically read `local_settings.py` load it, so write your configuration there.
 
 Now, you should verify that everything is going according to plan.
 
@@ -125,8 +124,10 @@ At this point, you should attempt to run the server, and see if it all works.
 
 You should Ctrl-C to exit after verifying.
 
-**Do not use `runserver` in production!**
-We will set up a proper webserver using Nginx and UWsgi soon.
+!!! danger
+    **Do not use `runserver` in production!**
+
+    We will set up a proper webserver using Nginx and UWsgi soon.
 
 You should also test to see if `bridged` runs.
 
@@ -207,10 +208,9 @@ $ sudo service nginx reload
 You should be good to go. Visit the site at where you set it up.
 If it doesn't, check `nginx` logs and `uwsgi` log `stdout`/`stderr`.
 
-<div class="alert alert-info">
-Now that your site is installed, remember to set `DEBUG` to `False` in
-`local_settings`. Leaving it `True` is a security risk.
-</div>
+!!! info
+    Now that your site is installed, remember to set `DEBUG` to `False` in
+    `local_settings`. Leaving it `True` is a security risk.
 
 ## Configuration of event server
 Create `config.js`. This assumes you use `nginx`, or there be dragons.
