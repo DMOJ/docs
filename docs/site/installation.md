@@ -45,9 +45,9 @@ $ . dmojsite/bin/activate
 ```
 You should see `(dmojsite)` prepended to your shell. Henceforth, `(dmojsite)` commands assumes you are in the code directory, with `virtualenv` active.
 
-<div class="alert alert-info">
-The `virtualenv` will help keep the modules needed separate from the system package manager, and save you many headaches when updating. Read more about `virtualenv`s [here](#).
-</div>
+!!! note
+    The `virtualenv` will help keep the modules needed separate from the system package manager, and save you many headaches when updating. Read more about `virtualenv`s [here](#).
+
 
 Now, fetch the site source code.
 
