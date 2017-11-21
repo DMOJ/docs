@@ -67,7 +67,7 @@ Install Python dependencies into the `virtualenv`.
 
 You will now need to configure `dmoj/local_settings.py`. You should make a copy [of this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MySQL credentials.
 
-!!! info
+!!! note
     Leave debug mode on for now; we'll disable it later after we've verified that the site works.
     
     Generally, it's recommended that you add your settings in `dmoj/local_settings.py` rather than modifying `dmoj/settings.py` directly. `settings.py` will automatically read `local_settings.py` load it, so write your configuration there.
@@ -208,7 +208,7 @@ $ sudo service nginx reload
 You should be good to go. Visit the site at where you set it up.
 If it doesn't, check `nginx` logs and `uwsgi` log `stdout`/`stderr`.
 
-!!! info
+!!! note
     Now that your site is installed, remember to set `DEBUG` to `False` in
     `local_settings`. Leaving it `True` is a security risk.
 
