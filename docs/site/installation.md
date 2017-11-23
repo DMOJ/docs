@@ -1,12 +1,12 @@
 ## Installing the prerequisites
 
 ```
-$ sudo apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev ruby-sass gettext curl
+$ apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev ruby-sass gettext curl
 $ wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | sudo python
-$ sudo pip install virtualenv
+$ pip install virtualenv
 $ wget -O- https://deb.nodesource.com/setup_4.x | sudo -E bash -
-$ sudo apt install nodejs
-$ sudo npm install -g pleeease-cli
+$ apt install nodejs
+$ npm install -g pleeease-cli
 ```
 
 ## Creating the database
@@ -15,13 +15,13 @@ Next, we will set up the database using MySQL. The DMOJ is only tested to work w
 
 ```
 $ wget http://dev.mysql.com/get/mysql-apt-config_0.6.0-1_all.deb
-$ sudo dpkg -i mysql-apt-config_0.6.0-1_all.deb
+$ dpkg -i mysql-apt-config_0.6.0-1_all.deb
 ```
 When asked, you should select the latest MySQL version.
 
 ```
-$ sudo apt update
-$ sudo apt install mysql-server libmysqlclient-dev
+$ apt update
+$ apt install mysql-server libmysqlclient-dev
 ```
 
 You will required to create a root password for MySQL. It's a good idea to remember it!
@@ -35,7 +35,7 @@ mysql> GRANT ALL PRIVILEGES ON dmoj.* to 'dmoj'@'localhost' IDENTIFIED BY '<pass
 mysql> exit
 ```
 
-## Installing Prerequisites
+## Installing prerequisites
 
 Now that you are done, you can start installing the site. First, create a `virtualenv` and activate it. Here, we'll create a `virtualenv` named `dmojsite`.
 
@@ -78,7 +78,7 @@ Now, you should verify that everything is going according to plan.
 (dmojsite) $ python manage.py check
 ```
 
-## Compiling Assets
+## Compiling assets
 DMOJ uses `sass` and `pleeease` to generate the site stylesheets. DMOJ comes with a `make_style.sh` script that may be ran to compile and optimize the stylesheets.
 
 ```
@@ -98,7 +98,7 @@ You will also need to generate internationalization files files.
 (dmojsite) $ python manage.py compilejsi18n
 ```
 
-## Setting Up Database Tables
+## Setting up database tables
 We must generate the schema for the database, since it is currently empty.
 
 ```
@@ -118,7 +118,7 @@ You should create an admin account with which to log in initially.
 (dmojsite) $ python manage.py createsuperuser
 ```
 
-## Running the Server
+## Running the server
 At this point, you should attempt to run the server, and see if it all works.
 
 ```
@@ -142,22 +142,20 @@ If there are no errors after about 10 seconds, it probably works.
 
 You should Ctrl-C to exit.
 
-Your job is half done.
-You should now switch to a real python application server.
-The rest of this guide assumes you are using `uwsgi` and `nginx` to serve the site.
-It also assumes that you will be using `supervisord` to manage site and bridged.
-There be dragons should you use something else.
+## Setting up uWSGI
+`runserver` is insecure and not meant for production workloads, and should not be used beyong testing.
+In the rest of this guide, we will be installing `uwsgi` and `nginx` to serve the site, using `supervisord`
+to keep `site` and `bridged` running. It's likely other configurations may work, but they are unsupported.
 
-Now, copy `uwsgi-template.ini` to `uwsgi.ini` and edit it.
-You should at least change the paths to reflect your install.
+First, copy `uwsgi-template.ini` to `uwsgi.ini` and edit it. You should change the paths to reflect your install.
 
-You need to install `uwsgi`. The easiest way:
+You need to install `uwsgi`.
 
 ```
 (dmojsite) $ curl http://uwsgi.it/install | bash -s default $PWD/uwsgi
 ```
 
-To test:
+To test, run:
 
 ```
 (dmojsite) $ ./uwsgi --ini uwsgi.ini
@@ -166,50 +164,52 @@ To test:
 If it says workers are spawned, it probably works.
 You should Ctrl-C to exit.
 
-If it all works out, you should now install `supervisord` and configure it.
+## Setting up supervisord
+You should now install `supervisord` and configure it.
 
 ```
-$ sudo apt install supervisor
+$ apt install supervisor
 ```
 
-Copy our `site.conf` to `/etc/supervisor/conf.d/site.conf`, and fill in the fields.
-Copy our `bridged.conf` to `/etc/supervisor/conf.d/bridged.conf`, and fill in the fields.
+Copy our `site.conf` to `/etc/supervisor/conf.d/site.conf`, `bridged.conf` to `/etc/supervisor/conf.d/bridged.conf`, and fill in the fields.
 
-Reload supervisor configuration.
-
-```
-$ sudo supervisorctl update
-```
-
-Wait a few seconds, and run:
+Next, reload `supervisord` and check that the site and bridge have started.
 
 ```
-$ sudo supervisorctl status
+$ supervisorctl update
+$ supervisorctl status
 ```
 
-If both processes are running, everything is good!
-Otherwise peek at the logs and see what's wrong.
+If both processes are running, everything is good! Otherwise, peek at the logs and see what's wrong.
 
-Now it's time to set up `nginx`.
-
-```
-$ sudo apt install nginx
-```
-
-Typically, `nginx` site files are located in `/etc/nginx/conf.d`.
-Some installations might place it at `/etc/nginx/sites-available`
-and require a symlink in `/etc/nginx/sites-enabled`.
-You should copy the sample `nginx.conf`, edit it and place it in wherever
-it is supposed to be.
-
-Now reload the `nginx` configuration.
+## Setting up nginx
+Now, it's time to set up `nginx`.
 
 ```
-$ sudo service nginx reload
+$ apt install nginx
 ```
 
-You should be good to go. Visit the site at where you set it up.
-If it doesn't, check `nginx` logs and `uwsgi` log `stdout`/`stderr`.
+You should copy the sample `nginx.conf`, edit it and place it in wherever it is supposed to be for your nginx install.
+
+!!! info
+    Typically, `nginx` site files are located in `/etc/nginx/conf.d`.
+    Some installations might place it at `/etc/nginx/sites-available` and require a symlink in `/etc/nginx/sites-enabled`.
+
+Next, check if there are any issues with your nginx setup.
+
+```
+$ nginx -t
+````
+
+If not, reload the `nginx` configuration.
+
+```
+$ service nginx reload
+```
+
+You should be good to go. Visit the site at where you set it up to verify.
+
+If it does not work, check `nginx` logs and `uwsgi` log `stdout`/`stderr` for details.
 
 !!! note
     Now that your site is installed, remember to set `DEBUG` to `False` in
