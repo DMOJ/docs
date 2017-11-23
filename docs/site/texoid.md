@@ -4,7 +4,7 @@ The DMOJ platform is capable of rendering LaTeX documents onto problem statement
 with ease, porting over PDF resources, and so on. An example of this functionality live can be seen [here](https://dmoj.ca/problem/ds4),
 [here](https://dmoj.ca/problem/ccoqr16p3), and [here](https://dmoj.ca/problem/ccoqr16p1).
 
-DMOJ support this through a related project, DMOJ Texoid. Installing is a simple process.
+DMOJ supports this through a related project, [Texoid](https://github.com/DMOJ/texoid). Installation is a simple process.
 
 ## Installing Texoid
 Texoid is simple to set up and use.
@@ -15,7 +15,7 @@ $ cd texoid
 $ python setup.py develop
 ```
 
-Texoid relies on LaTeX distribution to render documents to DVI format, dvisvgm to convert to SVGs, and ImageMagick to convert 
+Texoid relies on LaTeX distribution to render documents to DVI format, `dvisvgm` to convert to SVGs, and ImageMagick to convert 
 SVGs into PNGs. On a typical Debian or Ubuntu machine, you can fetch everything you need with:
 
 ```
@@ -23,7 +23,7 @@ $ apt install texlive-latex-base texlive-binaries imagemagick
 ```
 
 ## Running Texoid
-To start the Texoid server, simply run:
+To start the Texoid server, run:
 
 ```
 $ LATEX_BIN=<path to latex> DVISVGM_BIN=<path to dvisvgm> CONVERT_BIN=<path to convert> texoid --port=<port>
