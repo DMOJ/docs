@@ -35,7 +35,7 @@ mysql> GRANT ALL PRIVILEGES ON dmoj.* to 'dmoj'@'localhost' IDENTIFIED BY '<pass
 mysql> exit
 ```
 
-## Installing the site
+## Installing Prerequisites
 
 Now that you are done, you can start installing the site. First, create a `virtualenv` and activate it. Here, we'll create a `virtualenv` named `dmojsite`.
 
@@ -78,29 +78,31 @@ Now, you should verify that everything is going according to plan.
 (dmojsite) $ python manage.py check
 ```
 
-Setup database tables.
-
-```
-(dmojsite) $ python manage.py migrate
-```
-
+## Compiling Assets
 DMOJ uses `sass` and `pleeease` to generate the site stylesheets. DMOJ comes with a `make_style.sh` script that may be ran to compile and optimize the stylesheets.
 
 ```
 (dmojsite) $ ./make_style.sh
 ```
 
-Now collect static files into `STATIC_ROOT` as specified in `dmoj/local_settings.py`.
+Now, collect static files into `STATIC_ROOT` as specified in `dmoj/local_settings.py`.
 
 ```
 (dmojsite) $ python manage.py collectstatic
 ```
 
-You will also need to generate i18n files.
+You will also need to generate internationalization files files.
 
 ```
 (dmojsite) $ python manage.py compilemessages
 (dmojsite) $ python manage.py compilejsi18n
+```
+
+## Setting Up Database Tables
+We must generate the schema for the database, since it is currently empty.
+
+```
+(dmojsite) $ python manage.py migrate
 ```
 
 Next, load some initial data so that your install is not entirely blank.
@@ -116,6 +118,7 @@ You should create an admin account with which to log in initially.
 (dmojsite) $ python manage.py createsuperuser
 ```
 
+## Running the Server
 At this point, you should attempt to run the server, and see if it all works.
 
 ```
