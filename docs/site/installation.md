@@ -91,7 +91,7 @@ Now, collect static files into `STATIC_ROOT` as specified in `dmoj/local_setting
 (dmojsite) $ python manage.py collectstatic
 ```
 
-You will also need to generate internationalization files files.
+You will also need to generate internationalization files.
 
 ```
 (dmojsite) $ python manage.py compilemessages
@@ -130,7 +130,7 @@ You should Ctrl-C to exit after verifying.
 !!! danger
     **Do not use `runserver` in production!**
 
-    We will set up a proper webserver using Nginx and UWsgi soon.
+    We will set up a proper webserver using nginx and uWSGI soon.
 
 You should also test to see if `bridged` runs.
 
@@ -139,7 +139,6 @@ You should also test to see if `bridged` runs.
 ```
 
 If there are no errors after about 10 seconds, it probably works.
-
 You should Ctrl-C to exit.
 
 ## Setting up uWSGI
@@ -147,7 +146,7 @@ You should Ctrl-C to exit.
 In the rest of this guide, we will be installing `uwsgi` and `nginx` to serve the site, using `supervisord`
 to keep `site` and `bridged` running. It's likely other configurations may work, but they are unsupported.
 
-First, copy `uwsgi-template.ini` to `uwsgi.ini` and edit it. You should change the paths to reflect your install.
+First, copy our [`uwsgi.ini`](https://github.com/DMOJ/docs/blob/master/sample_files/uwsgi.ini) to `uwsgi.ini` and edit it. You should change the paths to reflect your install.
 
 You need to install `uwsgi`.
 
@@ -171,7 +170,7 @@ You should now install `supervisord` and configure it.
 $ apt install supervisor
 ```
 
-Copy our `site.conf` to `/etc/supervisor/conf.d/site.conf`, `bridged.conf` to `/etc/supervisor/conf.d/bridged.conf`, and fill in the fields.
+Copy our [`site.conf`](https://github.com/DMOJ/docs/blob/master/sample_files/site.conf) to `/etc/supervisor/conf.d/site.conf`, [`bridged.conf`](https://github.com/DMOJ/docs/blob/master/sample_files/bridged.conf) to `/etc/supervisor/conf.d/bridged.conf`, and fill in the fields.
 
 Next, reload `supervisord` and check that the site and bridge have started.
 
@@ -189,7 +188,7 @@ Now, it's time to set up `nginx`.
 $ apt install nginx
 ```
 
-You should copy the sample `nginx.conf`, edit it and place it in wherever it is supposed to be for your nginx install.
+You should copy the sample [`nginx.conf`](https://github.com/DMOJ/docs/blob/master/sample_files/nginx.conf), edit it and place it in wherever it is supposed to be for your nginx install.
 
 !!! note
     Typically, `nginx` site files are located in `/etc/nginx/conf.d`.
@@ -245,7 +244,7 @@ Need to install the dependencies.
 (dmojsite) $ pip install websocket-client
 ```
 
-Now copy `wsevent.conf` to `/etc/supervisor/conf/wsevent.conf`, changing paths.
+Now copy `wsevent.conf` to `/etc/supervisor/conf.d/wsevent.conf`, changing paths.
 and then update supervisor.
 
 ```
