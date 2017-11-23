@@ -191,7 +191,7 @@ $ apt install nginx
 
 You should copy the sample `nginx.conf`, edit it and place it in wherever it is supposed to be for your nginx install.
 
-!!! info
+!!! note
     Typically, `nginx` site files are located in `/etc/nginx/conf.d`.
     Some installations might place it at `/etc/nginx/sites-available` and require a symlink in `/etc/nginx/sites-enabled`.
 
