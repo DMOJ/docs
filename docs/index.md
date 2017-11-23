@@ -3,6 +3,7 @@
 ## Site
 - [**Installing the Site**](site/installation.md)
 - [**Managing Problems Through the Site Interface**](site/managing_problems.md)
+- [**PDF Generation of Problem Statements**](site/pdf_generation.md)
 - [**LaTeX Diagrams with Texoid**](site/texoid.md)
 - [**reCAPTCHA Spam Registration Prevention**](site/recaptcha.md)
 - [**SSL Proxying for User Content**](site/ssl_content_proxy.md)
