@@ -2,6 +2,7 @@
 
 ## Site
 - [**Installing the Site**](site/installation.md)
+- [**Updating the Site**](site/updating.md)
 - [**Managing Problems Through the Site Interface**](site/managing_problems.md)
 - [**PDF Generation of Problem Statements**](site/pdf_generation.md)
 - [**LaTeX Diagrams with Texoid**](site/texoid.md)
