@@ -1,8 +1,17 @@
+# SSL Proxying for User Content
+
 User-generated content (e.g., comments) poses a threat to site security, and can cause mixed-content warnings. If your site is served over HTTPS, this may be suboptimal - routing user content through a secure server can help.
 
-The DMOJ site provides support for this through the [Github Camo](https://github.com/atmos/camo) project, which requires CoffeeScript to be installed (`apt-get install coffeescript`).
+The DMOJ site provides support for this through the [Github Camo](https://github.com/atmos/camo) project, which requires CoffeeScript to be installed (`apt install coffeescript`).
 
-# Installing Camo to /code
+!!! danger
+    Setting up Camo on the same server as your site can leave you open to attacks, even if you are set up behind Cloudflare: a
+    malicious user can link an image to their domain, have Camo access it, and then view their server logs to see the requesting
+    IP (allowing them to attack you behind e.g. Cloudflare).
+    
+    If this is important in your scenario, consider running Camo on a separate server.
+
+## Installing Camo to /code
 
 ```shell
 $ cd /code
@@ -16,9 +25,9 @@ $ PORT="<port>" CAMO_KEY="<key>" coffee /code/camo/server.coffee
 ```
 
 - Camo will listen on `<port>`.
-- `<key>` is the HMAC secret key used for digests. Set it to anything you want.
+- `<key>` is the HMAC secret key used for digests. Set it to anything you want. This is used for cache-busting purposes, so it does not need to be secure.
 
-# Configuring DMOJ to use Camo
+## Configuring DMOJ to use Camo
 To enable the use of Camo in the DMOJ site, you need to specify a couple of variables in your `local_settings.py`.
 
 ```python
