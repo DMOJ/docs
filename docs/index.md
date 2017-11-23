@@ -3,6 +3,7 @@
 ## Site
 - [**Installing the Site**](site/installation.md)
 - [**Managing Problems Through the Site Interface**](site/managing_problems.md)
+- [**reCAPTCHA Spam Registration Prevention**](site/recaptcha.md)
 - [**SSL Proxying for User Content**](site/ssl_content_proxy.md)
 
 ## Judge
