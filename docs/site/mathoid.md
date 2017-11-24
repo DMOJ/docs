@@ -27,7 +27,7 @@ MATHOID_CACHE_URL = '//example.com/mathoid/'
 Restart DMOJ for the changes to take effect. After restarting, you may have to purge Django's cache before seeing any changes.
 
 ## Using Mathoid math in problem statements
-A snippet of a problem statement using Mathoid ot render math is shown below.
+A snippet of a problem statement using Mathoid to render math is shown below.
 
 ```md
 The Fibonacci sequence is a well known sequence of numbers in which
