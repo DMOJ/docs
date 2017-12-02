@@ -110,6 +110,7 @@ Next, load some initial data so that your install is not entirely blank.
 ```
 (dmojsite) $ python manage.py loaddata navbar
 (dmojsite) $ python manage.py loaddata language_small
+(dmojsite) $ python manage.py loaddata demo
 ```
 
 You should create an admin account with which to log in initially.
