@@ -110,7 +110,7 @@ Variables in global scope will exist throughout the grading process.
 `**kwargs` contains `judge_input`, `point_value`, and `submission_source`.
 
 ## Returns
-A `CheckerResult` object (`from dmoj.result import CheckerResult`). A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, feedback='')`.
+A `CheckerResult` object (`from dmoj.result import CheckerResult`). A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points, feedback='')`.
 
 # Checkers or Interactors for Computationally-Heavy Problems
 Sometimes, problems that require checkers or interactive grading may also be computationally expensive. In such cases, it is often beneficial to move answer checking from the slow Python problem module and into a native language. For maximum interoperability, the judge system requires a Python script to handle raw interaction prompts, but the script itself may use the judge's compilation and execution API to spawn native processes.
