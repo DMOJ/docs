@@ -154,7 +154,7 @@ You need to install `uwsgi`.
 To test, run:
 
 ```
-(dmojsite) $ ./uwsgi --ini uwsgi.ini
+(dmojsite) $ uwsgi --ini uwsgi.ini
 ```
 
 If it says workers are spawned, it probably works.
