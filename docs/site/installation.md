@@ -11,13 +11,8 @@ $ npm install -g pleeease-cli
 
 ## Creating the database
 
-Next, we will set up the database using MySQL. The DMOJ is only tested to work with MySQL, and it is unlikely to work with anything else.
+Next, we will set up the database using MySQL. The DMOJ is only tested to work with MySQL, and it is unlikely to work with anything else. Please visit [the MariaDB site](https://downloads.mariadb.org/mariadb/repositories/) and follow the download instructions.
 
-```
-sudo apt-get install software-properties-common dirmngr
-sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
-sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://mariadb.mirror.anstey.ca/repo/10.3/debian stretch main'
-```
 When asked, you should select the latest MySQL version.
 
 ```
