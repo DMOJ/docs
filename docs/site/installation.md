@@ -11,24 +11,24 @@ $ npm install -g pleeease-cli
 
 ## Creating the database
 
-Next, we will set up the database using MySQL. The DMOJ is only tested to work with MySQL, and it is unlikely to work with anything else. Please visit [the MariaDB site](https://downloads.mariadb.org/mariadb/repositories/) and follow the download instructions.
+Next, we will set up the database using MariaDB. The DMOJ is only tested to work with MySQL, and it is unlikely to work with anything else. Please visit [the MariaDB site](https://downloads.mariadb.org/mariadb/repositories/) and follow the download instructions.
 
-When asked, you should select the latest MySQL version.
+When asked, you should select the latest MariaDB version.
 
 ```
 $ apt update
 $ apt install mariadb-server libmysqlclient-dev
 ```
 
-You will required to create a root password for MySQL. It's a good idea to remember it!
+You will required to create a root password for MariaDB. It's a good idea to remember it!
 
 Next, we should set up the database itself. You will be asked for the root password you just set, after which you should execute the commands listed below to create the necessary database.
 
 ```
 $ mysql -uroot -p
-mysql> CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
-mysql> GRANT ALL PRIVILEGES ON dmoj.* to 'dmoj'@'localhost' IDENTIFIED BY '<password>';
-mysql> exit
+mariadb> CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
+mariadb> GRANT ALL PRIVILEGES ON dmoj.* to 'dmoj'@'localhost' IDENTIFIED BY '<password>';
+mariadb> exit
 ```
 
 ## Installing prerequisites
@@ -61,7 +61,7 @@ Install Python dependencies into the `virtualenv`.
 (dmojsite) $ pip install mysqlclient
 ```
 
-You will now need to configure `dmoj/local_settings.py`. You should make a copy [of this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MySQL credentials.
+You will now need to configure `dmoj/local_settings.py`. You should make a copy [of this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MariaDB credentials.
 
 !!! note
     Leave debug mode on for now; we'll disable it later after we've verified that the site works.
