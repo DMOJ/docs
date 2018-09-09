@@ -21,7 +21,6 @@ DEBUG = True  # Change to False once you are done with runserver testing.
 
 # Optional apps that DMOJ can make use of.
 INSTALLED_APPS += (
-    'django_select2', # Searchable comboboxes.
 )
 
 # Caching. You can use memcached or redis instead.

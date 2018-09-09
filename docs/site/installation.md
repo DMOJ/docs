@@ -4,7 +4,7 @@
 $ apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev ruby-sass gettext curl
 $ wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | sudo python
 $ pip install virtualenv
-$ wget -O- https://deb.nodesource.com/setup_4.x | sudo -E bash -
+$ wget -O- https://deb.nodesource.com/setup_8.x | sudo -E bash -
 $ apt install nodejs
 $ npm install -g pleeease-cli
 ```
@@ -14,14 +14,15 @@ $ npm install -g pleeease-cli
 Next, we will set up the database using MySQL. The DMOJ is only tested to work with MySQL, and it is unlikely to work with anything else.
 
 ```
-$ wget http://dev.mysql.com/get/mysql-apt-config_0.6.0-1_all.deb
-$ dpkg -i mysql-apt-config_0.6.0-1_all.deb
+sudo apt-get install software-properties-common dirmngr
+sudo apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8
+sudo add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://mariadb.mirror.anstey.ca/repo/10.3/debian stretch main'
 ```
 When asked, you should select the latest MySQL version.
 
 ```
 $ apt update
-$ apt install mysql-server libmysqlclient-dev
+$ apt install mariadb-server libmysqlclient-dev
 ```
 
 You will required to create a root password for MySQL. It's a good idea to remember it!
@@ -152,7 +153,7 @@ First, copy our `uwsgi.ini` ([link](https://github.com/DMOJ/docs/blob/master/sam
 You need to install `uwsgi`.
 
 ```
-(dmojsite) $ curl http://uwsgi.it/install | bash -s default $PWD/uwsgi
+(dmojsite) $ pip install uwsgi
 ```
 
 To test, run:
