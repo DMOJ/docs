@@ -12,13 +12,19 @@ $ python setup.py develop
 
 ## Configuring the judge
 
-Start by taking the `runtime` block from the output of the command `dmoj-autoconf` and put it in a new file `config.yml`. Next, add a `problem_storage_root` node where you specify where your problem data is located. 
+To start, you should set up a `.dmojrc` file containing executor information.
 
+```bash
+$ dmoj-autoconf > ~/.dmojrc
 ```
+
+Next, edit the file to add a `problem_storage_root` node where you specify where your problem data is located. 
+
+```yaml
 problem_storage_root:
   - /judge/problems
 runtime:
    ...
 ```
 
-You should now be able to run `dmoj-cli -c config.yml` to enter a CLI environment for the judge. For additional configuration options, an [example configuration file](https://github.com/DMOJ/docs/blob/master/sample_files/judge_conf.yml) is provided.
+You should now be able to run `dmoj-cli` to enter a CLI environment for the judge. If you used a different path than `~/.dmojrc`, you may specify it with the `-c` flag. For additional configuration options, an [example configuration file](https://github.com/DMOJ/docs/blob/master/sample_files/judge_conf.yml) is provided.
