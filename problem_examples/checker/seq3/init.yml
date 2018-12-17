@@ -1,0 +1,7 @@
+checker: check.py
+test_cases:
+- {in: in1.txt, points: 20}
+- {in: in2.txt, points: 20}
+- {in: in3.txt, points: 20}
+- {in: in4.txt, points: 20}
+- {in: in5.txt, points: 20}
