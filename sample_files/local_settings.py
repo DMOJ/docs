@@ -155,7 +155,8 @@ ENABLE_FTS = True
 # Set of email providers to ban when a user registers, e.g., {'throwawaymail.com'}.
 BAD_MAIL_PROVIDERS = set()
 
-# The number of submissions that a staff user can rejudge at once without requiring special permissions.
+# The number of submissions that a staff user can rejudge at once without
+# requiring the permission 'Rejudge a lot of submissions'.
 DMOJ_REJUDGE_SUBMISSION_LIMIT = 10
 
 ## Event server.
