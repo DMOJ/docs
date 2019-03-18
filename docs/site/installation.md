@@ -66,7 +66,7 @@ You will now need to configure `dmoj/local_settings.py`. You should make a copy 
 !!! note
     Leave debug mode on for now; we'll disable it later after we've verified that the site works.
     
-    Generally, it's recommended that you add your settings in `dmoj/local_settings.py` rather than modifying `dmoj/settings.py` directly. `settings.py` will automatically read `local_settings.py` load it, so write your configuration there.
+    Generally, it's recommended that you add your settings in `dmoj/local_settings.py` rather than modifying `dmoj/settings.py` directly. `settings.py` will automatically read `local_settings.py` and load it, so write your configuration there.
 
 Now, you should verify that everything is going according to plan.
 
