@@ -4,9 +4,9 @@
 $ apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev gettext curl
 $ wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | sudo python
 $ pip install virtualenv
-$ wget -O- https://deb.nodesource.com/setup_8.x | sudo -E bash -
+$ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 $ apt install nodejs
-$ npm install -g sass pleeease-cli
+$ npm install -g sass postcss-cli autoprefixer
 ```
 
 ## Creating the database
