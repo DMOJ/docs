@@ -76,7 +76,7 @@ Now, you should verify that everything is going according to plan.
 ```
 
 ## Compiling assets
-DMOJ uses `sass` and `pleeease` to generate the site stylesheets. DMOJ comes with a `make_style.sh` script that may be ran to compile and optimize the stylesheets.
+DMOJ uses `sass` and `autoprefixer` to generate the site stylesheets. DMOJ comes with a `make_style.sh` script that may be ran to compile and optimize the stylesheets.
 
 ```
 (dmojsite) $ ./make_style.sh
