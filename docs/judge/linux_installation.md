@@ -3,7 +3,7 @@ This installation guide is for Linux based machines (WSL included). For installa
 ## Installing the prerequisites
 
 ```
-$ apt install git python-dev python-pip build-essential
+$ apt install git python-dev python-pip build-essential libseccomp-dev
 $ git clone https://github.com/DMOJ/judge
 $ cd judge
 $ pip install -r requirements.txt
