@@ -45,7 +45,6 @@ SLIMERJS = '/usr/local/bin/slimerjs'
 SLIMERJS_FIREFOX_PATH = '/usr/bin/firefox'
 ```
 
-!!! note
-    The DMOJ uses a Segoe UI font when viewed on Windows browsers. If running PhantomJS on a Linux server, installing
+?>  The DMOJ uses a Segoe UI font when viewed on Windows browsers. If running PhantomJS on a Linux server, installing
     Segoe UI fonts on it will provide optimal rendering quality &mdash; otherwise, a fallback font will be used and
     statements will look subpar.

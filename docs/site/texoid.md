@@ -9,7 +9,7 @@ DMOJ supports this through a related project, [Texoid](https://github.com/DMOJ/t
 ## Installing Texoid
 Texoid is simple to set up and use.
 
-```
+```shell-session
 $ git clone https://github.com/DMOJ/texoid.git
 $ cd texoid
 $ python setup.py develop
@@ -18,14 +18,14 @@ $ python setup.py develop
 Texoid relies on LaTeX distribution to render documents to DVI format, `dvisvgm` to convert to SVGs, and ImageMagick to convert 
 SVGs into PNGs. On a typical Debian or Ubuntu machine, you can fetch everything you need with:
 
-```
+```shell-session
 $ apt install texlive-latex-base texlive-binaries imagemagick
 ```
 
 ## Running Texoid
 To start the Texoid server, run:
 
-```
+```shell-session
 $ LATEX_BIN=<path to latex> DVISVGM_BIN=<path to dvisvgm> CONVERT_BIN=<path to convert> texoid --port=<port>
 ```
 
@@ -34,7 +34,7 @@ ImageMagick's `convert` tool.
 
 To test, start Texoid with `--port=8888`. Then, we can request a render of a simple LaTeX document.
 
-```
+```latex
 \documentclass{standalone}
 \begin{document}
 $E=mc^2$
@@ -43,7 +43,7 @@ $E=mc^2$
 
 The response should contain JSON, with SVG and a Base64-encoded PNG inside.
 
-```
+```shell-session
 $ curl --data 'q=%5Cdocumentclass%7Bstandalone%7D%0A%5Cbegin%7Bdocument%7D%0A%24E%3Dmc%5E2%24%0A%5Cend%7Bdocument%7D' localhost:8888
 {"success": true, "svg": "<?xml version='1.0'?><svg....</svg>", "png": "iVBORw0KGgoA....kSuQmCC\n", "meta": {"width": "48", "height": "10"}}
 ```
@@ -70,7 +70,7 @@ Restart DMOJ for the changes to take effect. After restarting, you may have to p
 ## Using LaTeX Diagrams in Problem Statements
 To invoke Texoid to generate LaTeX diagrams, wrap your LaTeX code in `<latex>` blocks.
 
-```md
+```
 ## This is a LaTeX Demo
 
 The diagram below is **real LaTeX!**

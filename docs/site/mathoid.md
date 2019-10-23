@@ -29,7 +29,7 @@ Restart DMOJ for the changes to take effect. After restarting, you may have to p
 ## Using Mathoid math in problem statements
 A snippet of a problem statement using Mathoid to render math is shown below.
 
-```md
+```
 The Fibonacci sequence is a well known sequence of numbers in which
 
 $$F(n) = \begin{cases} 0, & \text{if } n = 0 \\ 1, & \text{if } n = 1 \\ F(n-2) + F(n-1), & \text{if } n \ge 2 \end{cases}$$

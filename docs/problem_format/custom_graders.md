@@ -1,3 +1,5 @@
+# Custom Graders
+
 # Custom Grader Behaviour - `grader`
 An `init.yml` object can contain a top-level `custom_judge` node, which contains a path to a Python file to be executed as a grader for the problem. The grader has access to the archive specified in `archive`.
 
