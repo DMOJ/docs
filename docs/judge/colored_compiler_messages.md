@@ -9,7 +9,7 @@ The DMOJ judge automatically enables colors for newer GCC versions.
 ## Enabling Colors in GCC < 4.9
 Colors can be enabled in GCC versions prior to 4.9 through the `colorgcc` package. If `colorgcc` doesn't work for you, there are alternative packages out there that accomplish a similar result.
 
-```sh
+```shell-session
 sudo apt-get install colorgcc
 ```
 
@@ -18,7 +18,7 @@ Then, specify the `colorgcc` executable in place of the GCC executors in the jud
 ### Using `colorgcc` alongside a GCC 4.9+ installation
 It may be the case that you have multiple GCC versions installed, and that `colorgcc` will attempt to colorize GCC 4.9+ output instead of GCC < 4.9. By default, `colorgcc` uses the GCC executables in `$PATH`, but this behaviour can be overriden through a `.colorgccrc` file placed in the judge `$HOME`. The example below assumes you have an environment variable `$JUDGE_HOME` set to the home directory of the judge user.
 
-```sh
+```shell-session
 echo 'color-g++: /usr/bin/g++' >> $JUDGE_HOME/.colorgccrc
 echo 'color-gcc: /usr/bin/gcc' >> $JUDGE_HOME/.colorgccrc
 echo 'color-c++: /usr/bin/c++' >> $JUDGE_HOME/.colorgccrc

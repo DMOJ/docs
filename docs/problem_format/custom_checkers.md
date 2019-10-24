@@ -1,4 +1,4 @@
-# Checkers - `checker`
+# Custom Checkers
 
 A problem with many possible outputs (e.g. not a single possible answer, with score based on accuracy) may benefit from the `checker` field in the `init.yml` file. A checker is a Python script that is executed per-case post-execution — it grades the output of a process but does not interact with it.
 
@@ -111,7 +111,7 @@ Variables in global scope will exist throughout the grading process.
 Additionally, if the `check` method has the flag `run_on_error` set, it will be run against the submission's output, even if it receives an IR/TLE/RTE/MLE verdict.
 The only built-in checker that has this flag set is the `linecount` checker.
 
-## Returns
+### Returns
 
 `check` can return either a `CheckerResult` object (`from dmoj.result import CheckerResult`), or a boolean (`case_passed_bool`).
  A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, feedback='')`.

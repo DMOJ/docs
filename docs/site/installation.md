@@ -1,6 +1,6 @@
 ## Installing the prerequisites
 
-```
+```shell-session
 $ apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev gettext curl
 $ wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | sudo python
 $ pip install virtualenv
@@ -15,7 +15,7 @@ Next, we will set up the database using MariaDB. The DMOJ is only tested to work
 
 When asked, you should select the latest MariaDB version.
 
-```
+```shell-session
 $ apt update
 $ apt install mariadb-server libmysqlclient-dev
 ```
@@ -24,7 +24,7 @@ You will required to create a root password for MariaDB. It's a good idea to rem
 
 Next, we should set up the database itself. You will be asked for the root password you just set, after which you should execute the commands listed below to create the necessary database.
 
-```
+```shell-session
 $ mysql -uroot -p
 mariadb> CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 mariadb> GRANT ALL PRIVILEGES ON dmoj.* to 'dmoj'@'localhost' IDENTIFIED BY '<password>';
@@ -35,19 +35,18 @@ mariadb> exit
 
 Now that you are done, you can start installing the site. First, create a `virtualenv` and activate it. Here, we'll create a `virtualenv` named `dmojsite`.
 
-```
+```shell-session
 $ virtualenv dmojsite
 $ . dmojsite/bin/activate
 ```
 You should see `(dmojsite)` prepended to your shell. Henceforth, `(dmojsite)` commands assumes you are in the code directory, with `virtualenv` active.
 
-!!! note
-    The `virtualenv` will help keep the modules needed separate from the system package manager, and save you many headaches when updating. Read more about `virtualenv`s [here](#).
+?> The `virtualenv` will help keep the modules needed separate from the system package manager, and save you many headaches when updating. Read more about `virtualenv`s [here](#).
 
 
 Now, fetch the site source code. If you plan to install a judge [from PyPI](https://pypi.org/project/dmoj/), check out a matching version of the site repository. For example, for judge v1.4.0:
 
-```
+```shell-session
 (dmojsite) $ git clone https://github.com/DMOJ/site.git
 (dmojsite) $ cd site
 (dmojsite) $ git checkout v1.4.0  # only if planning to install a judge from PyPI, otherwise skip this step
@@ -57,40 +56,38 @@ Now, fetch the site source code. If you plan to install a judge [from PyPI](http
 
 Install Python dependencies into the `virtualenv`.
 
-```
+```shell-session
 (dmojsite) $ pip install -r requirements.txt
 (dmojsite) $ pip install mysqlclient
 ```
 
 You will now need to configure `dmoj/local_settings.py`. You should make a copy [of this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MariaDB credentials.
 
-!!! note
-    Leave debug mode on for now; we'll disable it later after we've verified that the site works.
-    
+?>  Leave debug mode on for now; we'll disable it later after we've verified that the site works. <br> <br>
     Generally, it's recommended that you add your settings in `dmoj/local_settings.py` rather than modifying `dmoj/settings.py` directly. `settings.py` will automatically read `local_settings.py` and load it, so write your configuration there.
 
 Now, you should verify that everything is going according to plan.
 
-```
+```shell-session
 (dmojsite) $ python manage.py check
 ```
 
 ## Compiling assets
 DMOJ uses `sass` and `autoprefixer` to generate the site stylesheets. DMOJ comes with a `make_style.sh` script that may be ran to compile and optimize the stylesheets.
 
-```
+```shell-session
 (dmojsite) $ ./make_style.sh
 ```
 
 Now, collect static files into `STATIC_ROOT` as specified in `dmoj/local_settings.py`.
 
-```
+```shell-session
 (dmojsite) $ python manage.py collectstatic
 ```
 
 You will also need to generate internationalization files.
 
-```
+```shell-session
 (dmojsite) $ python manage.py compilemessages
 (dmojsite) $ python manage.py compilejsi18n
 ```
@@ -98,13 +95,13 @@ You will also need to generate internationalization files.
 ## Setting up database tables
 We must generate the schema for the database, since it is currently empty.
 
-```
+```shell-session
 (dmojsite) $ python manage.py migrate
 ```
 
 Next, load some initial data so that your install is not entirely blank.
 
-```
+```shell-session
 (dmojsite) $ python manage.py loaddata navbar
 (dmojsite) $ python manage.py loaddata language_small
 (dmojsite) $ python manage.py loaddata demo
@@ -112,27 +109,25 @@ Next, load some initial data so that your install is not entirely blank.
 
 You should create an admin account with which to log in initially.
 
-```
+```shell-session
 (dmojsite) $ python manage.py createsuperuser
 ```
 
 ## Running the server
 At this point, you should attempt to run the server, and see if it all works.
 
-```
+```shell-session
 (dmojsite) $ python manage.py runserver 0.0.0.0:8000
 ```
 
 You should Ctrl-C to exit after verifying.
 
-!!! danger
-    **Do not use `runserver` in production!**
-
+!>  **Do not use `runserver` in production!** <br> <br>
     We will set up a proper webserver using nginx and uWSGI soon.
 
 You should also test to see if `bridged` runs.
 
-```
+```shell-session
 (dmojsite) $ python manage.py runbridged
 ```
 
@@ -148,13 +143,13 @@ First, copy our `uwsgi.ini` ([link](https://github.com/DMOJ/docs/blob/master/sam
 
 You need to install `uwsgi`.
 
-```
+```shell-session
 (dmojsite) $ pip install uwsgi
 ```
 
 To test, run:
 
-```
+```shell-session
 (dmojsite) $ uwsgi --ini uwsgi.ini
 ```
 
@@ -164,7 +159,7 @@ You should Ctrl-C to exit.
 ## Setting up supervisord
 You should now install `supervisord` and configure it.
 
-```
+```shell-session
 $ apt install supervisor
 ```
 
@@ -172,7 +167,7 @@ Copy our `site.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_fil
 
 Next, reload `supervisord` and check that the site and bridge have started.
 
-```
+```shell-session
 $ supervisorctl update
 $ supervisorctl status
 ```
@@ -182,25 +177,24 @@ If both processes are running, everything is good! Otherwise, peek at the logs a
 ## Setting up nginx
 Now, it's time to set up `nginx`.
 
-```
+```shell-session
 $ apt install nginx
 ```
 
 You should copy the sample `nginx.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/nginx.conf)), edit it and place it in wherever it is supposed to be for your nginx install.
 
-!!! note
-    Typically, `nginx` site files are located in `/etc/nginx/conf.d`.
+?>  Typically, `nginx` site files are located in `/etc/nginx/conf.d`.
     Some installations might place it at `/etc/nginx/sites-available` and require a symlink in `/etc/nginx/sites-enabled`.
 
 Next, check if there are any issues with your nginx setup.
 
-```
+```shell-session
 $ nginx -t
 ```
 
 If not, reload the `nginx` configuration.
 
-```
+```shell-session
 $ service nginx reload
 ```
 
@@ -208,15 +202,13 @@ You should be good to go. Visit the site at where you set it up to verify.
 
 If it does not work, check `nginx` logs and `uwsgi` log `stdout`/`stderr` for details.
 
-!!! note
-    Now that your site is installed, remember to set `DEBUG` to `False` in
-    `local_settings`. Leaving it `True` is a security risk.
+?> Now that your site is installed, remember to set `DEBUG` to `False` in `local_settings`. Leaving it `True` is a security risk.
 
 ## Configuration of event server
 Create `config.js`. This assumes you use `nginx`, or there be dragons.
 You may need to shuffle ports if they are already used.
 
-```
+```shell-session
 (dmojsite) $ cat > websocket/config.js
 module.exports = {
     get_host: '127.0.0.1',
@@ -237,14 +229,14 @@ You need to uncomment the relevant section in the `nginx` configuration.
 
 Need to install the dependencies.
 
-```
+```shell-session
 (dmojsite) $ npm install qu ws simplesets
 (dmojsite) $ pip install websocket-client
 ```
 
 Now copy `wsevent.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/wsevent.conf)) to `/etc/supervisor/conf.d/wsevent.conf`, changing paths, and then update supervisor and nginx.
 
-```
+```shell-session
 $ supervisorctl update
 $ supervisorctl restart bridged
 $ supervisorctl restart site

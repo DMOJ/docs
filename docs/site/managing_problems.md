@@ -15,7 +15,7 @@ and a title for your problem. **Make sure to mark yourself as an author**, as ot
 ![](http://i.imgur.com/bPlNZUR.png)
 
 Here you may edit your problem statement. The DMOJ features a rich Markdown-based syntax, with custom extensions for LaTeX-based display
-math, and Mathjax-based inline math. See [this template](problem_markdown_example.md.txt) for a full feature example (you may copy/paste
+math, and Mathjax-based inline math. See [this template](https://raw.githubusercontent.com/DMOJ/docs/master/sample_files/problem_markdown_example.md.txt) for a full feature example (you may copy/paste
 its content into your editor).
 
 There are many options controlling your problem described in the editor, that you may use to customize the execution of your problem.

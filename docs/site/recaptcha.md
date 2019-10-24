@@ -15,7 +15,7 @@ In `local_settings.py`, set `RECAPTCHA_PUBLIC_KEY` to the site key, and `RECAPTC
 
 First, install `django-recaptcha2` in the site virtualenv.
 
-```
+```shell-session
 (dmojsite) $ pip install django-recaptcha2
 ```
 

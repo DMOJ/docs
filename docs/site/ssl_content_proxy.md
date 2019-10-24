@@ -4,23 +4,21 @@ User-generated content (e.g., comments) poses a threat to site security, and can
 
 The DMOJ site provides support for this through the [Github Camo](https://github.com/atmos/camo) project, which requires CoffeeScript to be installed (`apt install coffeescript`).
 
-!!! danger
-    Setting up Camo on the same server as your site can leave you open to attacks, even if you are set up behind Cloudflare: a
+!>  Setting up Camo on the same server as your site can leave you open to attacks, even if you are set up behind Cloudflare: a
     malicious user can link an image to their domain, have Camo access it, and then view their server logs to see the requesting
-    IP (allowing them to attack you behind e.g. Cloudflare).
-    
+    IP (allowing them to attack you behind e.g. Cloudflare). <br> <br>
     If this is important in your scenario, consider running Camo on a separate server.
 
 ## Installing Camo to /code
 
-```shell
+```shell-session
 $ cd /code
 $ git clone https://github.com/atmos/camo.git camo
 ```
 
 Now, Camo may be started by running `/code/camo/server.coffee`.
 
-```shell
+```shell-session
 $ PORT="<port>" CAMO_KEY="<key>" coffee /code/camo/server.coffee
 ```
 
