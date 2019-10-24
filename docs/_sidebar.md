@@ -18,7 +18,7 @@
 - Problem File Format
   - [Problem Format](problem_format/problem_format.md)
   - [Custom Checkers](problem_format/custom_checkers.md)
-  - [Custom Grader Behaviour](problem_format/custom_graders.md)
+  - [Custom Grader](problem_format/custom_graders.md)
   - [Generators](problem_format/generator.md)
   - [Problem Examples](problem_format/problem_examples.md)
 
