@@ -135,7 +135,7 @@ If there are no errors after about 10 seconds, it probably works.
 You should Ctrl-C to exit.
 
 ## Setting up uWSGI
-`runserver` is insecure and not meant for production workloads, and should not be used beyong testing.
+`runserver` is insecure and not meant for production workloads, and should not be used beyond testing.
 In the rest of this guide, we will be installing `uwsgi` and `nginx` to serve the site, using `supervisord`
 to keep `site` and `bridged` running. It's likely other configurations may work, but they are unsupported.
 
