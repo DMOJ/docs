@@ -22,7 +22,7 @@ Configuring DMOJ to generate PDFs with PhantomJS requires the addition of a coup
 ```py
 # Cache location for generated PDFs. You should consider using something more persistant
 # than /tmp, since PDF generation is an expensive operation.
-PROBLEM_PDF_CACHE = '/tmp'
+DMOJ_PDF_PROBLEM_CACHE = '/tmp'
 # Path to wherever you extracted the PhantomJS binary.
 PHANTOMJS = '/usr/local/bin/phantomjs'
 ```
@@ -38,7 +38,7 @@ Grab a SlimerJS build from [here](https://github.com/DMOJ/site/files/2613909/sli
 ```py
 # Cache location for generated PDFs. You should consider using something more persistant
 # than /tmp, since PDF generation is an expensive operation.
-PROBLEM_PDF_CACHE = '/tmp'
+DMOJ_PDF_PROBLEM_CACHE = '/tmp'
 # Path to wherever you extracted the SlimerJS binary.
 SLIMERJS = '/usr/local/bin/slimerjs'
 # Path to Firefox, if you installed it at a non-standard location:
