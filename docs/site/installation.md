@@ -1,7 +1,7 @@
 ## Installing the prerequisites
 
 ```shell-session
-$ apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev gettext curl
+$ apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev gettext curl wget
 $ wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | sudo python
 $ pip install virtualenv
 $ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
