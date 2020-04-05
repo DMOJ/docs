@@ -188,6 +188,10 @@ BAD_MAIL_PROVIDERS = set()
 #EVENT_DAEMON_AMQP = '<amqp:// URL to connect to, including username and password>'
 #EVENT_DAEMON_AMQP_EXCHANGE = '<AMQP exchange to use>'
 
+## Celery
+#CELERY_BROKER_URL = 'redis://localhost:6379'
+#CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+
 ## CDN control.
 # Base URL for a copy of ace editor.
 # Should contain ace.js, along with mode-*.js.

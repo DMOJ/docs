@@ -1,7 +1,7 @@
 ## Installing the prerequisites
 
 ```shell-session
-$ apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev gettext curl wget
+$ apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev gettext curl wget redis-server
 $ wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | sudo python
 $ pip install virtualenv
 $ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
@@ -113,6 +113,18 @@ You should create an admin account with which to log in initially.
 (dmojsite) $ python manage.py createsuperuser
 ```
 
+## Setting up Celery
+The DMOJ uses Celery workers to perform most of its heavy lifting, such as batch rescoring submissions. We will use Redis as its broker, though note that other brokers that Celery supports will work as well.
+
+Start up the Redis server, which is needed by the Celery workers.
+```shell-session
+$ service redis-server start
+```
+
+Configure `local_settings.py` by uncommenting `CELERY_BROKER_URL` and `CELERY_RESULT_BACKEND`. By default, Redis listens on localhost port 6379, which is reflected in `local_settings.py`. You will need to update the addresses if you changed Redis's settings.
+
+We will test that Celery works soon.
+
 ## Running the server
 At this point, you should attempt to run the server, and see if it all works.
 
@@ -133,6 +145,12 @@ You should also test to see if `bridged` runs.
 
 If there are no errors after about 10 seconds, it probably works.
 You should Ctrl-C to exit.
+
+Next, test that the Celery workers run.
+```shell-session
+(dmojsite) $ celery -A dmoj_celery worker
+```
+You can Ctrl-C to exit.
 
 ## Setting up uWSGI
 `runserver` is insecure and not meant for production workloads, and should not be used beyond testing.
@@ -163,16 +181,16 @@ You should now install `supervisord` and configure it.
 $ apt install supervisor
 ```
 
-Copy our `site.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/site.conf)) to `/etc/supervisor/conf.d/site.conf`, `bridged.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/bridged.conf)) to `/etc/supervisor/conf.d/bridged.conf`, and fill in the fields.
+Copy our `site.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/site.conf)) to `/etc/supervisor/conf.d/site.conf`, `bridged.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/bridged.conf)) to `/etc/supervisor/conf.d/bridged.conf`, `celery.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/celery.conf)) to `/etc/supervisor/conf.d/celery.conf` and fill in the fields.
 
-Next, reload `supervisord` and check that the site and bridge have started.
+Next, reload `supervisord` and check that the site, bridge, and celery have started.
 
 ```shell-session
 $ supervisorctl update
 $ supervisorctl status
 ```
 
-If both processes are running, everything is good! Otherwise, peek at the logs and see what's wrong.
+If all three processes are running, everything is good! Otherwise, peek at the logs and see what's wrong.
 
 ## Setting up nginx
 Now, it's time to set up `nginx`.
