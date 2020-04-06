@@ -53,7 +53,7 @@ $ exec docker run \
 
 Ensure you have [installed and configured the judge](/judge/linux_installation.md).
 
-Add the following yaml block to your `config.yml`.
+Add the following YAML block to your `config.yml`.
 ```yaml
 id: judge name
 key: judge authentication key
