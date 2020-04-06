@@ -11,6 +11,7 @@
 
 - Judge
   - [Linux Installation](judge/linux_installation.md)
+  - [Connecting a Judge to the Site](judge/connecting_a_judge.md)
   - [Supported Languages](judge/supported_languages.md)
   - [Colored Compiler Messages](judge/colored_compiler_messages.md)
   - [Status Codes](judge/status_codes.md)
