@@ -49,7 +49,7 @@ $ exec docker run \
 
 `$PORT` is the bridge port, `$IP` is the bridge IP, `$JUDGE_NAME` is the judge name, and `$JUDGE_AUTHENTICATION_KEY` is the judge authentication key.
 
-### Directly on the machine
+### Directly on the Machine
 
 Ensure you have [installed and configured the judge](/judge/linux_installation.md).
 
