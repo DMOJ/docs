@@ -229,8 +229,8 @@ TIMEZONE_MAP = 'http://naturalearth.springercarto.com/ne3_data/8192/textures/3_n
 # Should be an internal location mapped to the above directory.
 #DMOJ_PDF_PROBLEM_INTERNAL = '/pdfcache'
 
-# Path to a PhantomJS executable.
-#PHANTOMJS = '/usr/local/bin/phantomjs'
+# Enable Selenium PDF generation
+#USE_SELENIUM = True
 
 # If you can't use PhantomJS or prefer wkhtmltopdf, set the path to wkhtmltopdf executable instead.
 #WKHTMLTOPDF = '/usr/local/bin/wkhtmltopdf'
