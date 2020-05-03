@@ -5,10 +5,11 @@ contestants are distributed paper versions of the problems.
 For example, [here](https://dmoj.ca/problem/ioi14p1/pdf) is a generated PDF of
 [this problem](https://dmoj.ca/problem/ioi14p1).
 
-While Puppeteer is used for PDF generation in production, Selenium is the recommended PDF renderer.
+You can use Puppeteer, Selenium, PhantomJS, or SlimerJS to render PDFs of problems. Puppeteer is used in production and
+Selenium is documented below.
 
-!> The DMOJ also supports PDF generation using PhantomJS and SlimerJS. However, they are not used in production, are
-outdated, and may be deprecated in the future.
+!> While the DMOJ supports PDF generation using PhantomJS and SlimerJS, they are not used in production, are outdated,
+   and may be deprecated in the future.
 
 ## Installation
 Install [Selenium](https://www.selenium.dev/) in the same Python virtualenv as the site, and install the Chromium
