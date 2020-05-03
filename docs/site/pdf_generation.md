@@ -55,7 +55,7 @@ DMOJ_PDF_PROBLEM_CACHE = '/tmp'
 
 Restart DMOJ for the changes to take effect.
 
-?>  Selenium requires that the chromedriver and Chromium installations are in your system's `PATH` variable, so the
+?>  Selenium requires that the ChromeDriver and Chromium installations are in your system's `PATH` variable, so the
     `SELENIUM_CUSTOM_CHROME_PATH` and `SELENIUM_CHROMEDRIVER_PATH` variables are entirely optional on standard
     installations. However, they may be set to troubleshoot issues.
 
