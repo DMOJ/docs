@@ -1,50 +1,101 @@
 # PDF Generation of Problem Statements
-The DMOJ supports rendering problem statements to PDF. This can be useful in the case of on-site contests, where contestants
-are distributed paper versions of the problems.
+The DMOJ supports rendering problem statements to PDF. This can be useful in the case of on-site contests, where
+contestants are distributed paper versions of the problems.
 
-For example, [here](https://dmoj.ca/problem/ioi14p1/pdf) is a generated PDF of [this problem](https://dmoj.ca/problem/ioi14p1).
+For example, [here](https://dmoj.ca/problem/ioi14p1/pdf) is a generated PDF of
+[this problem](https://dmoj.ca/problem/ioi14p1).
 
-You can either use PhantomJS or SlimerJS to render PDFs.
+You can use Puppeteer, Selenium, PhantomJS, or SlimerJS to render PDFs of problems. Puppeteer is used in production and
+Selenium is documented below.
 
-## PhantomJS
+!> While the DMOJ supports PDF generation using PhantomJS and SlimerJS, they are not used in production, are outdated,
+   and may be deprecated in the future.
 
-Grab a PhantomJS build from [the download page](http://phantomjs.org/download.html), and extract it. For these static
-builds, there is no need to do anything further. You can run it to verify it's working.
+## Installation
+Install [Selenium](https://www.selenium.dev/) in the same Python virtualenv as the site, and install the Chromium
+browser. Querying the browser version is necessary for the next step but also serves as a way to make sure Chromium
+installed correctly.
 
+```shell
+$ pip install selenium
+$ apt install chromium-browser
+$ chromium-browser --version
+Chromium 80.0.3987.163 Built on Ubuntu , running on Ubuntu 18.04
 ```
-$ phantomjs --version
-2.1.1
+
+Selenium requires [ChromeDriver](https://chromedriver.chromium.org/downloads) to run Chromium, so download and unzip the
+correct version. Only the major version number is important (e.g. 80). An example install procedure might be as follows:
+
+```shell
+$ wget https://chromedriver.storage.googleapis.com/80.0.3987.106/chromedriver_linux64.zip
+$ unzip chromedriver_linux64.zip
+$ install chromedriver /usr/local/bin/
+$ rm chromedriver_linux64.zip chromedriver
 ```
 
-### Configuring DMOJ to use PhantomJS
-Configuring DMOJ to generate PDFs with PhantomJS requires the addition of a couple of lines to your `local_settings.py`.
+?>  To follow these instructions, installing `unzip` may be required with `apt install unzip`.
+
+?>  The DMOJ uses a Segoe UI font when viewed on Windows browsers. If running Selenium on a Linux server, installing
+    Segoe UI fonts on it will provide optimal rendering quality &mdash; otherwise, a fallback font will be used and
+    statements will look subpar.
+
+## Configuration
+Configuring DMOJ to generate PDFs with Selenium can be done by adding the following lines to your `local_settings.py`.
 
 ```py
+# Enable Selenium PDF generation
+USE_SELENIUM = True
+# Optional paths to Chromium and ChromeDriver
+SELENIUM_CUSTOM_CHROME_PATH = None
+SELENIUM_CHROMEDRIVER_PATH = 'chromedriver'
+
 # Cache location for generated PDFs. You should consider using something more persistant
 # than /tmp, since PDF generation is an expensive operation.
 DMOJ_PDF_PROBLEM_CACHE = '/tmp'
-# Path to wherever you extracted the PhantomJS binary.
-PHANTOMJS = '/usr/local/bin/phantomjs'
 ```
 
 Restart DMOJ for the changes to take effect.
 
-## SlimerJS
+?>  Selenium requires that the ChromeDriver and Chromium installations are in your system's `PATH` variable, so the
+    `SELENIUM_CUSTOM_CHROME_PATH` and `SELENIUM_CHROMEDRIVER_PATH` variables are entirely optional on standard
+    installations. However, they may be set to troubleshoot issues.
 
-Grab a SlimerJS build from [here](https://github.com/DMOJ/site/files/2613909/slimerjs-1.0.0-firefox60.zip) and install Firefox 60 ESR.
+## Updating
+When updating packages, the `chromium-browser` package may update to a newer version, while the `chromedriver` binary
+lags behind. Check to make sure that the major versions of the two are the same after updating.
 
-### Configuration
-
-```py
-# Cache location for generated PDFs. You should consider using something more persistant
-# than /tmp, since PDF generation is an expensive operation.
-DMOJ_PDF_PROBLEM_CACHE = '/tmp'
-# Path to wherever you extracted the SlimerJS binary.
-SLIMERJS = '/usr/local/bin/slimerjs'
-# Path to Firefox, if you installed it at a non-standard location:
-SLIMERJS_FIREFOX_PATH = '/usr/bin/firefox'
+```shell
+$ chromium-browser --version
+Chromium 80.0.3987.163 Built on Ubuntu , running on Ubuntu 18.04
+$ chromedriver --version
+ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882})
 ```
 
-?>  The DMOJ uses a Segoe UI font when viewed on Windows browsers. If running PhantomJS on a Linux server, installing
-    Segoe UI fonts on it will provide optimal rendering quality &mdash; otherwise, a fallback font will be used and
-    statements will look subpar.
+If these versions do not match, follow the [installation procedure](#installation) to get a newer version of
+ChromeDriver.
+
+## Troubleshooting
+### "View as PDF" button doesn't show up
+If a "View as PDF" button does not show up on the problem page, make sure that the `USE_SELENIUM` variable is set to
+`True` and that `selenium` can be properly imported.
+
+```shell
+$ . siteenv/bin/activate
+$ python
+>>> import selenium
+```
+
+If an `ImportError` is thrown, please follow the [installation procedure](#installation).
+
+### "View as PDF" button shows up
+If a "View as PDF" button shows up, but generation fails, an error log should be displayed in the browser. This log will
+also be captured by the `judge.problem.pdf` Django log handler. Depending on the error, setting the optional variables
+`SELENIUM_CUSTOM_CHROME_PATH` to the path of the Chromium binary and `SELENIUM_CHROMEDRIVER_PATH` to the path of the 
+ChromeDriver binary may alleviate the problem.
+
+One common cause of PDF generation failures is mismatched Chromium and ChromeDriver versions. To find out if this
+affects you and how to fix it, follow the instructions in the [updating section](#updating).
+
+For other errors, take a look at the [Selenium documentation](https://www.selenium.dev/documentation/en/webdriver/),
+specifically the
+[common exceptions](https://www.selenium.dev/selenium/docs/api/py/common/selenium.common.exceptions.html) section.
