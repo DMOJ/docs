@@ -232,10 +232,20 @@ TIMEZONE_MAP = 'http://naturalearth.springercarto.com/ne3_data/8192/textures/3_n
 # Enable Selenium PDF generation
 #USE_SELENIUM = True
 
-# If you can't use PhantomJS or prefer wkhtmltopdf, set the path to wkhtmltopdf executable instead.
-#WKHTMLTOPDF = '/usr/local/bin/wkhtmltopdf'
+## Data download settings.
+# Uncomment to allow users to download their data
+#DMOJ_USER_DATA_DOWNLOAD = True
 
-# Note that PhantomJS is preferred over wkhtmltopdf and would be used when both are defined.
+# Directory to cache user data downloads.
+# It is the administrator's responsibility to clean up old files.
+#DMOJ_USER_DATA_CACHE = '/home/dmoj-uwsgi/datacache'
+
+# Path to use for nginx's X-Accel-Redirect feature.
+# Should be an internal location mapped to the above directory.
+#DMOJ_USER_DATA_INTERNAL = '/datacache'
+# How often a user can download their data.
+#DMOJ_USER_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
+
 
 ## ======== Logging Settings ========
 # Documentation: https://docs.djangoproject.com/en/1.9/ref/settings/#logging
