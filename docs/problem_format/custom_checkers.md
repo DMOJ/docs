@@ -31,7 +31,7 @@ This checker checks if the number of occurrences of each white space delimited t
 
 The `floats` checker is used when outputs may suffer from floating point epsilon.
 
-`args` can contain a key for `precision`, indicating an epsilon of $10^{-\text{precision}}$.
+`args` can contain a key for `precision`, indicating an epsilon of ~10^{-\text{precision}}~.
 This value defaults to `6`.
 
 Additionally, `args` can contain a key for `error_mode`. An `error_mode` of `default` will check if the process output is within an absolute or relative of epsilon, an `error_mode` of `relative` will only check for relative error, and an `error_mode` of `absolute` will only check for absolute error.
@@ -58,22 +58,8 @@ Otherwise, the checker will return `True` if the two outputs are identical, and 
 
 The `linecount` checker is a custom checker primarily used for ECOO problems.
 
-The two arguments you can pass are `feedback`, which defaults to `True`, and `match`, which defaults to `lambda p, j: p.strip() == j.strip()`.
-
+`args` can contain a key for `feedback`, which defaults to `True`.
 `feedback` indicates if the judge should give return per-line feedback: a check mark for a correct line, and a cross if the line is incorrect.
-
-`match` is the function used to check if two lines of output are considered identical. `p` is the user's output, and `j` is the judge's output.
-
-An example usage would be
-
-```yaml
-checker:
-  name: linecount
-  args:
-    match: 'lambda p, j: sorted(p.strip()) == sorted(j.strip())'
-```
-
-The checker returns `False`, with no feedback if the user's output contains more lines than the judge's output, otherwise a `CheckerResult` is returned, where the number of points is proportional to the number of correct lines.
 
 ## Sorted Checker - `sorted`
 
@@ -107,6 +93,7 @@ Variables in global scope will exist throughout the grading process.
 - `submission_language`: the language the submission was submitted in
 - `binary_data`: a boolean, which is `True` if the data was not normalized to Linux line endings, and `False` otherwise
 - `execution_time`: the runtime of the program, in seconds
+- `problem_id`: the problem code
 
 Additionally, if the `check` method has the flag `run_on_error` set, it will be run against the submission's output, even if it receives an IR/TLE/RTE/MLE verdict.
 The only built-in checker that has this flag set is the `linecount` checker.
@@ -116,24 +103,22 @@ The only built-in checker that has this flag set is the `linecount` checker.
 `check` can return either a `CheckerResult` object (`from dmoj.result import CheckerResult`), or a boolean (`case_passed_bool`).
  A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, feedback='')`.
 
-# Checkers or Interactors for Computationally-Heavy Problems
-Sometimes, problems that require checkers or interactive grading may also be computationally expensive. In such cases, it is often beneficial to move answer checking from the slow Python problem module and into a native language. For maximum interoperability, the judge system requires a Python script to handle raw interaction prompts, but the script itself may use the judge's compilation and execution API to spawn native processes.
+## Native Checkers
+Sometimes, problems that require checkers may also be computationally expensive.
+In such cases, it is often beneficial to move answer checking from the slow Python problem module and into a native language.
 
-To illustrate, a problem that requires a computationally expensive validator can easily be implemented as shown below.
+This is handled by `bridged` checker.
 
-```python
-from dmoj.executors import executors
-from dmoj.judgeenv import get_problem_root
-import os
+The `bridged` checker takes the following arguments:
 
-# Locate the validator source file. get_problem_root returns the root directory of the problem passed by name.
-validator_path = os.path.join(get_problem_root('problem_id'), 'validator.cpp')
-# Read all source into memory
-with open(validator_path, 'rb') as validator_source:
-    # Execute the compiler - executors[] is a mapping of all executors by language id
-    executor = executors['CPP11'].Executor('validator', validator_source.read())
-# Launch the validator in a sandbox - see below
-process = executor.launch(time=60, memory=262144)
-```
+- `files`: either a filename, or a list of filenames, corresponding to the checker
+- `lang`: the language the checker is written in, using the same conventions as the judge
+- `time_limit`: the time limit allocated to the checker. It defaults to `env['generator_time_limit']`.
+- `memory_limit`: the memory limit allocated to the checker. It defaults to `env['generator_memory_limit']`.
+- `compiler_time_limit`: the time limit allocated to compiling the checker. It defaults to `env['generator_compiler_limit']`.
+- `feedback`: if true, the checker's standard output will be shown as feedback. Defaults to true.
+- `flags`: compilation flags to pass to the checker.
+- `cached`: if true, the checker's binary will be cached for performance. Defaults to true.
+- `type`: how to interpret the checker's return code. By default, a `0` is an AC, `1` is WA, and anything else results in an internal error.
 
-Here, `validator.cpp` exists in the problem folder root directory, and `process` is the executed validator - a `Popen`-like object. When using `Executor.launch`, you may pass a time limit (in seconds) along with a memory limit (in Kb). Here, the validator may run for a maximum of 60 seconds and use 256mb before being killed. `launch` uses the same sandboxing system as normal submissions; filesystem, network and interprocess access is denied. If you'd like to avoid the overhead of sandboxing for a validator you are sure will execute safely, you may choose to use `Executor.launch_unsafe` - note, however, that you may not specify time or memory limits if the sandbox is inactive.
+The files will be compiled and sandboxed, then executed with the arguments `input_file` `output_file` `judge_file`, which are files containing input, submission output, and judge output, respectively.

@@ -2,10 +2,16 @@
 Each problem is stored in its own directory. That directory must contain a file named `init.yml`.
 
 # `init.yml`
-The entire file is a YAML object. It must contain one key, `test_cases`, which maps to a list of test cases. Optionally, but almost always, will there be an `archive` key, which allows the problem data to be stored, compressed, in a `.zip` file, instead of the problem directory as flat files.
+The entire file is a YAML object.
+It must contain one key, `test_cases`.
+`test_cases` can either be a list of test cases, or two regexes to match input and output test cases.
+Optionally, but almost always, will there be an `archive` key, which allows the problem data to be stored, compressed, in a `.zip` file, instead of the problem directory as flat files.
 
 # `test_cases`
-Each element in the `test_cases` list is a YAML associative array (usually written as a keyed branch) that represents a test case. The element contains the key `points`, mapping to an integer specifying the number of points that test case is worth.
+There are two methods to specify test cases.
+
+The first method is to use a list of YAML associative arrays.
+Each element in the list is a YAML associative array (usually written as a keyed branch) that represents a test case. The element contains the key `points`, mapping to an integer specifying the number of points that test case is worth.
 
 If `points: 0` is specified, getting a non-AC verdict on this case will result in the remaining test cases being skipped.
 This also applies to batched test cases where `points: 0` is specified.
@@ -49,4 +55,16 @@ test_cases:
   batched:
   - {in: tle16p4.2.in, out: tle16p4.2.out}
   - {in: tle16p4.3.in, out: tle16p4.3.out}
+
 ```
+
+As DMOJ's YAML dialect supports dynamic keys, large `init.yml`s can be programmatically generated.
+See the sample files for examples.
+
+## Specifying Cases with Regexes
+If the test cases follow a similar format, it is possible to specify them with a regex.
+
+The default regex for input files is `^(?=.*?\.in|in).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*$`, and the default regex for output files is `^(?=.*?\.out|out).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*`.
+
+These can be overwritten by specifying `input_format` and `output_format` within `test_cases`, respectively.
+The points awarded to each test case is given by `case_points`, and it defaults to 1 point per test case/batch.

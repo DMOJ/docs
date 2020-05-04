@@ -70,7 +70,8 @@ In this example, it's important to note the `unbuffered` node. If set to `true`,
 
 # Interactive Grading
 
-Interactive grading is used for problems where users should implement an online algorithm or where the grader must make generate input or compute a score based on the user's previous output. Using an interactive grader is similar to using a custom grader: the `custom_judge` node also needs to be set. Rewriting the previous custom judge using an interactive grader would result in:
+Interactive grading is used for problems where users should implement an online algorithm or where the grader must make generate input or compute a score based on the user's previous output.
+Using an interactive grader is similar to using a custom grader: the `custom_judge` node also needs to be set. Rewriting the previous custom judge using an interactive grader would result in:
 
 ```python
 class Grader(InteractiveGrader):
@@ -102,6 +103,78 @@ class Grader(InteractiveGrader):
 ## Returns
 
 Either a boolean or a `Result` (`from dmoj.result import Result`) object. The boolean is true if the submission should score full points, and `false` otherwise. The `Result` object is handled the same way as custom graders.
+
+## Native Interactive Grading
+Sometimes, an interactive grader will be very computationally expensive.
+In these cases, one can use the `bridged` grader.
+To invoke the `bridged` grader, `interactive` should be a top level node that contains `files` and `lang`.
+`files` is either a single filename, or a list of filenames, corresponding to the interactor.
+`lang` is the language of the interactor.
+
+Optional arguments are:
+
+- `flags`: flags to pass to the compiler
+- `cached`: if true, the interactor's binary will be cached for performance. Defaults to true.
+- `compiler_time_limit`: the time limit allocated to compiling the interactor.
+- `preprocessing_time`: the interactor's time limit is equal to this value plus the time limit of the problem, in seconds.
+- `memory_limit`: the memory limit allocated to the interactor. It defaults to `env['generator_memory_limit']`.
+
+The interactor's standard input is connected to the submission's standard output, and vice versa.
+After the interactor prints, it is required to flush.
+
+To specify a correct answer, the interactor should return 0.
+To specify an incorrect answer, the interactor should return 1.
+All other return values will be considered internal errors.
+
+To override this behaviour, you can change `type` to a valid `contrib` module, such as `testlib`.
+
+
+An example `init.yml` would be as follows:
+```yaml
+unbuffered: True
+archive: seed2.zip
+interactive: {files: interactor.cpp, type: testlib}
+test_cases:
+- {in: seed2.1.in, points: 20}
+- {in: seed2.2.in, points: 20}
+- {in: seed2.3.in, points: 20}
+- {in: seed2.4.in, points: 20}
+- {in: seed2.5.in, points: 20}
+- ```
+
+An example of interactor would be as follows:
+```cpp
+#include <cstdio>
+#include <cstdlib>
+
+inline void read(long long *i) {
+    if(scanf("%lld", i) != 1 || *i < 1 || *i > 2000000000)
+        exit(2);
+}
+
+int main(int argc, char* argv[]) {
+    FILE *input_file = fopen(argv[1], "r");
+    int N, guesses = 0;
+    long long guess;
+    fscanf(input_file, "%d", &N);
+    while(guess != N) {
+        read(&guess);
+        if(guess == N) {
+            puts("OK");
+        } else if(guess > N) {
+            puts("FLOATS");
+        } else {
+            puts("SINKS");
+        }
+        fflush(stdout);
+        guesses++;
+    }
+    if(guesses <= 31)
+        return 0; // AC
+    else
+        return 1; // WA
+}
+```
 
 # Function Signature Grading (IOI-style)
 Signature grading is used for problems where users should implement an online algorithm or interact with the grader directly without the need for traditional input and output routines. This is commonly seen in competitions such as the IOI, where all input is passed through function arguments and output is replaced with return values or directly modifying specifically allocated memory for the computed answer. Currently, C and C++ are supported for this mode. `signature_grader` should be a top-level node that contains `entry` and `header`. `entry` is a C or C++ file that contains the `main` function. It should read input from `stdin`, call the user's implemented functions specified in `header`, and write output to `stdout`. You may specify a custom `checker` to interpret the `entry`'s output. If no custom checker is specified, it will be compared to the output file using the default checker.
