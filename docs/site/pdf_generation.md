@@ -42,7 +42,7 @@ $ rm chromedriver_linux64.zip chromedriver
 ## Configuration
 Configuring DMOJ to generate PDFs with Selenium can be done by adding the following lines to your `local_settings.py`.
 
-```py
+```python
 # Enable Selenium PDF generation
 USE_SELENIUM = True
 # Optional paths to Chromium and ChromeDriver
