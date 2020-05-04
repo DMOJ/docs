@@ -16,7 +16,7 @@ Install [Selenium](https://www.selenium.dev/) in the same Python virtualenv as t
 browser. Querying the browser version is necessary for the next step but also serves as a way to make sure Chromium
 installed correctly.
 
-```shell
+```shell-session
 $ pip install selenium
 $ apt install chromium-browser
 $ chromium-browser --version
@@ -26,7 +26,7 @@ Chromium 80.0.3987.163 Built on Ubuntu , running on Ubuntu 18.04
 Selenium requires [ChromeDriver](https://chromedriver.chromium.org/downloads) to run Chromium, so download and unzip the
 correct version. Only the major version number is important (e.g. 80). An example install procedure might be as follows:
 
-```shell
+```shell-session
 $ wget https://chromedriver.storage.googleapis.com/80.0.3987.106/chromedriver_linux64.zip
 $ unzip chromedriver_linux64.zip
 $ install chromedriver /usr/local/bin/
@@ -64,7 +64,7 @@ Restart DMOJ for the changes to take effect.
 When updating packages, the `chromium-browser` package may update to a newer version, while the `chromedriver` binary
 lags behind. Check to make sure that the major versions of the two are the same after updating.
 
-```shell
+```shell-session
 $ chromium-browser --version
 Chromium 80.0.3987.163 Built on Ubuntu , running on Ubuntu 18.04
 $ chromedriver --version
@@ -79,7 +79,7 @@ ChromeDriver.
 If a "View as PDF" button does not show up on the problem page, make sure that the `USE_SELENIUM` variable is set to
 `True` and that `selenium` can be properly imported.
 
-```shell
+```shell-session
 $ . siteenv/bin/activate
 $ python
 >>> import selenium
