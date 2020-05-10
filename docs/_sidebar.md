@@ -2,6 +2,7 @@
   - [Installing the Site](site/installation.md)
   - [Updating the Site](site/updating.md)
   - [Contest Formats](site/contest_formats.md)
+  - [Permission System](site/permission_system.md)
   - [Managing Problems Through the Site Interface](site/managing_problems.md)
   - [PDF Generation of Problem Statements](site/pdf_generation.md)
   - [User Data Downloads](site/user_data_download.md)
