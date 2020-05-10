@@ -123,13 +123,13 @@ To illustrate, a problem that requires a computationally expensive validator can
 
 ```python
 from dmoj.executors import executors
-from dmoj.judgeenv get_problem_root
+from dmoj.judgeenv import get_problem_root
 import os
 
 # Locate the validator source file. get_problem_root returns the root directory of the problem passed by name.
 validator_path = os.path.join(get_problem_root('problem_id'), 'validator.cpp')
 # Read all source into memory
-with open(validator_path, 'r') as validator_source:
+with open(validator_path, 'rb') as validator_source:
     # Execute the compiler - executors[] is a mapping of all executors by language id
     executor = executors['CPP11'].Executor('validator', validator_source.read())
 # Launch the validator in a sandbox - see below
