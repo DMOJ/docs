@@ -97,7 +97,7 @@ def check(process_output, judge_output, **kwargs):
 
 Variables in global scope will exist throughout the grading process.
 
-`**kwargs` is a directory containing
+`**kwargs` is a dictionary containing
 
 - `submission_source`: the source code of the submission
 - `judge_input`: the judge's input
