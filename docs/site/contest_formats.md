@@ -35,7 +35,7 @@ The field is in minutes, and for each such interval of time before the contest e
 Note that specifying `0` will disable this bonus.  
 For example, say a submission with a score of `50/100` is submitted 23 minutes before the contest ends. $\left\lfloor\frac{23}{5}\right\rfloor = 4$, so 4 bonus points are awarded, giving a total score of $50 + 4 = 54$ for that problem.
 
-## AtCoder Contest Format
+### AtCoder Contest Format
 
 The `AtCoder` contest format is based on the contest format used by AtCoder. As such, your score equals the sum of your highest-scoring submission on each problem, and ties are broken based on the time of your last score-changing submission plus your penalty.
 
