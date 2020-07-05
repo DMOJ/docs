@@ -1,9 +1,8 @@
 ## Installing the prerequisites
 
 ```shell-session
-$ apt install git gcc g++ make python-dev libxml2-dev libxslt1-dev zlib1g-dev gettext curl wget redis-server
-$ wget -q --no-check-certificate -O- https://bootstrap.pypa.io/get-pip.py | sudo python
-$ pip install virtualenv
+$ apt update
+$ apt install git gcc g++ make python3-dev python3-pip libxml2-dev libxslt1-dev zlib1g-dev gettext curl redis-server
 $ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 $ apt install nodejs
 $ npm install -g sass postcss-cli autoprefixer
@@ -33,15 +32,15 @@ mariadb> exit
 
 ## Installing prerequisites
 
-Now that you are done, you can start installing the site. First, create a `virtualenv` and activate it. Here, we'll create a `virtualenv` named `dmojsite`.
+Now that you are done, you can start installing the site. First, create a virtual environment and activate it. Here, we'll create a virtual environment named `dmojsite`.
 
 ```shell-session
-$ virtualenv dmojsite
+$ python3 -m venv dmojsite
 $ . dmojsite/bin/activate
 ```
-You should see `(dmojsite)` prepended to your shell. Henceforth, `(dmojsite)` commands assumes you are in the code directory, with `virtualenv` active.
+You should see `(dmojsite)` prepended to your shell. Henceforth, `(dmojsite)` commands assumes you are in the code directory, with virtual environment active.
 
-?> The `virtualenv` will help keep the modules needed separate from the system package manager, and save you many headaches when updating. Read more about `virtualenv`s [here](#).
+?> The virtual environment will help keep the modules needed separate from the system package manager, and save you many headaches when updating. Read more about virtual environments [here](https://docs.python.org/3/tutorial/venv.html).
 
 
 Now, fetch the site source code. If you plan to install a judge [from PyPI](https://pypi.org/project/dmoj/), check out a matching version of the site repository. For example, for judge v2.1.0:
@@ -54,11 +53,11 @@ Now, fetch the site source code. If you plan to install a judge [from PyPI](http
 (dmojsite) $ git submodule update
 ```
 
-Install Python dependencies into the `virtualenv`.
+Install Python dependencies into the virtual environment.
 
 ```shell-session
-(dmojsite) $ pip install -r requirements.txt
-(dmojsite) $ pip install mysqlclient
+(dmojsite) $ pip3 install -r requirements.txt
+(dmojsite) $ pip3 install mysqlclient
 ```
 
 You will now need to configure `dmoj/local_settings.py`. You should make a copy [of this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MariaDB credentials.
@@ -69,7 +68,7 @@ You will now need to configure `dmoj/local_settings.py`. You should make a copy 
 Now, you should verify that everything is going according to plan.
 
 ```shell-session
-(dmojsite) $ python manage.py check
+(dmojsite) $ python3 manage.py check
 ```
 
 ## Compiling assets
@@ -82,35 +81,35 @@ DMOJ uses `sass` and `autoprefixer` to generate the site stylesheets. DMOJ comes
 Now, collect static files into `STATIC_ROOT` as specified in `dmoj/local_settings.py`.
 
 ```shell-session
-(dmojsite) $ python manage.py collectstatic
+(dmojsite) $ python3 manage.py collectstatic
 ```
 
 You will also need to generate internationalization files.
 
 ```shell-session
-(dmojsite) $ python manage.py compilemessages
-(dmojsite) $ python manage.py compilejsi18n
+(dmojsite) $ python3 manage.py compilemessages
+(dmojsite) $ python3 manage.py compilejsi18n
 ```
 
 ## Setting up database tables
 We must generate the schema for the database, since it is currently empty.
 
 ```shell-session
-(dmojsite) $ python manage.py migrate
+(dmojsite) $ python3 manage.py migrate
 ```
 
 Next, load some initial data so that your install is not entirely blank.
 
 ```shell-session
-(dmojsite) $ python manage.py loaddata navbar
-(dmojsite) $ python manage.py loaddata language_small
-(dmojsite) $ python manage.py loaddata demo
+(dmojsite) $ python3 manage.py loaddata navbar
+(dmojsite) $ python3 manage.py loaddata language_small
+(dmojsite) $ python3 manage.py loaddata demo
 ```
 
 You should create an admin account with which to log in initially.
 
 ```shell-session
-(dmojsite) $ python manage.py createsuperuser
+(dmojsite) $ python3 manage.py createsuperuser
 ```
 
 ## Setting up Celery
@@ -129,7 +128,7 @@ We will test that Celery works soon.
 At this point, you should attempt to run the server, and see if it all works.
 
 ```shell-session
-(dmojsite) $ python manage.py runserver 0.0.0.0:8000
+(dmojsite) $ python3 manage.py runserver 0.0.0.0:8000
 ```
 
 You should Ctrl-C to exit after verifying.
@@ -140,7 +139,7 @@ You should Ctrl-C to exit after verifying.
 You should also test to see if `bridged` runs.
 
 ```shell-session
-(dmojsite) $ python manage.py runbridged
+(dmojsite) $ python3 manage.py runbridged
 ```
 
 If there are no errors after about 10 seconds, it probably works.
@@ -162,7 +161,7 @@ First, copy our `uwsgi.ini` ([link](https://github.com/DMOJ/docs/blob/master/sam
 You need to install `uwsgi`.
 
 ```shell-session
-(dmojsite) $ pip install uwsgi
+(dmojsite) $ pip3 install uwsgi
 ```
 
 To test, run:
@@ -249,7 +248,7 @@ Need to install the dependencies.
 
 ```shell-session
 (dmojsite) $ npm install qu ws simplesets
-(dmojsite) $ pip install websocket-client
+(dmojsite) $ pip3 install websocket-client
 ```
 
 Now copy `wsevent.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/wsevent.conf)) to `/etc/supervisor/conf.d/wsevent.conf`, changing paths, and then update supervisor and nginx.

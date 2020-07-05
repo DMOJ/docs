@@ -92,8 +92,8 @@ $ docker run \
 #### Installing the prerequisites
 
 ```shell-session
-$ apt install python-dev python-pip build-essential libseccomp-dev
-$ pip install dmoj
+$ apt install python3-dev python3-pip build-essential libseccomp-dev
+$ pip3 install dmoj
 ```
 
 #### Configuring the judge

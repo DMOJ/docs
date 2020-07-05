@@ -12,7 +12,7 @@ Texoid is simple to set up and use.
 ```shell-session
 $ git clone https://github.com/DMOJ/texoid.git
 $ cd texoid
-$ python setup.py develop
+$ python3 setup.py develop
 ```
 
 Texoid relies on LaTeX distribution to render documents to DVI format, `dvisvgm` to convert to SVGs, and ImageMagick to convert 
