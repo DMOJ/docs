@@ -12,13 +12,13 @@ Selenium is documented below.
    and may be deprecated in the future.
 
 ## Installation
-Install [Selenium](https://www.selenium.dev/) in the same Python virtualenv as the site, and install the Chromium
+Install [Selenium](https://www.selenium.dev/) in the same Python virtual environment as the site, and install the Chromium
 browser. Querying the browser version is necessary for the next step but also serves as a way to make sure Chromium
 installed correctly.
 
 ```shell-session
-$ pip install selenium
-$ apt install chromium-browser
+$ pip3 install selenium
+$ apt install chromium-browser wget
 $ chromium-browser --version
 Chromium 80.0.3987.163 Built on Ubuntu , running on Ubuntu 18.04
 ```
@@ -81,7 +81,7 @@ If a "View as PDF" button does not show up on the problem page, make sure that t
 
 ```shell-session
 $ . siteenv/bin/activate
-$ python
+$ python3
 >>> import selenium
 ```
 
