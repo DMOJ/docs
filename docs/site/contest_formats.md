@@ -1,8 +1,8 @@
-## Contest Formats
+# Contest Formats
 
 The DMOJ ships with 4 contest formats by default: Default, Codechef IOI Ranklist (henceforth shortened to simply IOI), ECOO, and AtCoder.
 
-### Default Contest Format
+## Default Contest Format
 
 The `Default` contest format is what all contests ran on pre-April 23, 2019.
 
@@ -12,7 +12,7 @@ Note that *any* submission will increase time penalty, not just score-changing s
 
 There are no additional options that can be configured for this contest format.
 
-### IOI Contest Format
+## IOI Contest Format
 
 The `IOI` contest format emulates the scoring used by Codechef's IOI Ranklist.
 
@@ -20,7 +20,7 @@ The score is equal to the sum of the maximum scores on each problem, and by defa
 
 The `cumtime` option can be set to `true` within the JSON configuration. This will break ties by summing the submissions times of the most recent total score-changing submissions.
 
-### ECOO Contest Format
+## ECOO Contest Format
 
 The `ECOO` contest format is based on the scoring system used by the ECOO contest.
 
@@ -35,7 +35,7 @@ The field is in minutes, and for each such interval of time before the contest e
 Note that specifying `0` will disable this bonus.  
 For example, say a submission with a score of `50/100` is submitted 23 minutes before the contest ends. $\left\lfloor\frac{23}{5}\right\rfloor = 4$, so 4 bonus points are awarded, giving a total score of $50 + 4 = 54$ for that problem.
 
-### AtCoder Contest Format
+## AtCoder Contest Format
 
 The `AtCoder` contest format is based on the contest format used by AtCoder. As such, your score equals the sum of your highest-scoring submission on each problem, and ties are broken based on the time of your last score-changing submission plus your penalty.
 

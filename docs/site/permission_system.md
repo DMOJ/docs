@@ -1,8 +1,8 @@
-## Permission System
+# Permission System
 
 The DMOJ's permission system is very extensive and allows fine-tuning a user's permissions. Here, we will document which permissions are required to perform certain tasks on the site. Any undocumented models means that they follow Django's default permission system of (`can_add_<model>`, `can_change_<model>`, `can_delete_<model>`, and `can_view_<model>`).
 
-### Blog Posts
+## Blog Posts
 Blog posts follow Django's default permission system.
 
 #### `edit_all_post` (Edit all posts)
@@ -10,13 +10,13 @@ Blog posts follow Django's default permission system.
 
 The user can edit all blog posts.
 
-### Comments
+## Comments
 Comments and comment locks follow Django's default permission system.
 
 #### `override_comment_lock` (Override comment lock)
 The user can post comments on pages which are comment locked.
 
-### Contests
+## Contests
 Contest participations, contest problems, contest submissions, and contest tags follow Django's default permission system.
 
 #### `see_private_contest` (See private contests)
@@ -54,7 +54,7 @@ The user can edit the `is_visible` field on the contest admin page.
 #### `contest_problem_label` (Edit contest problem label script)
 The user can edit the contest problem label script on the contest admin page.
 
-### Organizations
+## Organizations
 Organizations follow Django's default permission system.
 
 #### `organization_admin` (Administer organizations)
@@ -65,7 +65,7 @@ The user can edit `registrant`, `admins`, `is_open`, `slots` fields on the admin
 
 The user can edit all organizations.
 
-### Problems
+## Problems
 
 #### `see_organization_problem` (See organization-private problems)
 The user can see organization-private (but public) problems.
@@ -78,7 +78,7 @@ The user can see all problems. However, they will *not* be able to edit problems
 #### `edit_own_problem` (Edit own problems)
 The user can edit problems on the admin site, but only if they are explicitly set as author or curator. They will also be able to view submission source code for these problems.
 
-### `edit_public_problem` (Edit public problems)
+#### `edit_public_problem` (Edit public problems)
 **Prerequisite perrmisions: `edit_own_problem`**
 
 The user can edit problems on the admin site, but only if the problem is public. They will also be able to view submission source code for these problems.
@@ -105,13 +105,13 @@ Problem solutions follow Django's default permission system.
 #### `see_private_solution` (See hidden solutions)
 The user can see all problem solutions for problems they can access, regardless of if the solution is public or not.
 
-### Profile
+## Profile
 Profiles follow Django's default permission system.    
 
 #### `totp` (Edit TOTP settings)
 The user can edit TOTP-related fields.
 
-### Submissions
+## Submissions
 
 Submission visibility and editability are determined by problem permissions. 
 If the user can edit the problem, they can also edit related submissions.
