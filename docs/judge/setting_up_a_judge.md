@@ -121,7 +121,7 @@ provided.
 You should now be able to connect the judge to the site.
 
 ```shell-session
-$ dmoj -c config.yml -p "$PORT" "$IP"
+$ dmoj -c judge.yml -p "$PORT" "$IP"
 ```
 
 `$PORT` and `$IP` should be the port and IP that was specified in
@@ -132,5 +132,5 @@ If you are using the defaults in `local_settings.py`, the following command
 should suffice.
 
 ```shell-session
-$ dmoj -c config.yml localhost
+$ dmoj -c judge.yml localhost
 ```
