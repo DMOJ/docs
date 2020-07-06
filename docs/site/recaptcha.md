@@ -1,4 +1,4 @@
-## Installing reCAPTCHA Spam Registration Prevention
+# Installing reCAPTCHA Spam Registration Prevention
 
 If you run DMOJ for any prolonged period of time, eventually spambots will begin registering in large numbers.
 
