@@ -59,9 +59,8 @@ $ make judge-tier1
 $ docker run \
     -v /mnt/problems:/problems \
     --cap-add=SYS_PTRACE \
-    -c /problems/judge.yml \
     dmoj/judge-tier1:latest \
-    cli
+    cli -c /problems/judge.yml
 ```
 
 The session below spawns a tier 1 judge image. It expects the relevant
