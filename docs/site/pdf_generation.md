@@ -12,28 +12,14 @@ Selenium is documented below.
    and may be deprecated in the future.
 
 ## Installation
-Install [Selenium](https://www.selenium.dev/) in the same Python virtual environment as the site, and install the Chromium
-browser. Querying the browser version is necessary for the next step but also serves as a way to make sure Chromium
-installed correctly.
+Install [Selenium](https://www.selenium.dev/) in the same Python virtual environment as the site, and install the
+[ChromeDriver](https://chromedriver.chromium.org/downloads). This will also install Chromium which is necessary for
+Selenium to create PDFs.
 
 ```shell-session
 $ pip3 install selenium
-$ apt install chromium-browser wget
-$ chromium-browser --version
-Chromium 80.0.3987.163 Built on Ubuntu , running on Ubuntu 18.04
+$ apt install chromium-driver
 ```
-
-Selenium requires [ChromeDriver](https://chromedriver.chromium.org/downloads) to run Chromium, so download and unzip the
-correct version. Only the major version number is important (e.g. 80). An example install procedure might be as follows:
-
-```shell-session
-$ wget https://chromedriver.storage.googleapis.com/80.0.3987.106/chromedriver_linux64.zip
-$ unzip chromedriver_linux64.zip
-$ install chromedriver /usr/local/bin/
-$ rm chromedriver_linux64.zip chromedriver
-```
-
-?>  To follow these instructions, installing `unzip` may be required with `apt install unzip`.
 
 ?>  The DMOJ uses a Segoe UI font when viewed on Windows browsers. If running Selenium on a Linux server, installing
     Segoe UI fonts on it will provide optimal rendering quality &mdash; otherwise, a fallback font will be used and
@@ -60,20 +46,6 @@ Restart DMOJ for the changes to take effect.
     `SELENIUM_CUSTOM_CHROME_PATH` and `SELENIUM_CHROMEDRIVER_PATH` variables are entirely optional on standard
     installations. However, they may be set to troubleshoot issues.
 
-## Updating
-When updating packages, the `chromium-browser` package may update to a newer version, while the `chromedriver` binary
-lags behind. Check to make sure that the major versions of the two are the same after updating.
-
-```shell-session
-$ chromium-browser --version
-Chromium 80.0.3987.163 Built on Ubuntu , running on Ubuntu 18.04
-$ chromedriver --version
-ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882})
-```
-
-If these versions do not match, follow the [installation procedure](#installation) to get a newer version of
-ChromeDriver.
-
 ## Troubleshooting
 ### "View as PDF" button doesn't show up
 If a "View as PDF" button does not show up on the problem page, make sure that the `USE_SELENIUM` variable is set to
@@ -92,9 +64,6 @@ If a "View as PDF" button shows up, but generation fails, an error log should be
 also be captured by the `judge.problem.pdf` Django log handler. Depending on the error, setting the optional variables
 `SELENIUM_CUSTOM_CHROME_PATH` to the path of the Chromium binary and `SELENIUM_CHROMEDRIVER_PATH` to the path of the 
 ChromeDriver binary may alleviate the problem.
-
-One common cause of PDF generation failures is mismatched Chromium and ChromeDriver versions. To find out if this
-affects you and how to fix it, follow the instructions in the [updating section](#updating).
 
 For other errors, take a look at the [Selenium documentation](https://www.selenium.dev/documentation/en/webdriver/),
 specifically the
