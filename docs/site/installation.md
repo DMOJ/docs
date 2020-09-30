@@ -106,6 +106,9 @@ Next, load some initial data so that your install is not entirely blank.
 (dmojsite) $ python3 manage.py loaddata demo
 ```
 
+!>  Keep in mind that the `demo` fixture creates a superuser account with a username and password of `admin`. If your
+    site is exposed to others, you should change the user's password or remove the user entirely.
+
 You should create an admin account with which to log in initially.
 
 ```shell-session
