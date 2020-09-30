@@ -121,4 +121,4 @@ The `bridged` checker takes the following arguments:
 - `cached`: if true, the checker's binary will be cached for performance. Defaults to true.
 - `type`: how to interpret the checker's return code. By default, a `0` is an AC, `1` is WA, and anything else results in an internal error.
 
-The files will be compiled and sandboxed, then executed with the arguments `input_file` `output_file` `judge_file`, which are files containing input, submission output, and judge output, respectively.
+The files will be compiled and sandboxed, then executed with the arguments `input_file`, `output_file`, and `judge_file`, which are files containing input, submission output, and judge output, respectively.
