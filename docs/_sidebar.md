@@ -10,6 +10,7 @@
   - [LaTeX Diagrams with Texoid](site/texoid.md)
   - [reCAPTCHA Spam Registration Prevention](site/recaptcha.md)
   - [SSL Proxying for User Content](site/ssl_content_proxy.md)
+  - [API](site/api.md)
 
 - Judge
   - [Setting up a Judge](judge/setting_up_a_judge.md)
