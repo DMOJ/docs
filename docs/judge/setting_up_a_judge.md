@@ -76,7 +76,7 @@ $ docker run \
     -d \
     --restart=always \
     dmoj/judge-tier1:latest \
-    run -p "$PORT" -s -c /problems/judge.yml \
+    run -p "$PORT" -c /problems/judge.yml \
     "$IP" "$JUDGE_NAME" "$JUDGE_AUTHENTICATION_KEY"
 ```
 
