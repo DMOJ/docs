@@ -2,8 +2,8 @@
 
 The DMOJ supports a simple JSON API for accessing most data used by the backend. Currently, there are two versions.
 
- - [API v2](?id=dmoj-api-v2) - A more rich API that returns user-specific data. This version fully utilizes API tokens.
- - [API v1](?id=dmoj-api-v1) - Most data returned here are accessible by any user. This version may be deprecated in the future.
+ - [API v2](#dmoj-api-v2) - A more rich API that returns user-specific data. This version fully utilizes API tokens.
+ - [API v1](#dmoj-api-v1) - Most data returned here are accessible by any user. This version may be deprecated in the future.
 
 ## API Tokens
 
