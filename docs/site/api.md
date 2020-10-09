@@ -257,7 +257,8 @@ Example: [/api/v2/problem/helloworld](https://dmoj.ca/api/v2/problem/helloworld)
     "is_organization_private": "<whether the problem is private to organizations>",
     "organizations": [
         "<list of organization id>"
-    ]
+    ],
+    "is_public": "<whether the problem is publicly visible>"
 }
 ```
 
