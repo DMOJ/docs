@@ -262,7 +262,7 @@ Example: [/api/v2/problem/helloworld](https://dmoj.ca/api/v2/problem/helloworld)
 }
 ```
 ### Additional Info
-`is_public`: Whether the problem is publicly visible to the organizations listed. If no organization is listed, the problem visible to all users.
+`is_public`: Whether the problem is publicly visible to the organizations listed. `is_organization_private` is `false`, the problem visible to all users.
 
 ### `/api/v2/users`
 
