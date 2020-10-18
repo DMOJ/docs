@@ -261,8 +261,8 @@ Example: [/api/v2/problem/helloworld](https://dmoj.ca/api/v2/problem/helloworld)
     "is_public": "<whether the problem is publicly visible>"
 }
 ```
-### Additional Info
-`is_public`: Whether the problem is publicly visible to the organizations listed. `is_organization_private` is `false`, the problem visible to all users.
+#### Additional Info
+`is_public`: Whether the problem is publicly visible to the organizations listed. If `is_organization_private` is `false`, the problem visible to all users.
 
 ### `/api/v2/users`
 
