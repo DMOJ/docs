@@ -429,7 +429,7 @@ Example: [/api/v2/languages?common_name=Python](https://dmoj.ca/api/v2/languages
     "short_name": "<language short name>",
     "common_name": "<language common name>",
     "ace_mode_name": "<ace mode name>",
-    "pygments name": "<pygments name>",
+    "pygments_name": "<pygments name>",
     "code_template": "<default code template>"
 }
 ```
