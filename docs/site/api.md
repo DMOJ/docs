@@ -157,6 +157,8 @@ Example: [/api/v2/contest/bts19](https://dmoj.ca/api/v2/contest/bts19)
     "rankings": [
         {
             "user": "<participant username>",
+            "start_time": "<effective participation start time in ISO format>",
+            "end_time": "<participation end time in ISO format>",
             "score": "<participant score>",
             "cumulative_time": "<participant cumulative time, dependant on the contest format>",
             "tiebreaker": "<participant tiebreaker value>",
@@ -186,6 +188,8 @@ Example: [/api/v2/participations?contest=dmopc19c6&virtual_participation_number=
 {
     "user": "<participant username>",
     "contest": "<contest key>",
+    "start_time": "<effective participation start time in ISO format>",
+    "end_time": "<participation end time in ISO format>",
     "score": "<participant score>",
     "cumulative_time": "<participant cumulative time, dependant on the contest format>",
     "tiebreaker": "<participant tiebreaker value>",
