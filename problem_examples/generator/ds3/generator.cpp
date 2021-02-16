@@ -182,10 +182,9 @@ void gen(int N, int M, int unique_base, int max_gap, int p_c, int p_m, int p_g, 
     fflush(stderr);
 }
 
-int main()
+int main(int argc, char **argv)
 {
-    int T;
-    scanf("%d", &T);
+    int T = atoi(argv[1]);
     switch(T)
     {
     case 1:
