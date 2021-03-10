@@ -11,7 +11,7 @@ Additionally, it is possible to specify this node in each test case, so several 
 
 If the `generator` node is a YAML associative array, then it can contain the following keys:
 
-- `name`: either a single string: the name of generator file, or an array, in which case the first file is the generator source, and the remaining files are auxiliary files (e.g. header files).
+- `source`: either a single string: the name of generator file, or an array, in which case the first file is the generator source, and the remaining files are auxiliary files (e.g. header files).
 - `compiler_time_limit`: the compiler time limit for the generator. It defaults to `env.compiler_time_limit`, as defined in `dmoj/judgeenv.py`. It is recommended to set this value to 60 seconds if using `testlib.h`.
 - `time_limit`: the time limit allocated to the generator. It defaults to `env.time_limit`, as defined in `dmoj/judgeenv.py`.
 - `memory_limit`: the memory limit allocated to the generator. It defaults to `env.memory_limit`, as defined in `dmoj/judgeenv.py`.
