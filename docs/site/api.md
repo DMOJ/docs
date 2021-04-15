@@ -131,6 +131,7 @@ Example: [/api/v2/contest/bts19](https://dmoj.ca/api/v2/contest/bts19)
     "rating_floor": "<the minimum user rating required for the user to be rated>",
     "rating_ceiling": "<the maximum user rating for the user to be rated>",
     "hidden_scoreboard": "<whether the contest's scoreboard is hidden>",
+    "scoreboard_visibility": "<whether the scoreboard is (V)isible, visible after (C)ontest, or visible after (P)articipation>",
     "is_organization_private": "<whether the contest is private to organizations>",
     "organizations": [
         "<list of organization id>"
