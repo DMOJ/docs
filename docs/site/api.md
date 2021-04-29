@@ -224,7 +224,9 @@ Example: [/api/v2/problems?partial=True&type=Uncategorized](https://dmoj.ca/api/
     ],
     "group": "<problem group full name>",
     "points": "<problem points>",
-    "partial": "<whether partials are enabled for this problem>"
+    "partial": "<whether partials are enabled for this problem>",
+    "is_organization_private": "<whether the problem is private to organizations>",
+    "is_public": "<whether the problem is publicly visible>"
 }
 ```
 
