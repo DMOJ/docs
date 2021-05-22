@@ -95,6 +95,9 @@ Example of list filtering: `/api/v2/problems?organization=1&organization=2&type=
 
 Example: [/api/v2/contests?tag=seasonal&tag=dmopc](https://dmoj.ca/api/v2/contests?tag=seasonal&tag=dmopc)
 
+#### Basic Filters
+- `is_rated` - boolean
+
 #### List Filters
 - `tag` - tag name
 - `organization` - organization id
@@ -106,6 +109,8 @@ Example: [/api/v2/contests?tag=seasonal&tag=dmopc](https://dmoj.ca/api/v2/contes
     "name": "<contest name>",
     "start_time": "<contest start time in ISO format>",
     "end_time": "<contest end time in ISO format>",
+    "is_rated": "<whether the contest is rated>",
+    "rate_all": "<whether the contest is rated on join>",
     "time_limit": "<contest time limit in seconds, or null if the contest is not windowed>",
     "tags": [
         "<list of tag name>"
