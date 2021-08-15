@@ -64,7 +64,32 @@ See the sample files for examples.
 ## Specifying Cases with Regexes
 If the test cases follow a similar format, it is possible to specify them with a regex.
 
-The default regex for input files is `^(?=.*?\.in|in).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*$`, and the default regex for output files is `^(?=.*?\.out|out).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*`.
+The default regex for input files is `^(?=.*?\.in|in).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*$`, and the default regex for output files is `^(?=.*?\.out|out).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*$`.
+
+Some examples of fie formats they can match are:
+```
+test.1.in
+test-1.in
+test-case-1.in
+
+test-1-2.in
+test-batch-1-case-2.in
+1.2.in
+problem-1-case-1-batch-2.in
+```
+
+Where the first three are standalone cases (i.e. not in a batch) and the latter
+four are batched.
+
+Note that non-batched cases treat their case number as their batch number, i.e
+```
+1.in
+2.1.in
+2.2.in
+3.in
+```
+would be sorted in this order by the judge.
 
 These can be overwritten by specifying `input_format` and `output_format` within `test_cases`, respectively.
 The points awarded to each test case is given by `case_points`, and it defaults to 1 point per test case/batch.
+If there are many cases, a global `points:` can be used to set the points for all cases.
