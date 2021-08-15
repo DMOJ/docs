@@ -7,7 +7,7 @@ The DMOJ supports a simple JSON API for accessing most data used by the backend.
 
 ## API Tokens
 
-The DMOJ supports API tokens for accessing the majority of the site as your native user, in addition to both API versions. The admin portion of the site is left intentionally innacessible with these tokens. You may generate an API token on your *Edit Profile* page. To use, include the following header with every request where <API Token> is your API token:
+The DMOJ supports API tokens for accessing the majority of the site as your native user, in addition to both API versions. The admin portion of the site is left intentionally inaccessible with these tokens. You may generate an API token on your *Edit Profile* page. To use, include the following header with every request where <API Token> is your API token:
 
 ```
 Authorization: Bearer <API Token>
@@ -292,8 +292,7 @@ Example: [/api/v2/users?organization=8](https://dmoj.ca/api/v2/users?organizatio
     "performance_points": "<user performance points>",
     "problem_count": "<number of problems the user has solved>",
     "rank": "<user display rank>",
-    "rating": "<user rating>",
-    "volatility": "<user volatility>"
+    "rating": "<user rating>"
 }
 ```
 
@@ -314,7 +313,6 @@ Example: [/api/v2/user/Xyene](https://dmoj.ca/api/v2/user/Xyene)
     ],
     "rank": "<user display rank>",
     "rating": "<user rating>",
-    "volatility": "<user volatility>",
     "organizations": [
         "<list of organization id>"
     ],
@@ -324,7 +322,8 @@ Example: [/api/v2/user/Xyene](https://dmoj.ca/api/v2/user/Xyene)
             "score": "<user score>",
             "cumulative_time": "<user cumulative time, dependant on the contest format>",
             "rating": "<user rating after this contest, or null if not rated>",
-            "volatility": "<user volatility after this contest, or null if not rated>"
+            "raw_rating": "<user raw rating after this contest, or null if not rated>",
+            "performance": "<user performance, or null if not rated>"
         }
     ]
 }
