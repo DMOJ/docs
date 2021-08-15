@@ -85,15 +85,15 @@ Variables in global scope will exist throughout the grading process.
 
 `**kwargs` is a dictionary containing
 
-- `submission_source`: the source code of the submission
-- `judge_input`: the judge's input
-- `point_value`: the point value of the test case
-- `case_position`: the index of the test case
-- `batch`: the batched the test case belongs to
-- `submission_language`: the language the submission was submitted in
-- `binary_data`: a boolean, which is `True` if the data was not normalized to Linux line endings, and `False` otherwise
-- `execution_time`: the runtime of the program, in seconds
-- `problem_id`: the problem code
+- `submission_source`: the source code of the submission.
+- `judge_input`: the judge's input.
+- `point_value`: the point value of the test case.
+- `case_position`: the index of the test case.
+- `batch`: the batched the test case belongs to.
+- `submission_language`: the language the submission was submitted in.
+- `binary_data`: a boolean, which is `True` if the data was not normalized to Linux line endings, and `False` otherwise.
+- `execution_time`: the runtime of the program, in seconds.
+- `problem_id`: the problem code.
 
 Additionally, if the `check` method has the flag `run_on_error` set, it will be run against the submission's output, even if it receives an IR/TLE/RTE/MLE verdict.
 The only built-in checker that has this flag set is the `linecount` checker.
@@ -111,14 +111,19 @@ This is handled by `bridged` checker.
 
 The `bridged` checker takes the following arguments:
 
-- `files`: either a filename, or a list of filenames, corresponding to the checker
-- `lang`: the language the checker is written in, using the same conventions as the judge
+- `files`: either a filename, or a list of filenames, corresponding to the checker.
+- `lang`: the language the checker is written in, using the same conventions as the judge.
 - `time_limit`: the time limit allocated to the checker. It defaults to `env['generator_time_limit']`.
 - `memory_limit`: the memory limit allocated to the checker. It defaults to `env['generator_memory_limit']`.
 - `compiler_time_limit`: the time limit allocated to compiling the checker. It defaults to `env['generator_compiler_limit']`.
 - `feedback`: if true, the checker's standard output will be shown as feedback. Defaults to true.
 - `flags`: compilation flags to pass to the checker.
 - `cached`: if true, the checker's binary will be cached for performance. Defaults to true.
-- `type`: how to interpret the checker's return code. By default, a `0` is an AC, `1` is WA, and anything else results in an internal error.
+- `type`: specifies the arguments to pass the checker and how to interpret the checker's return code and output.
+  - The `default` type passes the arguments in the order `input_file output_file judge_file`. A return code of `0` is an AC, `1` is a WA, and anything else results in an internal error.
+  - The `testlib` type passes the arguments in the order `input_file output_file judge_file`. A return code of `0` is an AC, `1` is a WA, `2` is a presentation error, `3` corresponds to an assertion failing,
+  and `7`, along with an output to `stderr` of the format `points X` for an integral ~X~ awards ~X~ points. Anything else results in an internal error.
+  - The `coci` type behaves similarly to the `testlib` type, but has partial format `partial X/Y`, which awards ~\frac X Y~ of the points.
+  - The `peg` type exists for compatibility with the WCIPEG judge.
 
 The files will be compiled and sandboxed, then executed with the arguments `input_file`, `output_file`, and `judge_file`, which are files containing input, submission output, and judge output, respectively.

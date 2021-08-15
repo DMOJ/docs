@@ -35,13 +35,13 @@ class Grader(StandardGrader):
 
     result = Result(case)
 
-    input = 'Hello, World!'
+    case_input = 'Hello, World!'
 
     self._current_proc = self.binary.launch(time=self.problem.time_limit, memory=self.problem.memory_limit,
                                             pipe_stderr=True, io_redirects=case.io_redirects(),
                                             wall_time=case.config.wall_time_factor * self.problem.time_limit)
 
-    output, error = self._current_proc.safe_communicate(input + '\n')
+    output, error = self._current_proc.safe_communicate(case_input + '\n')
 
     if output == inp:
       res.result_flag = Result.AC
@@ -78,13 +78,13 @@ class Grader(InteractiveGrader):
   def interact(self, case, interactor):
 
     # The line to print
-    input = "Hello, World!"
+    case_input = "Hello, World!"
 
     # Print the line, using the interactor
     interactor.writeln(input)
 
     # interact can return either a boolean, or a Result
-    return input == interactor.readln()
+    return case_input == interactor.readln()
 ```
 
 ## Parameters
@@ -113,11 +113,17 @@ To invoke the `bridged` grader, `interactive` should be a top level node that co
 
 Optional arguments are:
 
-- `flags`: flags to pass to the compiler
-- `cached`: if true, the interactor's binary will be cached for performance. Defaults to true.
+- `flags`: flags to pass to the compiler.
 - `compiler_time_limit`: the time limit allocated to compiling the interactor.
 - `preprocessing_time`: the interactor's time limit is equal to this value plus the time limit of the problem, in seconds.
 - `memory_limit`: the memory limit allocated to the interactor. It defaults to `env['generator_memory_limit']`.
+- `type`: specifies the arguments to pass the checker and how to interpret the checker's return code and output.
+  - The `default` type passes the arguments in the order `input_file judge_file`. A return code of `0` is an AC, `1` is a WA, and anything else results in an internal error.
+  - The `testlib` type passes the arguments in the order `input_file output_file judge_file`.
+  Note that `output_file` will always be `/dev/null`, and is passed to maintain compatibility with `testlib.h`. A return code of `0` is an AC, `1` is a WA, `2` is a presentation error, `3` corresponds to an assertion failing,
+  and `7`, along with an output to `stderr` of the format `points X` for an integral ~X~ awards ~X~ points. Anything else results in an internal error.
+  - The `coci` type passes the arguments in the order `input_file judge_file`. Its parsing of return codes is the same as the `testlib` type, but has partial format `partial X/Y`, which awards ~\frac X Y~ of the points.
+  - The `peg` type exists for compatibility with the WCIPEG judge, and is not meant to be used here.
 
 The interactor's standard input is connected to the submission's standard output, and vice versa.
 After the interactor prints, it is required to flush.
@@ -131,7 +137,7 @@ To override this behaviour, you can change `type` to a valid `contrib` module, s
 
 An example `init.yml` would be as follows:
 ```yaml
-unbuffered: True
+unbuffered: true
 archive: seed2.zip
 interactive: {files: interactor.cpp, type: testlib}
 test_cases:
@@ -142,7 +148,8 @@ test_cases:
 - {in: seed2.5.in, points: 20}
 - ```
 
-An example of interactor would be as follows:
+An example of interactor is as follows. Note that it is not necessary to flush,
+even if `unbuffered` is not true.
 ```cpp
 #include <cstdio>
 #include <cstdlib>
@@ -152,27 +159,26 @@ inline void read(long long *i) {
         exit(2);
 }
 
-int main(int argc, char* argv[]) {
-    FILE *input_file = fopen(argv[1], "r");
-    int N, guesses = 0;
-    long long guess;
-    fscanf(input_file, "%d", &N);
-    while(guess != N) {
-        read(&guess);
-        if(guess == N) {
-            puts("OK");
-        } else if(guess > N) {
-            puts("FLOATS");
-        } else {
-            puts("SINKS");
-        }
-        fflush(stdout);
-        guesses++;
+int main(int argc, char *argv[]) {
+  FILE *input_file = fopen(argv[1], "r");
+  int N, guesses = 0;
+  long long guess;
+  fscanf(input_file, "%d", &N);
+  while (guess != N) {
+    read(&guess);
+    if (guess == N) {
+      puts("OK");
+    } else if (guess > N) {
+      puts("FLOATS");
+    } else {
+      puts("SINKS");
     }
-    if(guesses <= 31)
-        return 0; // AC
-    else
-        return 1; // WA
+    guesses++;
+  }
+  if (guesses <= 31)
+    return 0; // AC
+  else
+    return 1; // WA
 }
 ```
 
