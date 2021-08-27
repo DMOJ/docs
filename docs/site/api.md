@@ -172,8 +172,7 @@ Example: [/api/v2/contest/bts19](https://dmoj.ca/api/v2/contest/bts19)
             "new_rating": "<participant rating after the contest, or null if not rated>",
             "old_raw_rating": "<participant raw rating before the contest, or null if not rated>",
             "new_raw_rating": "<participant raw rating after the contest, or null if not rated>",
-            "old_performance": "<participant performance before the contest, or null if not rated>",
-            "new_performance": "<participant performance after the contest, or null if not rated>",
+            "performance": "<participant performance, null if not rated>",
             "is_disqualified": "<whether this participant is disqualified>",
             "solutions": [
                 "<list of contest format-dependant dictionaries for individual problem scores>"
@@ -207,8 +206,7 @@ Example: [/api/v2/participations?contest=dmopc19c6&virtual_participation_number=
     "new_rating": "<participant rating after the contest, or null if not rated>",
     "old_raw_rating": "<participant raw rating before the contest, or null if not rated>",
     "new_raw_rating": "<participant raw rating after the contest, or null if not rated>",
-    "old_performance": "<participant performance before the contest, or null if not rated>",
-    "new_performance": "<participant performance after the contest, or null if not rated>",
+    "performance": "<participant performance, null if not rated>",
     "is_disqualified": "<whether this participant is disqualified>",
     "virtual_participation_number": "<virtual participation number>"
 }
@@ -338,8 +336,7 @@ Example: [/api/v2/user/Xyene](https://dmoj.ca/api/v2/user/Xyene)
             "new_rating": "<user rating after the contest, or null if not rated>",
             "old_raw_rating": "<user raw rating before the contest, or null if not rated>",
             "new_raw_rating": "<user raw rating after the contest, or null if not rated>",
-            "old_performance": "<user performance before the contest, or null if not rated>",
-            "new_performance": "<user performance after the contest, or null if not rated>",
+            "performance": "<participant performance, null if not rated>",
             "is_disqualified": "<whether this user is disqualified>",
             "virtual_participation_number": "<virtual participation number>"
         }
