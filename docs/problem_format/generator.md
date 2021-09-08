@@ -23,4 +23,4 @@ The compiled generator will be passed `'\n'.join(map(str, generator_args))` as c
 
 The generator should output the test case's input data to `stdout`, and the output data to `stderr`.
 
-If the test case already has an input file defined by the `in` key, the generator will not be run.
+If the test case already has an input file **and** output file defined by the `in` and `out` keys, the generator will not be run.
