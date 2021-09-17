@@ -14,6 +14,7 @@
 
 - Judge
   - [Setting up a Judge](judge/setting_up_a_judge.md)
+  - [Configuring a Judge](judge/judge_configuration.md)
   - [Supported Languages](judge/supported_languages.md)
   - [Status Codes](judge/status_codes.md)
 
