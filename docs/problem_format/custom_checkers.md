@@ -21,11 +21,11 @@ checker: <name of checker>
 
 If no `checker` field is specified, then the problem will default to the standard checker.
 
-This checker return `True` if the submission's output and the judge's output are equal, modulo white space.
+This checker return `True` if the submission's output and the judge's output are equal, modulo whitespace. Specifically, the submission's output and the judge's output are split line by line and tokenized, with lines with no tokens being discarded. For each individual line, the submission's tokens must match exactly with the judge's tokens.
 
 ## Easy Checker  - `easy`
 
-This checker checks if the number of occurrences of each white space delimited tokens are equal.
+This checker ignores all whitespace and checks if the number of occurrences of each character are equal.
 
 ## Floating Point Checkers - `floats`
 
@@ -48,10 +48,10 @@ Finally, all non-numeric outputs will be treated as strings, and will be compare
 
 ## Identical Checker - `identical`
 
-The `identical` checker will check if the user output and the judge's output are identical, including white space.
+The `identical` checker will check if the user output and the judge's output are identical, including whitespace.
 
 `args` can contain a key for `pe_allowed`, which defaults to `True`.
-If `pe_allowed` is true, the checker will give the feedback `Presentation Error, check your whitespace`, if the output is correct modulo white space.
+If `pe_allowed` is true, the checker will give the feedback `Presentation Error, check your whitespace`, if the output is correct modulo whitespace.
 Otherwise, the checker will return `True` if the two outputs are identical, and `CheckerResult(False, 0, feedback=None)` otherwise.
 
 ## Line-by-Line Checker - `linecount`
