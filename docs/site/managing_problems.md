@@ -26,7 +26,7 @@ click the _View on Site_ button.
 ![](http://i.imgur.com/ZgO5xcY.png)
 
 ## Editing Test Data
-Internally, the DMOJ uses a YAML-based format for describing problem data, which you may read about [here](/judge/problem_format.md).
+Internally, the DMOJ uses a YAML-based format for describing problem data, which you may read about [here](/problem_format/problem_format.md#problem-format).
 The site provides an interface for managing problem data, removing the need to drop down to YAML configuration for most problems.
 
 On the problem page, click the _Edit test data_ link, which will open up the test data editor.
