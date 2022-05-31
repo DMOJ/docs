@@ -19,14 +19,12 @@ $ apt update
 $ apt install mariadb-server libmysqlclient-dev
 ```
 
-You will required to create a root password for MariaDB. It's a good idea to remember it!
-
-Next, we should set up the database itself. You will be asked for the root password you just set, after which you should execute the commands listed below to create the necessary database.
+The next step is to set up the database itself. You should execute the commands listed below to create the necessary database and user.
 
 ```shell-session
-$ mysql -uroot -p
+$ sudo mysql
 mariadb> CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
-mariadb> GRANT ALL PRIVILEGES ON dmoj.* to 'dmoj'@'localhost' IDENTIFIED BY '<password>';
+mariadb> GRANT ALL PRIVILEGES ON dmoj.* TO 'dmoj'@'localhost' IDENTIFIED BY '<mariadb user password>';
 mariadb> exit
 ```
 
