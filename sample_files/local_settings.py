@@ -1,7 +1,7 @@
 #####################################
 ########## Django settings ##########
 #####################################
-# See <https://docs.djangoproject.com/en/1.11/ref/settings/>
+# See <https://docs.djangoproject.com/en/2.2/ref/settings/>
 # for more info and help. If you are stuck, you can try Googling about
 # Django - many of these settings below have external documentation about them.
 #
@@ -24,7 +24,7 @@ INSTALLED_APPS += (
 )
 
 # Caching. You can use memcached or redis instead.
-# Documentation: <https://docs.djangoproject.com/en/1.11/topics/cache/>
+# Documentation: <https://docs.djangoproject.com/en/2.2/topics/cache/>
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
@@ -32,7 +32,7 @@ CACHES = {
 }
 
 # Your database credentials. Only MySQL is supported by DMOJ.
-# Documentation: <https://docs.djangoproject.com/en/1.11/ref/databases/>
+# Documentation: <https://docs.djangoproject.com/en/2.2/ref/databases/>
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -48,11 +48,11 @@ DATABASES = {
 }
 
 # Sessions.
-# Documentation: <https://docs.djangoproject.com/en/1.11/topics/http/sessions/>
+# Documentation: <https://docs.djangoproject.com/en/2.2/topics/http/sessions/>
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # Internationalization.
-# Documentation: <https://docs.djangoproject.com/en/1.11/topics/i18n/>
+# Documentation: <https://docs.djangoproject.com/en/2.2/topics/i18n/>
 LANGUAGE_CODE = 'en-ca'
 DEFAULT_USER_TIME_ZONE = 'America/Toronto'
 USE_I18N = True
@@ -60,7 +60,7 @@ USE_L10N = True
 USE_TZ = True
 
 ## django-compressor settings, for speeding up page load times by minifying CSS and JavaScript files.
-# Documentation: https://django-compressor.readthedocs.io/en/latest/
+# Documentation: <https://django-compressor.readthedocs.io/en/latest/>
 COMPRESS_OUTPUT_DIR = 'cache'
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
@@ -74,7 +74,7 @@ STATICFILES_FINDERS += ('compressor.finders.CompressorFinder',)
 #########################################
 ########## Email configuration ##########
 #########################################
-# See <https://docs.djangoproject.com/en/1.11/topics/email/#email-backends>
+# See <https://docs.djangoproject.com/en/2.2/topics/email/#email-backends>
 # for more documentation. You should follow the information there to define
 # your email settings.
 
@@ -91,7 +91,7 @@ STATICFILES_FINDERS += ('compressor.finders.CompressorFinder',)
 #EMAIL_PORT = 587
 
 # To use Mailgun, uncomment this block.
-# You will need to run `pip install django-mailgun` for to get `MailgunBackend`.
+# You will need to run `pip install django-mailgun` to get `MailgunBackend`.
 #EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 #MAILGUN_ACCESS_KEY = '<your Mailgun access key>'
 #MAILGUN_SERVER_NAME = '<your Mailgun domain>'
@@ -113,12 +113,12 @@ ADMINS = (
 SERVER_EMAIL = 'DMOJ: Modern Online Judge <errors@dmoj.ca>'
 
 
-##################################################
-########### Static files configuration. ##########
-##################################################
-# See <https://docs.djangoproject.com/en/1.11/howto/static-files/>.
+################################################
+########## Static files configuration ##########
+################################################
+# See <https://docs.djangoproject.com/en/2.2/howto/static-files/>.
 
-# Change this to somewhere more permanent., especially if you are using a
+# Change this to somewhere more permanent, especially if you are using a
 # webserver to serve the static files. This is the directory where all the
 # static files DMOJ uses will be collected to.
 # You must configure your webserver to serve this directory as /static/ in production.
@@ -129,6 +129,7 @@ STATIC_ROOT = '/tmp/static'
 
 # Uncomment to use hashed filenames with the cache framework.
 #STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+
 
 ############################################
 ########## DMOJ-specific settings ##########
@@ -178,7 +179,7 @@ BAD_MAIL_PROVIDERS = set()
 #EVENT_DAEMON_POLL = '<public URL to access the HTTP long polling of event server>'
 # i.e. the path to /channels/ exposed by the daemon, through whatever proxy setup you have.
 
-# Using our standard nginx configuration, these should be.
+# Using our standard nginx configuration, these should be:
 #EVENT_DAEMON_GET = 'ws://<your domain>/event/'
 #EVENT_DAEMON_GET_SSL = 'wss://<your domain>/event/' # Optional
 #EVENT_DAEMON_POLL = '/channels/'
@@ -194,16 +195,16 @@ BAD_MAIL_PROVIDERS = set()
 #CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 
 ## CDN control.
-# Base URL for a copy of ace editor.
+# Base URL for a copy of Ace editor.
 # Should contain ace.js, along with mode-*.js.
 ACE_URL = '//cdnjs.cloudflare.com/ajax/libs/ace/1.2.3/'
 JQUERY_JS = '//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js'
 SELECT2_JS_URL = '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js'
 SELECT2_CSS_URL = '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css'
 
-# A map of Earth in Equirectangular projection, for timezone selection.
+# A map of Earth in equirectangular projection, for timezone selection.
 # Please try not to hotlink this poor site.
-TIMEZONE_MAP = 'http://naturalearth.springercarto.com/ne3_data/8192/textures/3_no_ice_clouds_8k.jpg'
+TIMEZONE_MAP = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1024px-Blue_Marble_2002.png'
 
 ## Camo (https://github.com/atmos/camo) usage.
 #DMOJ_CAMO_URL = "<URL to your camo install>"
@@ -213,7 +214,7 @@ TIMEZONE_MAP = 'http://naturalearth.springercarto.com/ne3_data/8192/textures/3_n
 #DMOJ_CAMO_EXCLUDE = ("https://dmoj.ml", "https://dmoj.ca")
 
 # Set to True to use https when dealing with protocol-relative URLs.
-# See <http://www.paulirish.com/2010/the-protocol-relative-url/> for what they are.
+# See <https://www.paulirish.com/2010/the-protocol-relative-url/> for what they are.
 #DMOJ_CAMO_HTTPS = False
 
 # HTTPS level. Affects <link rel='canonical'> elements generated.
@@ -230,11 +231,11 @@ TIMEZONE_MAP = 'http://naturalearth.springercarto.com/ne3_data/8192/textures/3_n
 # Should be an internal location mapped to the above directory.
 #DMOJ_PDF_PROBLEM_INTERNAL = '/pdfcache'
 
-# Enable Selenium PDF generation
+# Enable Selenium PDF generation.
 #USE_SELENIUM = True
 
 ## Data download settings.
-# Uncomment to allow users to download their data
+# Uncomment to allow users to download their data.
 #DMOJ_USER_DATA_DOWNLOAD = True
 
 # Directory to cache user data downloads.
@@ -244,13 +245,14 @@ TIMEZONE_MAP = 'http://naturalearth.springercarto.com/ne3_data/8192/textures/3_n
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
 #DMOJ_USER_DATA_INTERNAL = '/datacache'
+
 # How often a user can download their data.
 #DMOJ_USER_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
 
 
 ## ======== Logging Settings ========
-# Documentation: https://docs.djangoproject.com/en/1.9/ref/settings/#logging
-#                https://docs.python.org/2/library/logging.config.html#logging-config-dictschema
+# Documentation: https://docs.djangoproject.com/en/2.2/ref/settings/#logging
+#                https://docs.python.org/3/library/logging.config.html#configuration-dictionary-schema
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -263,7 +265,7 @@ LOGGING = {
         },
     },
     'handlers': {
-        # You may use this handler as example for logging to other files..
+        # You may use this handler as example for logging to other files.
         'bridge': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
@@ -318,9 +320,7 @@ LOGGING = {
 #SOCIAL_AUTH_FACEBOOK_SECRET = ''
 #SOCIAL_AUTH_GITHUB_SECURE_KEY = ''
 #SOCIAL_AUTH_GITHUB_SECURE_SECRET = ''
-#SOCIAL_AUTH_DROPBOX_OAUTH2_KEY = ''
-#SOCIAL_AUTH_DROPBOX_OAUTH2_SECRET = ''
 
 ## ======== Custom Configuration ========
-# You may add whatever django configuration you would like here.
+# You may add whatever Django configuration you would like here.
 # Do try to keep it separate so you can quickly patch in new settings.
