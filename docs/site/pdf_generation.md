@@ -1,6 +1,7 @@
 # PDF Generation of Problem Statements
+
 The DMOJ supports rendering problem statements to PDF. This can be useful in the case of on-site contests, where
-contestants are distributed paper versions of the problems.
+contestants receive paper versions of the problems.
 
 For example, [here](https://dmoj.ca/problem/ioi14p1/pdf) is a generated PDF of
 [this problem](https://dmoj.ca/problem/ioi14p1).
@@ -12,7 +13,8 @@ Selenium is documented below.
    and may be deprecated in the future.
 
 ## Installation
-Install [Selenium](https://www.selenium.dev/) in the same Python virtual environment as the site, and install the
+
+Install [Selenium](https://www.selenium.dev/) in the same Python virtual environment as the site, and install
 [ChromeDriver](https://chromedriver.chromium.org/downloads). This will also install Chromium which is necessary for
 Selenium to create PDFs.
 
@@ -26,16 +28,17 @@ $ apt install chromium-driver
     statements will look subpar.
 
 ## Configuration
+
 Configuring DMOJ to generate PDFs with Selenium can be done by adding the following lines to your `local_settings.py`.
 
 ```python
-# Enable Selenium PDF generation
+# Enable Selenium PDF generation.
 USE_SELENIUM = True
-# Optional paths to Chromium and ChromeDriver
+# Optional paths to Chromium and ChromeDriver.
 SELENIUM_CUSTOM_CHROME_PATH = None
 SELENIUM_CHROMEDRIVER_PATH = 'chromedriver'
 
-# Cache location for generated PDFs. You should consider using something more persistant
+# Cache location for generated PDFs. You should consider using something more persistent
 # than /tmp, since PDF generation is an expensive operation.
 DMOJ_PDF_PROBLEM_CACHE = '/tmp'
 ```
@@ -47,12 +50,14 @@ Restart DMOJ for the changes to take effect.
     installations. However, they may be set to troubleshoot issues.
 
 ## Troubleshooting
+
 ### "View as PDF" button doesn't show up
+
 If a "View as PDF" button does not show up on the problem page, make sure that the `USE_SELENIUM` variable is set to
 `True` and that `selenium` can be properly imported.
 
 ```shell-session
-$ . siteenv/bin/activate
+$ . dmojsite/bin/activate
 $ python3
 >>> import selenium
 ```
@@ -60,11 +65,12 @@ $ python3
 If an `ImportError` is thrown, please follow the [installation procedure](#installation).
 
 ### "View as PDF" button shows up
+
 If a "View as PDF" button shows up, but generation fails, an error log should be displayed in the browser. This log will
 also be captured by the `judge.problem.pdf` Django log handler. Depending on the error, setting the optional variables
-`SELENIUM_CUSTOM_CHROME_PATH` to the path of the Chromium binary and `SELENIUM_CHROMEDRIVER_PATH` to the path of the 
+`SELENIUM_CUSTOM_CHROME_PATH` to the path of the Chromium binary and `SELENIUM_CHROMEDRIVER_PATH` to the path of the
 ChromeDriver binary may alleviate the problem.
 
-For other errors, take a look at the [Selenium documentation](https://www.selenium.dev/documentation/en/webdriver/),
+For other errors, take a look at the [Selenium documentation](https://www.selenium.dev/documentation/webdriver/),
 specifically the
 [common exceptions](https://www.selenium.dev/selenium/docs/api/py/common/selenium.common.exceptions.html) section.
