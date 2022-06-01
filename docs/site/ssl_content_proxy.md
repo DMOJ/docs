@@ -26,6 +26,7 @@ $ PORT="<port>" CAMO_KEY="<key>" coffee /code/camo/server.coffee
 - `<key>` is the HMAC secret key used for digests. Set it to anything you want. This is used for cache-busting purposes, so it does not need to be secure.
 
 ## Configuring DMOJ to use Camo
+
 To enable the use of Camo in the DMOJ site, you need to specify a couple of variables in your `local_settings.py`.
 
 ```python

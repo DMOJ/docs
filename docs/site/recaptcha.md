@@ -7,7 +7,7 @@ DMOJ can integrate with reCAPTCHA to filter out spam registrations with a little
 ## Getting an API Key
 
 First, head to the [reCAPTCHA admin site](https://www.google.com/recaptcha/admin).
-Select "reCAPTCHA V2", specify your domain, and click through to get an API key pair.
+Select "reCAPTCHA v2", specify your domain, and click through to get an API key pair.
 
 In `local_settings.py`, set `RECAPTCHA_PUBLIC_KEY` to the site key, and `RECAPTCHA_PRIVATE_KEY` to the secret key.
 
