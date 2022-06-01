@@ -38,10 +38,10 @@ Now that you are done, you can start installing the site. First, create a virtua
 $ python3 -m venv dmojsite
 $ . dmojsite/bin/activate
 ```
-You should see `(dmojsite)` prepended to your shell. Henceforth, `(dmojsite)` commands assumes you are in the code directory, with virtual environment active.
+
+You should see `(dmojsite)` prepended to your shell. Henceforth, `(dmojsite)` commands assume you are in the code directory, with the virtual environment active.
 
 ?> The virtual environment will help keep the modules needed separate from the system package manager, and save you many headaches when updating. Read more about virtual environments [here](https://docs.python.org/3/tutorial/venv.html).
-
 
 Now, fetch the site source code. If you plan to install a judge [from PyPI](https://pypi.org/project/dmoj/), check out a matching version of the site repository. For example, for judge v2.1.0:
 
@@ -60,7 +60,7 @@ Install Python dependencies into the virtual environment.
 (dmojsite) $ pip3 install mysqlclient
 ```
 
-You will now need to configure `dmoj/local_settings.py`. You should make a copy [of this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MariaDB credentials.
+You will now need to configure `dmoj/local_settings.py`. You should make a copy of [this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MariaDB credentials.
 
 ?>  Leave debug mode on for now; we'll disable it later after we've verified that the site works. <br> <br>
     Generally, it's recommended that you add your settings in `dmoj/local_settings.py` rather than modifying `dmoj/settings.py` directly. `settings.py` will automatically read `local_settings.py` and load it, so write your configuration there.
@@ -72,7 +72,8 @@ Now, you should verify that everything is going according to plan.
 ```
 
 ## Compiling assets
-DMOJ uses `sass` and `autoprefixer` to generate the site stylesheets. DMOJ comes with a `make_style.sh` script that may be ran to compile and optimize the stylesheets.
+
+The DMOJ uses `sass` and `autoprefixer` to generate the site stylesheets. The DMOJ comes with a `make_style.sh` script that may be run to compile and optimize the stylesheets.
 
 ```shell-session
 (dmojsite) $ ./make_style.sh
@@ -92,6 +93,7 @@ You will also need to generate internationalization files.
 ```
 
 ## Setting up database tables
+
 We must generate the schema for the database, since it is currently empty.
 
 ```shell-session
@@ -116,9 +118,11 @@ You should create an admin account with which to log in initially.
 ```
 
 ## Setting up Celery
+
 The DMOJ uses Celery workers to perform most of its heavy lifting, such as batch rescoring submissions. We will use Redis as its broker, though note that other brokers that Celery supports will work as well.
 
 Start up the Redis server, which is needed by the Celery workers.
+
 ```shell-session
 $ service redis-server start
 ```
@@ -128,6 +132,7 @@ Configure `local_settings.py` by uncommenting `CELERY_BROKER_URL` and `CELERY_RE
 We will test that Celery works soon.
 
 ## Running the server
+
 At this point, you should attempt to run the server, and see if it all works.
 
 ```shell-session
@@ -149,12 +154,15 @@ If there are no errors after about 10 seconds, it probably works.
 You should Ctrl-C to exit.
 
 Next, test that the Celery workers run.
+
 ```shell-session
 (dmojsite) $ celery -A dmoj_celery worker
 ```
+
 You can Ctrl-C to exit.
 
 ## Setting up uWSGI
+
 `runserver` is insecure and not meant for production workloads, and should not be used beyond testing.
 In the rest of this guide, we will be installing `uwsgi` and `nginx` to serve the site, using `supervisord`
 to keep `site` and `bridged` running. It's likely other configurations may work, but they are unsupported.
@@ -177,6 +185,7 @@ If it says workers are spawned, it probably works.
 You should Ctrl-C to exit.
 
 ## Setting up supervisord
+
 You should now install `supervisord` and configure it.
 
 ```shell-session
@@ -185,7 +194,7 @@ $ apt install supervisor
 
 Copy our `site.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/site.conf)) to `/etc/supervisor/conf.d/site.conf`, `bridged.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/bridged.conf)) to `/etc/supervisor/conf.d/bridged.conf`, `celery.conf` ([link](https://github.com/DMOJ/docs/blob/master/sample_files/celery.conf)) to `/etc/supervisor/conf.d/celery.conf` and fill in the fields.
 
-Next, reload `supervisord` and check that the site, bridge, and celery have started.
+Next, reload `supervisord` and check that the site, bridged, and celery have started.
 
 ```shell-session
 $ supervisorctl update
@@ -195,6 +204,7 @@ $ supervisorctl status
 If all three processes are running, everything is good! Otherwise, peek at the logs and see what's wrong.
 
 ## Setting up nginx
+
 Now, it's time to set up `nginx`.
 
 ```shell-session
@@ -225,6 +235,7 @@ If it does not work, check `nginx` logs and `uwsgi` log `stdout`/`stderr` for de
 ?> Now that your site is installed, remember to set `DEBUG` to `False` in `local_settings`. Leaving it `True` is a security risk.
 
 ## Configuration of event server
+
 Create `config.js`. This assumes you use `nginx`, or there be dragons.
 You may need to shuffle ports if they are already used.
 
@@ -241,8 +252,8 @@ module.exports = {
 };
 ```
 
-`get_port` should be the same as the port for `/event/` in `nginx.conf`
-`http_port` should be the same as the port for `/channels/` in `nginx.conf`
+`get_port` should be the same as the port for `/event/` in `nginx.conf`.
+`http_port` should be the same as the port for `/channels/` in `nginx.conf`.
 `post_port` should be the same as the port in `EVENT_DAEMON_POST` in `local_settings`.
 You need to configure `EVENT_DAEMON_GET` and `EVENT_DAEMON_POLL`.
 You need to uncomment the relevant section in the `nginx` configuration.
