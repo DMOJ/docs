@@ -14,9 +14,9 @@ Selenium is documented below.
 
 ## Installation
 
-Install [Selenium](https://www.selenium.dev/) in the same Python virtual environment as the site, and install
-[ChromeDriver](https://chromedriver.chromium.org/downloads). This will also install Chromium which is necessary for
-Selenium to create PDFs.
+Install [Selenium](https://www.selenium.dev/) in the same Python virtual environment as the site. You will also need to
+install [ChromeDriver](https://chromedriver.chromium.org/downloads), as it's a special version of the Chromium engine
+needed by Selenium to create PDFs.
 
 ```shell-session
 $ pip3 install selenium
