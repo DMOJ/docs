@@ -1,4 +1,4 @@
-# About
+# API
 
 The DMOJ supports a simple JSON API for accessing most data used by the backend. Currently, there are two versions.
 
@@ -524,7 +524,7 @@ Example: [/api/problem/list](https://dmoj.ca/api/problem/list)
 }
 ```
 
-Data is equivalent to what may be obtained by parsing [/problems](https://dmoj.ca/problems).
+Data is equivalent to what may be obtained by parsing [/problems/](https://dmoj.ca/problems/).
 
 ### `/api/problem/info/<code>` — Fetches problem-specific info
 

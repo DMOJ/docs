@@ -1,4 +1,4 @@
-## DMOJ: Modern Online Judge
+# DMOJ: Modern Online Judge
 
 This documentation aims to guide you through installing your own DMOJ instance.
 

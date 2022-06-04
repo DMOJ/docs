@@ -9,7 +9,7 @@ problem_storage_root:
   - /home/sync/problems
 # All configuration for language executors
 # If you're unsure of what values a language needs, your best bet is to consult the source of the executor:
-# <https://github.com/DMOJ/judge/tree/master/dmoj/executors>
+# <https://github.com/DMOJ/judge-server/tree/master/dmoj/executors>
 runtime:
   ccl: /opt/ccl/lx86cl
   sed: /bin/sed
