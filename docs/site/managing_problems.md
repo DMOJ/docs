@@ -5,7 +5,7 @@ This guide is intended as an introduction to using these features for creating y
 
 ## Adding a Problem
 
-To start, head to [dmoj.ca/admin](https://dmoj.ca/admin), and use your credentials to log in.
+To start, head to [/admin/](https://dmoj.ca/admin/) and use your credentials to log in.
 Once there, click the _Add_ button on the _Problems_ menu.
 
 ![](https://i.imgur.com/RFPQaUi.png)

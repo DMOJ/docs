@@ -10,7 +10,7 @@ $ npm install -g sass postcss-cli postcss autoprefixer
 
 ## Creating the database
 
-Next, we will set up the database using MariaDB. The DMOJ is only tested to work with MySQL, and it is unlikely to work with anything else. Please visit [the MariaDB site](https://downloads.mariadb.org/mariadb/repositories/) and follow the download instructions.
+Next, we will set up the database using MariaDB. The DMOJ is only tested to work with MySQL, and it is unlikely to work with anything else. Please visit [the MariaDB site](https://mariadb.org/download/?t=repo-config) and follow the download instructions.
 
 When asked, you should select the latest MariaDB version.
 

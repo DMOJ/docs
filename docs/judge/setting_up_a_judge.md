@@ -10,7 +10,7 @@ that a bridge instance is running.
 ## Site-side setup
 
 First, add a judge on the admin page, located under
-[https://example.com/admin/judge](https://example.com/admin/judge). Provide the
+[/admin/judge/](https://dmoj.ca/admin/judge/). Provide the
 name of the judge and the authentication key for the judge. You may use the
 `Regenerate` button to generate an authentication key.
 

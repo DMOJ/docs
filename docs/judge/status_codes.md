@@ -20,11 +20,9 @@ Your program caused a runtime exception to occur. This will only occur for nativ
 | `floating point exception` | Your program performed a bad arithmetic operation, such as division by zero. |
 | `killed` | Your program was killed by the runtime for some reason (we don’t know). |
 | `opening files is not allowed` | Unless a problem specifically says you can, you may not open files — doing so will get you this message. |
-| `{} syscall disallowed` | Unless you are doing something of a dubious nature, you should never see this message. If you do, please [file a ticket] so we can get it sorted out. It is raised when your program attempts to use a disallowed system call. |
+| `{} syscall disallowed` | Unless you are doing something of a dubious nature, you should never see this message. If you do, please [submit an issue](https://github.com/DMOJ/judge-server/issues) so we can get it sorted out. It is raised when your program attempts to use a disallowed system call. |
 | `std::bad_alloc` | `new` failed to allocate enough memory. |
 | `failed initializing` | Your program uses too much data defined in global scope for it to fit inside the memory constraints at startup. A typical example is code like `int arr[10000][10000]` on a problem with a 64mb memory limit — the aforementioned array will take 381mb, far above the allowed limit. |
-
-[file a ticket]: https://github.com/DMOJ/judge/issues
 
 ## OLE - Output Limit Exceeded
 Your program outputted too much data to `stdout`, typically over 256mb (though some problems may have custom — generally larger — constraints).
