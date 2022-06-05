@@ -1,61 +1,74 @@
 # Custom Graders
 
 # Custom Grader Behaviour - `grader`
+
 An `init.yml` object can contain a top-level `custom_judge` node, which contains a path to a Python file to be executed as a grader for the problem. The grader has access to the archive specified in `archive`.
 
-In most use cases, either using one of the built in graders, or a custom checker will suffice. A custom grader is only truly necessary if the normal interaction between the judge and the submission is insufficient.
-
+In most use cases, either using one of the built-in graders, or a custom checker will suffice. A custom grader is only truly necessary if the normal interaction between the judge and the submission is insufficient.
 
 ```python
 class Grader(BaseGrader):
-
   def grade(self, case):
     pass
-
 ```
 
 ## Parameters
+
 `case` is a `TestCase` object.
+
 - `case.position` is an integer, the current test case with a zero-based index.
-- `case.input_data()` is a buffer containing the contents of the `in` file specified for the current case in `init.yml`. May be empty, if no case input file was specified.
-- `case.output_data()` is a buffer containing the contents of the `out` file specified for the current case in `init.yml`. May be empty, if no case output file was specified.
-- `case.points` is an integer, the max points that can be awarded for the current testcase.
+- `case.input_data()` is a buffer containing the contents of the `in` file specified for the current case in `init.yml`. May be `b''`, if no case input file was specified.
+- `case.output_data()` is a buffer containing the contents of the `out` file specified for the current case in `init.yml`. May be `b''`, if no case output file was specified.
+- `case.points` is an integer, the max points that can be awarded for the current test case.
 
 ## Returns
-A `Result` object (`from dmoj.result import Result`). A result object has a `result_flag` field that stores a mask defining the current testcase result code. `proc_output` contains the string that will be displayed in the partial output pane. The `feedback` field contains the any feedback given by the judge. The `extended_feedback` field contains any extended feedback that would not fit into the shorter `feedback` field, and is displayed as a separate pane beside the partial output on the site.
 
-To illustrate, in a problem where the process must a line of echo input, an interactive approach would look like the following.
+A `Result` object (`from dmoj.result import Result`). Some notable fields include:
+
+- `result_flag`: stores a mask defining the current test case result code.
+- `proc_output`: contains the string that will be displayed in the partial output pane. However, if `result_flag` is `Result.AC`, then the partial output pane will not be shown.
+- `feedback`: contains the feedback given by the judge.
+- `extended_feedback`: contains any extended feedback that would not fit into the shorter `feedback` field, and is displayed as a separate pane beside the partial output on the site.
+
+To illustrate, in a problem where the process must echo a line of input, an interactive approach would look like this:
 
 ```python
+import subprocess
+
+from dmoj.graders.standard import StandardGrader
 from dmoj.result import Result
+
 
 class Grader(StandardGrader):
   def grade(self, case):
-    print 'Interacting for case %d' % case
-
     result = Result(case)
+    case_input = b'Hello, World!\n'
 
-    case_input = 'Hello, World!'
+    self._current_proc = self.binary.launch(
+      time=self.problem.time_limit,
+      memory=self.problem.memory_limit,
+      stdin=subprocess.PIPE,
+      stdout=subprocess.PIPE,
+      stderr=subprocess.PIPE,
+      wall_time=case.config.wall_time_factor * self.problem.time_limit,
+    )
+    output, error = self._current_proc.communicate(case_input)
+    self.binary.populate_result(error, result, self._current_proc)
 
-    self._current_proc = self.binary.launch(time=self.problem.time_limit, memory=self.problem.memory_limit,
-                                            pipe_stderr=True, io_redirects=case.io_redirects(),
-                                            wall_time=case.config.wall_time_factor * self.problem.time_limit)
-
-    output, error = self._current_proc.safe_communicate(case_input + '\n')
-
-    if output == inp:
-      res.result_flag = Result.AC
-      res.proc_output = 'Correct answer! This will be displayed in the partial output pane.'
+    if output == case_input:
+      result.extended_feedback = 'Correct answer! This will be displayed in the output pane.'
+      if result.result_flag == Result.AC:
+        result.points = case.points
     else:
-      res.result_flag = Result.WA
-      res.proc_output = 'Wrong answer! :('
+      result.result_flag |= Result.WA
+      result.feedback = 'Wrong answer! :('
 
-   return res
+    return result
 ```
 
-A simple solution to this problem would simply `print raw_input()`.
+A simple solution to this problem is `print(input())`.
 
-The associated `init.yml` for this problem would look like the following.
+The associated `init.yml` for this problem would look like this:
 
 ```yaml
 custom_judge: interactor.py
@@ -64,41 +77,45 @@ test_cases:
 - points: 100
 ```
 
-Since we use no input or output files (our testcase is hardcoded), we do not need to specify the `archive` or related `in` and `out` fields.
+Since we use no input or output files (our test case is hardcoded), we do not need to specify the `archive` or related `in` and `out` fields.
 
 In this example, it's important to note the `unbuffered` node. If set to `true`, the judge will use a pseudoterminal device for a submission's input and output pipes. Since ptys are not buffered by design, setting `unbuffered` to `true` removes the need for user submissions to `flush()` their output stream to guarantee that the `grader` receives their response. **The `unbuffered` node is not exclusive to interactive grading: it may be specified regardless of judging mode.**
 
 # Interactive Grading
 
-Interactive grading is used for problems where users should implement an online algorithm or where the grader must make generate input or compute a score based on the user's previous output.
+Interactive grading is used for problems where users should implement an online algorithm or where the grader must generate input or compute a score based on the user's previous output.
 Using an interactive grader is similar to using a custom grader: the `custom_judge` node also needs to be set. Rewriting the previous custom judge using an interactive grader would result in:
 
 ```python
+from dmoj.graders.interactive import InteractiveGrader
+from dmoj.utils.unicode import utf8text
+
+
 class Grader(InteractiveGrader):
   def interact(self, case, interactor):
-
     # The line to print
-    case_input = "Hello, World!"
+    case_input = 'Hello, World!'
 
     # Print the line, using the interactor
-    interactor.writeln(input)
+    interactor.writeln(case_input)
 
     # interact can return either a boolean, or a Result
-    return case_input == interactor.readln()
+    return case_input == utf8text(interactor.readln())
 ```
 
 ## Parameters
 
 `case` is a `TestCase` object, and is identical to the one in the `Grader` section.
 `interactor` is an `Interactor` object.
-- `interactor.read()` reads all of the submission's input available
+
+- `interactor.read()` reads all of the submission's output available.
 - `interactor.readln(strip_newline=True)` reads the next line of the submission's output. If `strip_newline` is true, the trailing newline is stripped, otherwise it is retained.
-- `interactor.readtoken(delim=None)` reads the next available token of the submission's output, as determined by `string.split(delim)`
+- `interactor.readtoken(delim=None)` reads the next available token of the submission's output, as determined by `string.split(delim)`.
 - `interactor.readint(lo=float('-inf'), hi=float('inf'), delim=None)` reads the next token of the submission's output, as determined by `string.split(delim)`. Additionally, the checker will automatically generate a wrong answer verdict if either the token cannot be converted to an integer, or if it is not in the range [*lo*, *hi*].
 - `interactor.readfloat(lo=float('-inf'), hi=float('inf'), delim=None)` reads the next token of the submission's output, as determined by `string.split(delim)`. Additionally, the checker will automatically generate a wrong answer verdict if either the token cannot be converted to a float, or if it is not in the range [*lo*, *hi*].
 - `interactor.write(val)` writes `val`, cast to a string, to the submission's standard input.
 - `interactor.writeln(val)` writes `val`, cast to a string, to the submission's standard input, followed by a newline.
-- `interactor.close()` closes the submission's `stdin`, `stdout`, and `stderr` streams.
+- `interactor.close()` closes the submission's `stdin` stream.
 
 ## Returns
 
