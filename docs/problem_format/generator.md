@@ -11,10 +11,11 @@ The `generator` node can contain either:
 - an array, in which case the first element is the source file (in either C or C++), and the remaining elements are auxiliary files, such as header files.
 - a YAML associative array that can contain the following keys:
   - `source`: either a single string: the name of generator file, or an array, in which case the first file is the generator source, and the remaining files are auxiliary files (e.g. header files).
+  - `language`: the language the generator is written in. If empty, the judge tries to infer the language from `source`.
+  - `flags`: additional flags to pass to the compiler. It defaults to `[]`.
   - `compiler_time_limit`: the compiler time limit for the generator. It defaults to `env.compiler_time_limit`, as defined in `dmoj/judgeenv.py`. It is recommended to set this value to 60 seconds if using `testlib.h`.
   - `time_limit`: the time limit allocated to the generator. It defaults to `env.time_limit`, as defined in `dmoj/judgeenv.py`.
   - `memory_limit`: the memory limit allocated to the generator. It defaults to `env.memory_limit`, as defined in `dmoj/judgeenv.py`.
-  - `language`: the language the generator is written in. It defaults to the most recent version of C++/C installed on the judge.
 
 Additionally, it is possible to specify this node in each test case, so several generators can be used for a single problem.
 
