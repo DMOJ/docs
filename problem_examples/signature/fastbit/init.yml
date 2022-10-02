@@ -1,0 +1,8 @@
+output_prefix_length: 0
+checker: checker.py
+signature_grader: {entry: grader.c, header: fastbit.h}
+out: correct.txt
+test_cases:
+- {in: 1.txt, points: 20}
+- {in: 2.txt, points: 30}
+- {in: 3.txt, points: 50}
