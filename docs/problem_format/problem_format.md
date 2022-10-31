@@ -74,7 +74,8 @@ If the test cases follow a similar format, it is possible to specify them with a
 
 The default regex for input files is `^(?=.*?\.in|in).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*$`, and the default regex for output files is `^(?=.*?\.out|out).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*$`.
 
-Some examples of fie formats they can match are:
+Some examples of file formats they can match are:
+
 ```
 test.1.in
 test-1.in
@@ -89,13 +90,15 @@ problem-1-case-1-batch-2.in
 Where the first three are standalone cases (i.e. not in a batch) and the latter
 four are batched.
 
-Note that non-batched cases treat their case number as their batch number, i.e
+Note that non-batched cases treat their case number as their batch number, e.g.
+
 ```
 1.in
 2.1.in
 2.2.in
 3.in
 ```
+
 would be sorted in this order by the judge.
 
 These can be overwritten by specifying `input_format` and `output_format` within `test_cases`, respectively.

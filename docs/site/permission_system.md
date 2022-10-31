@@ -148,4 +148,4 @@ The user can view submissions for all problems, but *cannot* edit them on the ad
 The user can resubmit submissions by other users.
 
 #### `lock_submission` (Change lock status of submission)
-The user will be able to lock and unlock submissions. Locked submissions will not be rejudeable by anyone (including superusers) until they are unlocked.
+The user will be able to lock and unlock submissions. Locked submissions will not be rejudgeable by anyone (including superusers) until they are unlocked.
