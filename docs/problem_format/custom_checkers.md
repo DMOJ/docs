@@ -68,7 +68,7 @@ The `linecount` checker is a custom checker primarily used for ECOO problems.
 
 ## Sorted Checker - `sorted`
 
-The `sorted` checker checks if the submission's output and judge's output are equal modulo their ordering.
+The `sorted` checker checks if the submission's output and judge's output are equal, modulo their ordering.
 
 `args` can contain a key for `split_on`, which defaults to `lines`. The supported values for `split_on` are:
 
