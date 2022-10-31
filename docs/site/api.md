@@ -182,6 +182,9 @@ Example: [/api/v2/contest/bts19](https://dmoj.ca/api/v2/contest/bts19)
             "tiebreaker": "<participant tiebreaker value>",
             "old_rating": "<participant rating before the contest, or null if not rated>",
             "new_rating": "<participant rating after the contest, or null if not rated>",
+            "old_raw_rating": "<participant raw rating before the contest, or null if not rated>",
+            "new_raw_rating": "<participant raw rating after the contest, or null if not rated>",
+            "performance": "<participant performance, null if not rated>",
             "is_disqualified": "<whether this participant is disqualified>",
             "solutions": [
                 "<list of contest format-dependant dictionaries for individual problem scores>"
@@ -213,6 +216,11 @@ Example: [/api/v2/participations?contest=dmopc19c6&virtual_participation_number=
     "score": "<participant score>",
     "cumulative_time": "<participant cumulative time, dependant on the contest format>",
     "tiebreaker": "<participant tiebreaker value>",
+    "old_rating": "<participant rating before the contest, or null if not rated>",
+    "new_rating": "<participant rating after the contest, or null if not rated>",
+    "old_raw_rating": "<participant raw rating before the contest, or null if not rated>",
+    "new_raw_rating": "<participant raw rating after the contest, or null if not rated>",
+    "performance": "<participant performance, null if not rated>",
     "is_disqualified": "<whether this participant is disqualified>",
     "virtual_participation_number": "<virtual participation number>"
 }
@@ -343,11 +351,18 @@ Example: [/api/v2/user/Xyene](https://dmoj.ca/api/v2/user/Xyene)
     "contests": [
         {
             "key": "<contest key>",
+            "start_time": "<effective participation start time in ISO format>",
+            "end_time": "<participation end time in ISO format>",
             "score": "<user score>",
             "cumulative_time": "<user cumulative time, dependant on the contest format>",
-            "rating": "<user rating after this contest, or null if not rated>",
-            "raw_rating": "<user raw rating after this contest, or null if not rated>",
-            "performance": "<user performance, or null if not rated>"
+            "tiebreaker": "<user tiebreaker value>",
+            "old_rating": "<user rating before the contest, or null if not rated>",
+            "new_rating": "<user rating after the contest, or null if not rated>",
+            "old_raw_rating": "<user raw rating before the contest, or null if not rated>",
+            "new_raw_rating": "<user raw rating after the contest, or null if not rated>",
+            "performance": "<participant performance, null if not rated>",
+            "is_disqualified": "<whether this user is disqualified>",
+            "virtual_participation_number": "<virtual participation number>"
         }
     ]
 }
