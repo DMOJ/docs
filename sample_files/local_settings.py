@@ -1,7 +1,7 @@
 #####################################
 ########## Django settings ##########
 #####################################
-# See <https://docs.djangoproject.com/en/2.2/ref/settings/>
+# See <https://docs.djangoproject.com/en/3.2/ref/settings/>
 # for more info and help. If you are stuck, you can try Googling about
 # Django - many of these settings below have external documentation about them.
 #
@@ -24,17 +24,17 @@ INSTALLED_APPS += (
 )
 
 # Caching. You can use memcached or redis instead.
-# Documentation: <https://docs.djangoproject.com/en/2.2/topics/cache/>
+# Documentation: <https://docs.djangoproject.com/en/3.2/topics/cache/>
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache'
-    }
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    },
 }
 
 # Your database credentials. Only MySQL is supported by DMOJ.
-# Documentation: <https://docs.djangoproject.com/en/2.2/ref/databases/>
+# Documentation: <https://docs.djangoproject.com/en/3.2/ref/databases/>
 DATABASES = {
-     'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'dmoj',
         'USER': 'dmoj',
@@ -44,15 +44,15 @@ DATABASES = {
             'charset': 'utf8mb4',
             'sql_mode': 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION',
         },
-    }
+    },
 }
 
 # Sessions.
-# Documentation: <https://docs.djangoproject.com/en/2.2/topics/http/sessions/>
+# Documentation: <https://docs.djangoproject.com/en/3.2/topics/http/sessions/>
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # Internationalization.
-# Documentation: <https://docs.djangoproject.com/en/2.2/topics/i18n/>
+# Documentation: <https://docs.djangoproject.com/en/3.2/topics/i18n/>
 LANGUAGE_CODE = 'en-ca'
 DEFAULT_USER_TIME_ZONE = 'America/Toronto'
 USE_I18N = True
@@ -74,7 +74,7 @@ STATICFILES_FINDERS += ('compressor.finders.CompressorFinder',)
 #########################################
 ########## Email configuration ##########
 #########################################
-# See <https://docs.djangoproject.com/en/2.2/topics/email/#email-backends>
+# See <https://docs.djangoproject.com/en/3.2/topics/email/#email-backends>
 # for more documentation. You should follow the information there to define
 # your email settings.
 
@@ -96,7 +96,7 @@ STATICFILES_FINDERS += ('compressor.finders.CompressorFinder',)
 #MAILGUN_ACCESS_KEY = '<your Mailgun access key>'
 #MAILGUN_SERVER_NAME = '<your Mailgun domain>'
 
-# You can also use Sendgrid, with `pip install sendgrid-django`.
+# You can also use SendGrid, with `pip install sendgrid-django`.
 #EMAIL_BACKEND = 'sgbackend.SendGridBackend'
 #SENDGRID_API_KEY = '<Your SendGrid API Key>'
 
@@ -116,7 +116,7 @@ SERVER_EMAIL = 'DMOJ: Modern Online Judge <errors@dmoj.ca>'
 ################################################
 ########## Static files configuration ##########
 ################################################
-# See <https://docs.djangoproject.com/en/2.2/howto/static-files/>.
+# See <https://docs.djangoproject.com/en/3.2/howto/static-files/>.
 
 # Change this to somewhere more permanent, especially if you are using a
 # webserver to serve the static files. This is the directory where all the
@@ -128,7 +128,7 @@ STATIC_ROOT = '/tmp/static'
 #STATIC_URL = '/static/'
 
 # Uncomment to use hashed filenames with the cache framework.
-#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.CachedStaticFilesStorage'
+#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 
 ############################################
@@ -139,7 +139,7 @@ STATIC_ROOT = '/tmp/static'
 SITE_NAME = 'DMOJ'
 SITE_LONG_NAME = 'DMOJ: Modern Online Judge'
 SITE_ADMIN_EMAIL = 'admin@example.com'
-TERMS_OF_SERVICE_URL = '//dmoj.ca/tos/' # Use a flatpage.
+TERMS_OF_SERVICE_URL = '//dmoj.ca/tos/'  # Use a flatpage.
 
 ## Bridge controls.
 # The judge connection address and port; where the judges will connect to the site.
@@ -181,7 +181,7 @@ BAD_MAIL_PROVIDERS = set()
 
 # Using our standard nginx configuration, these should be:
 #EVENT_DAEMON_GET = 'ws://<your domain>/event/'
-#EVENT_DAEMON_GET_SSL = 'wss://<your domain>/event/' # Optional
+#EVENT_DAEMON_GET_SSL = 'wss://<your domain>/event/'  # Optional
 #EVENT_DAEMON_POLL = '/channels/'
 
 # If you would like to use the AMQP-based event server from <https://github.com/DMOJ/event-server>,
@@ -207,11 +207,11 @@ SELECT2_CSS_URL = '//cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.mi
 TIMEZONE_MAP = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_Marble_2002.png/1024px-Blue_Marble_2002.png'
 
 ## Camo (https://github.com/atmos/camo) usage.
-#DMOJ_CAMO_URL = "<URL to your camo install>"
-#DMOJ_CAMO_KEY = "<The CAMO_KEY environmental variable you used>"
+#DMOJ_CAMO_URL = '<URL to your camo install>'
+#DMOJ_CAMO_KEY = '<The CAMO_KEY environmental variable you used>'
 
 # Domains to exclude from being camo'd.
-#DMOJ_CAMO_EXCLUDE = ("https://dmoj.ml", "https://dmoj.ca")
+#DMOJ_CAMO_EXCLUDE = ('https://dmoj.ml', 'https://dmoj.ca')
 
 # Set to True to use https when dealing with protocol-relative URLs.
 # See <https://www.paulirish.com/2010/the-protocol-relative-url/> for what they are.
@@ -251,7 +251,7 @@ TIMEZONE_MAP = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_M
 
 
 ## ======== Logging Settings ========
-# Documentation: https://docs.djangoproject.com/en/2.2/ref/settings/#logging
+# Documentation: https://docs.djangoproject.com/en/3.2/ref/settings/#logging
 #                https://docs.python.org/3/library/logging.config.html#configuration-dictionary-schema
 LOGGING = {
     'version': 1,
@@ -265,7 +265,7 @@ LOGGING = {
         },
     },
     'handlers': {
-        # You may use this handler as example for logging to other files.
+        # You may use this handler as an example for logging to other files.
         'bridge': {
             'level': 'INFO',
             'class': 'logging.handlers.RotatingFileHandler',
@@ -297,7 +297,7 @@ LOGGING = {
             'level': 'INFO',
             'propagate': True,
         },
-        # Catch all log to stderr.
+        # Catch all logs to stderr.
         '': {
             'handlers': ['console'],
         },
