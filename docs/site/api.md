@@ -7,7 +7,7 @@ The DMOJ supports a simple JSON API for accessing most data used by the backend.
 
 ## API Tokens
 
-The DMOJ supports API tokens for accessing the majority of the site as your native user, in addition to both API versions. The admin portion of the site is left intentionally inaccessible with these tokens. You may generate an API token on your *Edit Profile* page. To use, include the following header with every request where `<API Token>` is your API token:
+The DMOJ supports API tokens for accessing the majority of the site as your native user, in addition to both API versions. The admin portion of the site is left intentionally inaccessible with these tokens. You may generate an API token on your *Edit profile* page. To use, include the following header with every request where `<API Token>` is your API token:
 
 ```http
 Authorization: Bearer <API Token>
@@ -18,7 +18,7 @@ Authorization: Bearer <API Token>
 The following error codes may be returned by the API token authentication layer. Note that the site itself may return other codes not listed here or identical codes with different error messages, so read the error messages carefully.
 
 - `400 Invalid authorization header` - The **header** you provided is invalid. Make sure it matches the following regex: `Authorization: Bearer ([a-zA-Z0-9_-]{48})`
-- `401 Invalid token` - The **token** you provided is invalid. Make sure it matches the one on your *Edit Profile* page.
+- `401 Invalid token` - The **token** you provided is invalid. Make sure it matches the one on your *Edit profile* page.
 - `403 Admin inaccessible` - You are trying to access the inaccessible admin portion of the site.
 
 ## Rate Limiting
