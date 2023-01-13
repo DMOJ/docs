@@ -32,8 +32,8 @@ This checker ignores all whitespace and letter case, then checks if the number o
 
 The `floats` checker is used when outputs may suffer from floating point errors.
 
-`args` can contain a key for `precision`, indicating an epsilon of ~10^{-\text{precision}}~.
-This value defaults to `6`.
+`args` can contain a key for `precision`, indicating an epsilon of <math><msup><mn>10</mn><mrow><mo>-</mo><mi>precision</mi></mrow></msup></math>.
+This value defaults to 6.
 
 Additionally, `args` can contain a key for `error_mode`. The supported values are:
 
@@ -128,8 +128,8 @@ The `bridged` checker takes the following arguments:
 - `type`: specifies the arguments to pass to the checker and how to interpret the checker's return code and output.
   - The `default` type passes the arguments in the order `input_file output_file judge_file`. A return code of `0` is an AC, `1` is a WA, and anything else results in an internal error.
   - The `testlib` type passes the arguments in the order `input_file output_file judge_file`. A return code of `0` is an AC, `1` is a WA, `2` is a presentation error, `3` corresponds to an assertion failing,
-  and `7`, along with an output to `stderr` of the format `points X` for an integer ~X~ awards ~X~ points. Anything else results in an internal error.
-  - The `coci` type behaves similarly to the `testlib` type, but has partial format `partial X/Y`, which awards ~\frac X Y~ of the points.
+  and `7`, along with an output to `stderr` of the format `points X` for an integer <math><mi>X</mi></math> awards <math><mi>X</mi></math> points. Anything else results in an internal error.
+  - The `coci` type behaves similarly to the `testlib` type, but has partial format `partial X/Y`, which awards <math><mfrac><mi>X</mi><mi>Y</mi></mfrac></math> of the points.
   - The `peg` type exists for compatibility with the WCIPEG judge.
 
 The files will be compiled and sandboxed, then executed with the arguments `input_file`, `output_file`, and `judge_file`, which are files containing input, submission output, and judge output, respectively.

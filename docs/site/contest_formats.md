@@ -43,7 +43,7 @@ The `time_bonus` field awards a bonus for solving problems faster.
 The field is in minutes, and for each such interval of time before the contest ends, any submission with a non-zero score will have a bonus point added. This field defaults to 5.
 Note that specifying 0 will disable this bonus.
 
-For example, say a submission with a score of 50/100 is submitted 23 minutes before the contest ends. $\left\lfloor\frac{23}{5}\right\rfloor = 4$, so 4 bonus points are awarded, giving a total score of $50 + 4 = 54$ for that problem.
+For example, say a submission with a score of 50/100 is submitted 23 minutes before the contest ends. <math><mo>&lfloor;</mo><mfrac><mn>23</mn><mn>5</mn></mfrac><mo>&rfloor;</mo><mo>=</mo><mn>4</mn></math>, so 4 bonus points are awarded, giving a total score of <math><mn>50</mn><mo>+</mo><mn>4</mn><mo>=</mo><mn>54</mn></math> for that problem.
 
 ## AtCoder
 
