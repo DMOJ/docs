@@ -13,7 +13,7 @@ you are running Mathoid on `localhost:8888`.
 ## Configuring DMOJ to use Mathoid
 
 Assuming Mathoid is installed, configuring DMOJ to generate math with it requires the addition of a few lines
-to `local_settings.py.`
+to `local_settings.py`.
 
 ```python
 # The URL Mathoid is running on

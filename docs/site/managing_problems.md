@@ -22,7 +22,7 @@ its content into your editor).
 There are many options controlling your problem described in the editor, that you may use to customize the execution of your problem.
 
 Once you are done preparing your statement, click the _Save_ button, then scroll up to the top of the page and
-click the _View on Site_ button.
+click the _View on site_ button.
 
 ![](https://i.imgur.com/ZgO5xcY.png)
 
