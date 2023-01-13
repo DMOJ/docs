@@ -113,8 +113,8 @@ class Grader(InteractiveGrader):
 - `interactor.read()` reads all of the submission's output available.
 - `interactor.readln(strip_newline=True)` reads the next line of the submission's output. If `strip_newline` is true, the trailing newline is stripped, otherwise it is retained.
 - `interactor.readtoken(delim=None)` reads the next available token of the submission's output, as determined by `string.split(delim)`.
-- `interactor.readint(lo=float('-inf'), hi=float('inf'), delim=None)` reads the next token of the submission's output, as determined by `string.split(delim)`. Additionally, the checker will automatically generate a wrong answer verdict if either the token cannot be converted to an integer, or if it is not in the range [*lo*, *hi*].
-- `interactor.readfloat(lo=float('-inf'), hi=float('inf'), delim=None)` reads the next token of the submission's output, as determined by `string.split(delim)`. Additionally, the checker will automatically generate a wrong answer verdict if either the token cannot be converted to a float, or if it is not in the range [*lo*, *hi*].
+- `interactor.readint(lo=float('-inf'), hi=float('inf'), delim=None)` reads the next token of the submission's output, as determined by `string.split(delim)`. Additionally, the checker will automatically generate a wrong answer verdict if either the token cannot be converted to an integer, or if it is not in the range <math><mo>[</mo><mi>lo</mi><mo>,</mo><mi>hi</mi><mo>]</mo></math>.
+- `interactor.readfloat(lo=float('-inf'), hi=float('inf'), delim=None)` reads the next token of the submission's output, as determined by `string.split(delim)`. Additionally, the checker will automatically generate a wrong answer verdict if either the token cannot be converted to a float, or if it is not in the range <math><mo>[</mo><mi>lo</mi><mo>,</mo><mi>hi</mi><mo>]</mo></math>.
 - `interactor.write(val)` writes `val`, cast to a string, to the submission's standard input.
 - `interactor.writeln(val)` writes `val`, cast to a string, to the submission's standard input, followed by a newline.
 - `interactor.close()` closes the submission's `stdin` stream.
@@ -141,8 +141,8 @@ Optional arguments are:
   - The `default` type passes the arguments in the order `input_file judge_file`. A return code of `0` is an AC, `1` is a WA, and anything else results in an internal error.
   - The `testlib` type passes the arguments in the order `input_file output_file judge_file`.
   Note that `output_file` will always be `/dev/null`, and is passed to maintain compatibility with `testlib.h`. A return code of `0` is an AC, `1` is a WA, `2` is a presentation error, `3` corresponds to an assertion failing,
-  and `7`, along with an output to `stderr` of the format `points X` for an integer ~X~ awards ~X~ points. Anything else results in an internal error.
-  - The `coci` type passes the arguments in the order `input_file judge_file`. Its parsing of return codes is the same as the `testlib` type, but has partial format `partial X/Y`, which awards ~\frac X Y~ of the points.
+  and `7`, along with an output to `stderr` of the format `points X` for an integer <math><mi>X</mi></math> awards <math><mi>X</mi></math> points. Anything else results in an internal error.
+  - The `coci` type passes the arguments in the order `input_file judge_file`. Its parsing of return codes is the same as the `testlib` type, but has partial format `partial X/Y`, which awards <math><mfrac><mi>X</mi><mi>Y</mi></mfrac></math> of the points.
   - The `peg` type exists for compatibility with the WCIPEG judge, and is not meant to be used here.
 
 The interactor's standard input is connected to the submission's standard output, and vice versa.

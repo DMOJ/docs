@@ -53,7 +53,7 @@ sum of the point values of the cases they got right divided by the total sum of 
 points the problem is worth.
 
 For example, if your problem is worth 100 points and has 3 cases weighted 1/2/7 points respectively, a user who gets the first
-two cases correct and then fails the last one will have a score of (1 + 2) / (1 + 2 + 7) &times; 100 = 30 points, out of 100.
+two cases correct and then fails the last one will have a score of <math><mfrac><mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>0</mn></mrow><mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>7</mn></mrow></mfrac><mo>&times;</mo><mn>100</mn><mo>=</mo><mn>30</mn></math> points, out of 100.
 
 ## Submitting to a Problem
 
