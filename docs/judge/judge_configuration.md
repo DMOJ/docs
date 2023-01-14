@@ -1,4 +1,4 @@
-# Judge Configuration
+# Configuring a judge
 
 The DMOJ judge is configured with a YAML file, which contains the runtimes, problems folders, and other information.
 

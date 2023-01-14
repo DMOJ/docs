@@ -1,4 +1,4 @@
-# LaTeX Math with Wikimedia Mathoid
+# LaTeX math with Wikimedia Mathoid
 
 The DMOJ platform is capable of rendering LaTeX math for constraints and formulas that may appear in problem statements. For example,
 [this problem](https://dmoj.ca/problem/fibonacci) makes extensive use of this functionality to present crisp math rendering in browsers.

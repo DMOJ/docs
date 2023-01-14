@@ -1,9 +1,9 @@
-# Generators - `generator`
+# Generators
 
 When there is a large amount of test data, a generator file can be used instead of input and output files.
 A generator is a program that takes command line arguments for each case, and outputs the input and output data for each case.
 
-## The `generator` Node
+## The `generator` node
 
 The `generator` node can contain either:
 
@@ -19,7 +19,7 @@ The `generator` node can contain either:
 
 Additionally, it is possible to specify this node in each test case, so several generators can be used for a single problem.
 
-## Generator Arguments
+## Generator arguments
 
 The `generator_args` node contains a list of arguments that will be cast to a Python `str`, then passed to the compiled generator. `generator_args` can be specified as a top-level node, or more commonly, as a key in a test case node. For example, consider:
 

@@ -1,4 +1,4 @@
-# Contest Formats
+# Contest formats
 
 The DMOJ ships with 6 contest formats by default: Default, IOI, Codechef IOI Ranklist (henceforth shortened to simply Legacy IOI), ECOO, AtCoder, and ICPC.
 

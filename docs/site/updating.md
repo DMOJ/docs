@@ -1,4 +1,4 @@
-# Updating the Site
+# Updating the site
 
 The DMOJ is under active development, so occasionally you may wish to update. This is a fairly simple process.
 

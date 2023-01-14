@@ -1,4 +1,4 @@
-# Custom Checkers
+# Custom checkers
 
 A problem with many possible outputs (e.g. not a single possible answer, with score based on accuracy) may benefit from the `checker` field in the `init.yml` file. A checker is a Python script that is executed per-case post-execution — it grades the output of a process but does not interact with it.
 
@@ -18,17 +18,17 @@ If you do not need to pass arguments, then you can write:
 checker: <name of checker>
 ```
 
-## Standard Checker - `standard`
+## Standard checker - `standard`
 
 If no `checker` field is specified, then the problem will default to the `standard` checker.
 
 This checker returns `True` if the submission's output and the judge's output are equal, modulo whitespace. Specifically, the submission's output and the judge's output are split line-by-line and tokenized, with lines with no tokens being discarded. For each individual line, the submission's tokens must match exactly with the judge's tokens.
 
-## Easy Checker - `easy`
+## Easy checker - `easy`
 
 This checker ignores all whitespace and letter case, then checks if the number of occurrences of each character are equal.
 
-## Floating Point Checkers - `floats`
+## Floating point checkers - `floats`
 
 The `floats` checker is used when outputs may suffer from floating point errors.
 
@@ -43,15 +43,15 @@ Additionally, `args` can contain a key for `error_mode`. The supported values ar
 
 Finally, all non-numeric outputs will be treated as strings, and will be compared for equality.
 
-### Absolute Floating Point Error Checker - `floatsabs`
+### Absolute floating point error checker - `floatsabs`
 
 `floatsabs` is an alias for `floats` with `error_mode` set to `absolute`.
 
-### Relative Floating Point Error Checker - `floatsrel`
+### Relative floating point error checker - `floatsrel`
 
 `floatsrel` is an alias for `floats` with `error_mode` set to `relative`.
 
-## Identical Checker - `identical`
+## Identical checker - `identical`
 
 The `identical` checker will check if the submission's output and the judge's output are identical, including whitespace.
 
@@ -59,14 +59,14 @@ The `identical` checker will check if the submission's output and the judge's ou
 If `pe_allowed` is true, the checker will give the feedback `Presentation Error, check your whitespace`, if the output is correct modulo whitespace.
 Otherwise, the checker will return `True` if the two outputs are identical, and `CheckerResult(False, 0, feedback=None)` otherwise.
 
-## Line-by-Line Checker - `linecount`
+## Line-by-line checker - `linecount`
 
 The `linecount` checker is a custom checker primarily used for ECOO problems.
 
 `args` can contain a key for `feedback`, which defaults to `True`.
 `feedback` indicates if the judge should give per-line feedback: a `✓` for a correct line, and an `✗` for an incorrect line.
 
-## Sorted Checker - `sorted`
+## Sorted checker - `sorted`
 
 The `sorted` checker checks if the submission's output and judge's output are equal, modulo their ordering.
 
@@ -75,11 +75,11 @@ The `sorted` checker checks if the submission's output and judge's output are eq
 - `lines`: the checker will return `True` if the two outputs are identical, modulo the ordering of their lines. Empty lines are ignored.
 - `whitespace`: the checker will return `True` if the two outputs are identical, modulo the ordering of their tokens.
 
-### Unordered Checker - `unordered`
+### Unordered checker - `unordered`
 
 This is an alias for `sorted` with `split_on` equal to `whitespace`.
 
-## Custom Checkers
+## Custom checkers
 
 A `checker` Python script must implement a function that is called by the judge:
 
@@ -110,7 +110,7 @@ The only built-in checker that has this flag set is the `linecount` checker.
 `check` can return either a `CheckerResult` object (`from dmoj.result import CheckerResult`), or a boolean (`case_passed_bool`).
 A `CheckerResult` can be instantiated through `CheckerResult(case_passed_bool, points_awarded, feedback='')`.
 
-## Native Checkers
+## Native checkers
 
 Sometimes, problems may require a computationally expensive checker.
 In such cases, it is often beneficial to move the checker from the slow Python problem module and into a native language.
