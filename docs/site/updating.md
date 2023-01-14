@@ -4,7 +4,7 @@ The DMOJ is under active development, so occasionally you may wish to update. Th
 
 !>  The DMOJ development team makes no commitment to backwards compatibility. An update migration
     might add, change, or delete data from your install. Always back up before attempting an update. <br> <br>
-    If in doubt, feel free to [contact us on Slack](https://slack.dmoj.ca).
+    If in doubt, feel free to [contact us on Discord](https://dmoj.ca/about/discord/).
 
 First, switch to the site virtual environment, and pull the latest changes.
 
