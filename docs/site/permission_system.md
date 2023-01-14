@@ -1,8 +1,8 @@
-# Permission System
+# Permission system
 
 The DMOJ's permission system is very extensive and allows fine-tuning a user's permissions. Here, we will document which permissions are required to perform certain tasks on the site. Any undocumented models means that they follow Django's default permission system of (`can_add_<model>`, `can_change_<model>`, `can_delete_<model>`, and `can_view_<model>`).
 
-## Blog Posts
+## Blog posts
 Blog posts follow Django's default permission system.
 
 #### `edit_all_post` (Edit all posts)
@@ -105,7 +105,7 @@ The user can change the `is_public` field.
 #### `change_manually_managed` (Change is_manually_managed field)
 The user can change the `is_manually_managed` field.
 
-### Problem Solutions
+### Problem solutions
 Problem solutions follow Django's default permission system.
 
 #### `see_private_solution` (See hidden solutions)

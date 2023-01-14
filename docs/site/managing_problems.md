@@ -1,9 +1,9 @@
-# Managing Problems Through the Site Interface
+# Managing problems through the site interface
 
 The DMOJ comes with an online interface for creating and editing problem statements as well as data.
 This guide is intended as an introduction to using these features for creating your own problems.
 
-## Adding a Problem
+## Adding a problem
 
 To start, head to [/admin/](https://dmoj.ca/admin/) and use your credentials to log in.
 Once there, click the _Add_ button on the _Problems_ menu.
@@ -26,7 +26,7 @@ click the _View on site_ button.
 
 ![](https://i.imgur.com/ZgO5xcY.png)
 
-## Editing Test Data
+## Editing test data
 
 Internally, the DMOJ uses a YAML-based format for describing problem data, which you may read about [here](/problem_format/problem_format.md#problem-format).
 The site provides an interface for managing problem data, removing the need to drop down to YAML configuration for most problems.
@@ -55,7 +55,7 @@ points the problem is worth.
 For example, if your problem is worth 100 points and has 3 cases weighted 1/2/7 points respectively, a user who gets the first
 two cases correct and then fails the last one will have a score of <math><mfrac><mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>0</mn></mrow><mrow><mn>1</mn><mo>+</mo><mn>2</mn><mo>+</mo><mn>7</mn></mrow></mfrac><mo>&times;</mo><mn>100</mn><mo>=</mo><mn>30</mn></math> points, out of 100.
 
-## Submitting to a Problem
+## Submitting to a problem
 
 After you have created your test data, you should head back to the problem and click the _Submit solution_ button. If at any point in
 time you need to update your data, you may do so from the test data editor, and it will update automatically.

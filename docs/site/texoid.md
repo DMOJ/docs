@@ -1,4 +1,4 @@
-# LaTeX Diagrams with Texoid
+# LaTeX diagrams with Texoid
 
 The DMOJ platform is capable of rendering LaTeX documents onto problem statements. This can be useful for things like drawing graphs
 with ease, porting over PDF resources, and so on. An example of this functionality can be seen live [here](https://dmoj.ca/problem/ds4),
@@ -70,7 +70,7 @@ TEXOID_CACHE_URL = '//example.com/texoid/'
 
 Restart DMOJ for the changes to take effect. After restarting, you may have to purge Django's cache before seeing any changes.
 
-## Using LaTeX Diagrams in Problem Statements
+## Using LaTeX diagrams in problem statements
 
 To invoke Texoid to generate LaTeX diagrams, wrap your LaTeX code in `<latex>` blocks.
 

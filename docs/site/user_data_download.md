@@ -1,4 +1,4 @@
-# User Data Downloads
+# User data downloads
 
 The DMOJ allows users to download their data. At the time of writing, only user comments and submission data can be downloaded.
 

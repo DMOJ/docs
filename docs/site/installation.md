@@ -1,3 +1,5 @@
+# Installing the site
+
 ## Installing the prerequisites
 
 ```shell-session

@@ -1,6 +1,6 @@
-# Custom Graders
+# Custom graders
 
-## Custom Grader Behaviour - `grader`
+## Custom grader behaviour
 
 An `init.yml` object can contain a top-level `custom_judge` node, which contains a path to a Python file to be executed as a grader for the problem. The grader has access to the archive specified in `archive`.
 
@@ -83,7 +83,7 @@ Since we use no input or output files (our test case is hardcoded), we do not ne
 
 In this example, it's important to note the `unbuffered` node. If set to `true`, the judge will use a pseudoterminal device for a submission's input and output pipes. Since ptys are not buffered by design, setting `unbuffered` to `true` removes the need for user submissions to `flush()` their output stream to guarantee that the `grader` receives their response. **The `unbuffered` node is not exclusive to interactive grading: it may be specified regardless of judging mode.**
 
-## Interactive Grading
+## Interactive grading
 
 Interactive grading is used for problems where users should implement an online algorithm or where the grader must generate input or compute a score based on the user's previous output.
 Using an interactive grader is similar to using a custom grader: the `custom_judge` node also needs to be set. Rewriting the previous custom judge using an interactive grader would result in:
@@ -123,7 +123,7 @@ class Grader(InteractiveGrader):
 
 Either a boolean or a `Result` (`from dmoj.result import Result`) object. The boolean is `True` if the submission should score full points, and `False` otherwise. The `Result` object is handled the same way as custom graders.
 
-## Native Interactive Grading
+## Native interactive grading
 
 Sometimes, an interactive grader will be very computationally expensive.
 In these cases, one can use the `bridged` grader.
@@ -204,7 +204,7 @@ int main(int argc, char *argv[]) {
 }
 ```
 
-## Function Signature Grading (IOI-style)
+## Function signature grading (IOI-style)
 
 Signature grading is used for problems where users should implement an online algorithm or interact with the grader directly without the need for traditional input and output routines. This is commonly seen in competitions such as the IOI, where all input is passed through function arguments and output is replaced with return values or directly modifying specifically allocated memory for the computed answer.
 

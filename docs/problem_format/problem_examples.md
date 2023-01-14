@@ -1,4 +1,4 @@
-# Problem Data Examples
+# Problem examples
 
 | Grading | Implemented Problem |
 |---------|---------------------|

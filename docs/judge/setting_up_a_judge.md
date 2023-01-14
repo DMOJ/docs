@@ -1,4 +1,4 @@
-# Setting up a Judge
+# Setting up a judge
 
 This guide goes through the process of installing a judge and connecting it to
 the site. It is intended for Linux-based machines (WSL included); Windows is
