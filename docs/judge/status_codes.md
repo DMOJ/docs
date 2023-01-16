@@ -3,16 +3,20 @@
 This page lists all status codes encountered on the DMOJ and their description. It should be noted that it is possible for a test case to be given multiple status codes (indeed, this is usually the case for non-AC verdicts), in which case the one with the highest priority will be displayed. This page lists status codes in order of increasing priority.
 
 ## AC - Accepted
+
 Your program passed testing! In some cases, this may be accompanied with additional feedback from the grader.
 
 ## WA - Wrong Answer
+
 Your program did not crash while executing, but the output it produced was wrong. As for AC, this may be accompanied with additional feedback stating what you did wrong.
 
 ## IR - Invalid Return
+
 Your program returned with a nonzero exit code (if you're not using a native language like C++, it crashed). For languages like Python or Java, this will typically be accompanied with the name of the exception your program threw, e.g., `NameError` or `java.lang.NullPointerException`, respectively.
 
-## RTE - Runtime Exception
-Your program caused a runtime exception to occur. This will only occur for native languages like C or C++. DMOJ maps many common RTEs to more useful descriptions, described below.
+## RTE - Runtime Error
+
+Your program caused a runtime error to occur. This will only occur for native languages like C or C++. DMOJ maps many common RTEs to more useful descriptions, described below.
 
 | Feedback | Description |
 |----------|-------------|
@@ -24,13 +28,17 @@ Your program caused a runtime exception to occur. This will only occur for nativ
 | `failed initializing` | Your program uses too much data defined in global scope for it to fit inside the memory constraints at startup. A typical example is code like `int arr[10000][10000]` on a problem with a 64mb memory limit — the aforementioned array will take 381mb, far above the allowed limit. |
 
 ## OLE - Output Limit Exceeded
+
 Your program outputted too much data to `stdout`, typically over 256mb (though some problems may have custom — generally larger — constraints).
 
 ## MLE - Memory Limit Exceeded
+
 Your program ran out of memory. Sometimes, this might manifest itself as an RTE with `segmentation fault` or `std::bad_alloc`.
 
 ## TLE - Time Limit Exceeded
+
 Your program took too long to execute.
 
 ## IE - Internal Error
+
 If you see this, it means either the judge encountered an error or the problemsetter's configuration is incorrect.
