@@ -195,14 +195,14 @@ Example: [/api/v2/contest/bts19](https://dmoj.ca/api/v2/contest/bts19)
 
 Example: [/api/v2/participations?contest=dmopc19c6&virtual_participation_number=0&is_disqualified=True](https://dmoj.ca/api/v2/participations?contest=dmopc19c6&virtual_participation_number=0&is_disqualified=True)
 
-#### Basic Filters
+#### Basic filters
 
 - `contest` - contest key
 - `user` - user username
 - `is_disqualified` - boolean
 - `virtual_participation_number` - non-negative integer
 
-#### Object Response
+#### Object response
 
 ```json
 {

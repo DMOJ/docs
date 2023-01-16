@@ -9,7 +9,7 @@ The DMOJ site provides support for this through the [Github Camo](https://github
     IP (allowing them to attack you behind e.g. Cloudflare). <br> <br>
     If this is important in your scenario, consider running Camo on a separate server.
 
-## Installing Camo to /code
+## Installing Camo to `/code`
 
 ```shell-session
 $ cd /code

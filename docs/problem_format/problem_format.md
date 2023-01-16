@@ -1,13 +1,16 @@
-# Problem Format
+# Problem format
+
 Each problem is stored in its own directory. That directory must contain a file named `init.yml`.
 
-# `init.yml`
+## `init.yml`
+
 The entire file is a YAML object.
 It must contain one key, `test_cases`.
 `test_cases` can either be a list of test cases, or two regexes to match input and output test cases.
 Optionally, but almost always, will there be an `archive` key, which allows the problem data to be stored, compressed, in a `.zip` file, instead of the problem directory as flat files.
 
-# `test_cases`
+## `test_cases`
+
 There are two methods to specify test cases.
 
 The first method is to use a list of YAML associative arrays.
@@ -34,10 +37,12 @@ test_cases:
 - {in: case1.1.in, out: case1.1.out, points: 100}
 ```
 
-## Normal Cases
+### Normal cases
+
 For normal cases, the test case will contain keys `in` and `out`, mapping to the path for the input and output files, respectively. The path is in the zip file if `archive` is defined, otherwise relative to the problem directory. A normal case will contain the key `points`.
 
-## Batched Cases
+### Batched cases
+
 The batch will contain the keys `points` and `batched`. `batched` will map to a list of batched cases, where each case contains `in` and `out`.
 
 Optionally, the batch can contain a key `dependencies`. If specified, it should be a list of integers, indicating the one-indexed batch numbers that the batch depends on. This batch will only run if all of the dependent batches passed. The sample `init.yml` below is set up so the last batch only runs if the first two passed.
@@ -69,7 +74,8 @@ test_cases:
 As DMOJ's YAML dialect supports dynamic keys, large `init.yml`s can be programmatically generated.
 See the sample files for examples.
 
-## Specifying Cases with Regexes
+### Specifying cases with regexes
+
 If the test cases follow a similar format, it is possible to specify them with a regex.
 
 The default regex for input files is `^(?=.*?\.in|in).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*$`, and the default regex for output files is `^(?=.*?\.out|out).*?(?:(?:^|\W)(?P<batch>\d+)[^\d\s]+)?(?P<case>\d+)[^\d\s]*$`.
