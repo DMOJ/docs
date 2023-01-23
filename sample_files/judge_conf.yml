@@ -3,10 +3,11 @@ id: ExampleJudge
 # The key this judge will use to authenticate with the site server, generated from the admin panel.
 key: "100/Base64/characters/ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/ABCDEFGHIJKLMN"
 # Where to look for problems on the local filesystem.
-# This directory is /not/ scanned recursively, and any directory containing an init.yml file is assumed to
-# be a problem directory.
-problem_storage_root:
-  - /home/sync/problems
+# Any directory matching any of the following globs with an init.yml file is assumed to be a problem directory.
+problem_storage_globs:
+  - /mnt/problems/folder1/*  # matches /mnt/problems/folder1/<problem>
+  - /mnt/problems/folder2/**/  # matches any subfolder of /mnt/problems/folder2
+  - /mnt/problems/folder3/year20[0-9][0-9]  # matches /mnt/problems/folder3/year2023, for example
 # All configuration for language executors.
 # If you're unsure of what values a language needs, your best bet is to consult the source of the executor:
 # <https://github.com/DMOJ/judge-server/tree/master/dmoj/executors>

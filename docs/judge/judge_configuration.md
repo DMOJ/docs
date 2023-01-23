@@ -10,11 +10,12 @@ The runtimes are configured with a `runtime` node. While most runtimes can be au
 
 ## Problems
 
-The problems are configured with `problem_storage_root`. There are three ways to configure this node:
-
-1. A single string: all grandchildren directories which include an `init.yml` will be treated as a problem directory.
-2. A list: all children of each element in the list will be treated as a problem directory.
-3. A dictionary: the key is an integer and the value is a string. The n-th level children of the string will be considered problem directories, where `n` is the entry's key.
+The problems are configured with `problem_storage_globs`. This is a list of (potentially recursive) globs, as defined by Python's `glob` library.
+Any folders that match any of the listed globs and contain an `init.yml` will be treated as a problem directory.
+For example:
+- `/mnt/problems/folder1/*` will match `/mnt/problems/folder1/problem1`.
+- `/mnt/problems/folder2/**/` will match all subfolders of `/mnt/problems/folder2`, e.g. `/mnt/problems/folder2/foo/bar/problem2`.
+- `/mnt/problems/folder3/year20[0-9][0-9]` will match `/mnt/problems/folder3/year2023`.
 
 ## ID
 
