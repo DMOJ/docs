@@ -43,12 +43,12 @@ You should see `(dmojsite)` prepended to your shell. Henceforth, `(dmojsite)` co
 
 ?> The virtual environment will help keep the modules needed separate from the system package manager, and save you many headaches when updating. Read more about virtual environments [here](https://docs.python.org/3/tutorial/venv.html).
 
-Now, fetch the site source code. If you plan to install a judge [from PyPI](https://pypi.org/project/dmoj/), check out a matching version of the site repository. For example, for judge v2.1.0:
+Now, fetch the site source code. If you plan to install a judge [from PyPI](https://pypi.org/project/dmoj/), check out a matching version of the site repository. For example, for judge v4.0.0:
 
 ```shell-session
 (dmojsite) $ git clone https://github.com/DMOJ/site.git
 (dmojsite) $ cd site
-(dmojsite) $ git checkout v2.1.0  # only if planning to install a judge from PyPI, otherwise skip this step
+(dmojsite) $ git checkout v4.0.0  # only if planning to install a judge from PyPI, otherwise skip this step
 (dmojsite) $ git submodule init
 (dmojsite) $ git submodule update
 ```
