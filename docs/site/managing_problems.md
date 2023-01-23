@@ -3,6 +3,11 @@
 The DMOJ comes with an online interface for creating and editing problem statements as well as data.
 This guide is intended as an introduction to using these features for creating your own problems.
 
+## Configuring site-managed data
+
+Set `DMOJ_PROBLEM_DATA_ROOT` to a folder of your choice.
+The test data for all problems with site-managed data will be stored within this folder.
+
 ## Adding a problem
 
 To start, head to [/admin/](https://dmoj.ca/admin/) and use your credentials to log in.
