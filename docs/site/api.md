@@ -1,13 +1,10 @@
 # API
 
-The DMOJ supports a simple JSON API for accessing most data used by the backend. Currently, there are two versions.
-
-- [API v2](#dmoj-api-v2) - A more rich API that returns user-specific data. This version fully utilizes API tokens.
-- [API v1](#dmoj-api-v1) - Most data returned here are accessible by any user. This version may be deprecated in the future.
+The DMOJ supports a simple JSON API for accessing most data used by the backend. Access to the API makes use of API tokens.
 
 ## API tokens
 
-The DMOJ supports API tokens for accessing the majority of the site as your native user, in addition to both API versions. The admin portion of the site is left intentionally inaccessible with these tokens. You may generate an API token on your *Edit profile* page. To use, include the following header with every request where `<API Token>` is your API token:
+The DMOJ supports API tokens for accessing the majority of the site as your native user. The admin portion of the site is left intentionally inaccessible with these tokens. You may generate an API token on your *Edit profile* page. To use, include the following header with every request where `<API Token>` is your API token:
 
 ```http
 Authorization: Bearer <API Token>
@@ -28,10 +25,6 @@ The following error codes may be returned by the API token authentication layer.
 If you exceed this limit, you will be captcha'd. Captchas are automatically removed after 3 days. However, note that if you are captcha'd again within this 3 day period, the 3 day counter will reset.
 
 **Note**: This is only a feature on the [DMOJ site](https://dmoj.ca).
-
----
-
-# DMOJ API v2
 
 ## Format
 
@@ -500,98 +493,3 @@ Example: [/api/v2/judges](https://dmoj.ca/api/v2/judges)
     ]
 }
 ```
-
----
-
-# DMOJ API v1
-
-## Endpoints
-
-### `/api/problem/list` — Lists all the problems
-
-Example: [/api/problem/list](https://dmoj.ca/api/problem/list)
-
-#### Object response
-
-```json
-{
-    "helloworld": {
-        "name": "Hello, World!",
-        "group": ["Uncategorized"],
-        "points": 2,
-        "partial": false
-    }
-}
-```
-
-Data is equivalent to what may be obtained by parsing [/problems/](https://dmoj.ca/problems/).
-
-### `/api/problem/info/<code>` — Fetches problem-specific info
-
-Example: [/api/problem/info/helloworld](https://dmoj.ca/api/problem/info/helloworld)
-
-#### Object response
-
-```json
-{
-    "authors": [],
-    "group": "Uncategorized",
-    "languages": [
-        "C",
-        "CPP",
-        "CPP0X",
-        "CPP11",
-        "CS",
-        "F95",
-        "GO",
-        "HASK",
-        "JAVA",
-        "JAVA8",
-        "LUA",
-        "MONOCS",
-        "NASM",
-        "OCAML",
-        "PAS",
-        "PERL",
-        "PHP",
-        "PY2",
-        "PY3",
-        "PYPY",
-        "PYPY3",
-        "RUBY18",
-        "RUBY21",
-        "TUR",
-        "V8JS"
-    ],
-    "memory_limit": 65536,
-    "name": "Hello, World!",
-    "partial": false,
-    "points": 1.0,
-    "time_limit": 1.0,
-    "types": [
-        "Implementation"
-    ]
-}
-```
-
-This contains the basic information of the problem, save the description.
-
-### `/api/contest/list` — Lists all contests
-
-Example: [/api/contest/list](https://dmoj.ca/api/contest/list)
-
-### `/api/contest/info/<code>` — Fetches contest-specific info
-
-Example: [/api/contest/info/dmopc16c1](https://dmoj.ca/api/contest/info/dmopc16c1)
-
-### `/api/user/list` — Lists all users
-
-Example: [/api/user/list](https://dmoj.ca/api/user/list)
-
-### `/api/user/info/<username>` — Fetches user info
-
-Example: [/api/user/info/Xyene](https://dmoj.ca/api/user/info/Xyene)
-
-### `/api/user/submissions/<username>` — Fetches all submissions by a user
-
-Example: [/api/user/submissions/Xyene](https://dmoj.ca/api/user/submissions/Xyene)
