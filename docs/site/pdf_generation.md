@@ -6,11 +6,8 @@ contestants receive paper versions of the problems.
 For example, [here](https://dmoj.ca/problem/ioi14p1/pdf) is a generated PDF of
 [this problem](https://dmoj.ca/problem/ioi14p1).
 
-You can use Puppeteer, Selenium, PhantomJS, or SlimerJS to render PDFs of problems. Puppeteer is used in production and
+You can use Puppeteer or Selenium to render PDFs of problems. Puppeteer is used in production and
 Selenium is documented below.
-
-!> While the DMOJ supports PDF generation using PhantomJS and SlimerJS, they are not used in production, are outdated,
-   and may be deprecated in the future.
 
 ## Installation
 
