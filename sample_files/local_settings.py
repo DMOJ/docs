@@ -224,15 +224,16 @@ TIMEZONE_MAP = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_M
 #DMOJ_HTTPS = 0
 
 ## PDF rendering settings.
+
+# Enable PDF generation.
+#DMOJ_PDF_PDFOID_URL = '<URL to your pdfoid install>.'
+
 # Directory to cache the PDF.
 #DMOJ_PDF_PROBLEM_CACHE = '/home/dmoj-uwsgi/pdfcache'
 
 # Path to use for nginx's X-Accel-Redirect feature.
 # Should be an internal location mapped to the above directory.
 #DMOJ_PDF_PROBLEM_INTERNAL = '/pdfcache'
-
-# Enable Selenium PDF generation.
-#USE_SELENIUM = True
 
 ## Data download settings.
 # Uncomment to allow users to download their data.
