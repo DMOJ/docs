@@ -4,12 +4,12 @@
   - [Contest formats](site/contest_formats.md)
   - [Permission system](site/permission_system.md)
   - [Managing problems through the site interface](site/managing_problems.md)
-  - [PDF generation of problem statements](site/pdf_generation.md)
-  - [User data downloads](site/user_data_download.md)
-  - [LaTeX math with Wikimedia Mathoid](site/mathoid.md)
-  - [LaTeX diagrams with Texoid](site/texoid.md)
+  - [Rendering LaTeX math in problem statements](site/mathoid.md)
+  - [Rendering LaTeX diagrams in problem statements](site/texoid.md)
+  - [PDF generation of problem statements](site/pdfoid.md)
   - [reCAPTCHA spam registration prevention](site/recaptcha.md)
   - [SSL proxying for user content](site/ssl_content_proxy.md)
+  - [User data downloads](site/user_data_download.md)
   - [API](site/api.md)
 
 - Judge
