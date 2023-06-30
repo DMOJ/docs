@@ -232,6 +232,13 @@ You should be good to go. Visit the site at where you set it up to verify.
 
 If it does not work, check `nginx` logs and `uwsgi` log `stdout`/`stderr` for details.
 
+If you get an error while uploading the test cases (>1MB) to the server, your nginx server is probably not configured properly, you need to add this into your config.
+
+```
+# Edit 100M according to your test cases size
+client_max_body_size 100M;
+```
+
 ?> Now that your site is installed, remember to set `DEBUG` to `False` in `local_settings`. Leaving it `True` is a security risk.
 
 ## Configuration of event server
