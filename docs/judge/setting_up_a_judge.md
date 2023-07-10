@@ -99,14 +99,14 @@ $ pip3 install dmoj
 
 Start by taking the `runtime` block from the output of the command
 `dmoj-autoconf` and put it in a new file `judge.yml`. Next, add a
-`problem_storage_root` node where you specify where your problem data is
+`problem_storage_globs` node where you specify where your problem data is
 located. Your `judge.yml` file should look something like below.
 
 ```yaml
 id: <judge name>
 key: <judge authentication key>
-problem_storage_root:
-  - /mnt/problems
+problem_storage_globs:
+  - /mnt/problems/*
 runtime:
    ...
 ```
