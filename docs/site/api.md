@@ -102,6 +102,7 @@ Example: [/api/v2/contests?tag=seasonal&tag=dmopc](https://dmoj.ca/api/v2/contes
 
 #### List filters
 
+- `key` - contest key
 - `tag` - tag name
 - `organization` - organization id
 
@@ -221,6 +222,7 @@ Example: [/api/v2/problems?partial=True&type=Uncategorized](https://dmoj.ca/api/
 
 #### List filters
 
+- `code` - problem code
 - `group` - problem group full name
 - `type` - problem type full name
 - `organization` - organization id
@@ -296,6 +298,8 @@ Example: [/api/v2/users?organization=8](https://dmoj.ca/api/v2/users?organizatio
 
 #### List filters
 
+- `id` - user id
+- `username` - user username
 - `organization` - organization id
 
 #### Object response
@@ -357,6 +361,7 @@ Example: [/api/v2/submissions?user=Ninjaclasher](https://dmoj.ca/api/v2/submissi
 
 #### List filters
 
+- `id` - submission id
 - `language` - language key
 - `result` - string
 
@@ -442,6 +447,9 @@ Example: [/api/v2/organizations?is_open=False](https://dmoj.ca/api/v2/organizati
 
 - `is_open` - boolean
 
+#### List filters
+- `id` - organization id
+
 #### Object response
 
 ```json
@@ -461,6 +469,10 @@ Example: [/api/v2/languages?common_name=Python](https://dmoj.ca/api/v2/languages
 #### Basic filters
 
 - `common_name` - language common name
+
+#### List filters
+- `id` - language id
+- `key` - language key
 
 #### Object response
 
