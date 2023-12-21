@@ -106,6 +106,10 @@ Next, load some initial data so that your install is not entirely blank.
 (dmojsite) $ python3 manage.py loaddata navbar
 (dmojsite) $ python3 manage.py loaddata language_small
 (dmojsite) $ python3 manage.py loaddata demo
+
+# If you want more languages and are running the runtimes-tier3
+# version of the Docker image, load them with:
+(dmojsite) $ python3 manage.py loaddata language_all
 ```
 
 !>  Keep in mind that the `demo` fixture creates a superuser account with a username and password of `admin`. If your
