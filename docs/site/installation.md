@@ -24,10 +24,11 @@ $ apt install mariadb-server libmysqlclient-dev
 The next step is to set up the database itself. You should execute the commands listed below to create the necessary database and user.
 
 ```shell-session
-$ sudo mysql
-mariadb> CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
-mariadb> GRANT ALL PRIVILEGES ON dmoj.* TO 'dmoj'@'localhost' IDENTIFIED BY '<mariadb user password>';
-mariadb> exit
+$ sudo mariadb
+MariaDB [(none)]> CREATE DATABASE dmoj DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
+MariaDB [(none)]> GRANT ALL PRIVILEGES ON dmoj.* TO 'dmoj'@'localhost' IDENTIFIED BY '<mariadb user password>';
+MariaDB [(none)]> exit
+$ mariadb-tzinfo-to-sql /usr/share/zoneinfo | sudo mariadb -u root mysql  # Add time zone data to the database. A few pages require this.
 ```
 
 ## Installing prerequisites
