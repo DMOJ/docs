@@ -24,6 +24,7 @@
   - [Custom graders](problem_format/custom_graders.md)
   - [Generators](problem_format/generator.md)
   - [Problem examples](problem_format/problem_examples.md)
+  - [C++ Problem Setting Templates](problem_format/cpp_psetting_templates.md)
 
 - About
   - [License](about/LICENSE.md)

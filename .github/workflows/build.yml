@@ -1,0 +1,21 @@
+name: build
+on: [push, pull_request]
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install clang-format 12
+      run: |
+        wget -O clang-format https://github.com/DMOJ/clang-tools-static-binaries/releases/download/master-5ea3d18c/clang-format-12_linux-amd64
+        chmod a+x ./clang-format
+    - name: Run clang-format
+      run: find sample_files/problem_setting \( -name '*.h' -or -name '*.cpp' -or -name '*.c' \) -print0 | xargs -0 ./clang-format --dry-run -Werror --color
+  cpp_template_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run C++ template tests
+        run: |
+          cd sample_files/problem_setting/test
+          ./run_test.sh
