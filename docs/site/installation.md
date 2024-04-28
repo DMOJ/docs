@@ -58,7 +58,7 @@ Install Python dependencies into the virtual environment.
 
 ```shell-session
 (dmojsite) $ pip3 install -r requirements.txt
-(dmojsite) $ pip3 install mysqlclient
+(dmojsite) $ pip3 install mysqlclient lxml_html_clean
 ```
 
 You will now need to configure `dmoj/local_settings.py`. You should make a copy of [this sample settings file](https://github.com/DMOJ/docs/blob/master/sample_files/local_settings.py) and read through it, making changes as necessary. Most importantly, you will want to update MariaDB credentials.
