@@ -10,7 +10,7 @@ The runtimes are configured with a `runtime` node. While most runtimes can be au
 
 ## Problems
 
-The problems are configured with `problem_storage_globs`. This is a list of (potentially recursive) globs, as defined by Python's `glob` library.
+The problems are configured with `problem_storage_globs`. This is a list of (potentially recursive) globs, as defined by [Python's `glob` library](https://docs.python.org/3/library/glob.html).
 Any folders that match any of the listed globs and contain an `init.yml` will be treated as a problem directory.
 For example:
 - `/mnt/problems/folder1/*` will match `/mnt/problems/folder1/problem1`.
