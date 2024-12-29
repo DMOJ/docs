@@ -149,7 +149,7 @@ long long readInt(long long lo, long long hi) {
 
 long double readFloat(long double min, long double max,
                       long double eps = 1e-9) {
-  static regex_t re = regex_helpers::compile("^-?(0|[1-9][0-9])(\\.[0-9]+)?$");
+  static regex_t re = regex_helpers::compile("^-?(0|[1-9][0-9]*)(\\.[0-9]+)?$");
   std::string token = readToken();
   assertWA(regex_helpers::match(re, token));
   long double parsedDouble;
