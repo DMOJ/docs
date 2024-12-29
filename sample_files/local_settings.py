@@ -1,7 +1,7 @@
 #####################################
 ########## Django settings ##########
 #####################################
-# See <https://docs.djangoproject.com/en/3.2/ref/settings/>
+# See <https://docs.djangoproject.com/en/4.2/ref/settings/>
 # for more info and help. If you are stuck, you can try Googling about
 # Django - many of these settings below have external documentation about them.
 #
@@ -24,7 +24,7 @@ INSTALLED_APPS += (
 )
 
 # Caching. You can use memcached or redis instead.
-# Documentation: <https://docs.djangoproject.com/en/3.2/topics/cache/>
+# Documentation: <https://docs.djangoproject.com/en/4.2/topics/cache/>
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
@@ -32,7 +32,7 @@ CACHES = {
 }
 
 # Your database credentials. Only MySQL is supported by DMOJ.
-# Documentation: <https://docs.djangoproject.com/en/3.2/ref/databases/>
+# Documentation: <https://docs.djangoproject.com/en/4.2/ref/databases/>
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -48,11 +48,11 @@ DATABASES = {
 }
 
 # Sessions.
-# Documentation: <https://docs.djangoproject.com/en/3.2/topics/http/sessions/>
+# Documentation: <https://docs.djangoproject.com/en/4.2/topics/http/sessions/>
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 
 # Internationalization.
-# Documentation: <https://docs.djangoproject.com/en/3.2/topics/i18n/>
+# Documentation: <https://docs.djangoproject.com/en/4.2/topics/i18n/>
 LANGUAGE_CODE = 'en-ca'
 DEFAULT_USER_TIME_ZONE = 'America/Toronto'
 USE_I18N = True
@@ -74,7 +74,7 @@ STATICFILES_FINDERS += ('compressor.finders.CompressorFinder',)
 #########################################
 ########## Email configuration ##########
 #########################################
-# See <https://docs.djangoproject.com/en/3.2/topics/email/#email-backends>
+# See <https://docs.djangoproject.com/en/4.2/topics/email/#email-backends>
 # for more documentation. You should follow the information there to define
 # your email settings.
 
@@ -116,7 +116,7 @@ SERVER_EMAIL = 'DMOJ: Modern Online Judge <errors@dmoj.ca>'
 ################################################
 ########## Static files configuration ##########
 ################################################
-# See <https://docs.djangoproject.com/en/3.2/howto/static-files/>.
+# See <https://docs.djangoproject.com/en/4.2/howto/static-files/>.
 
 # Change this to somewhere more permanent, especially if you are using a
 # webserver to serve the static files. This is the directory where all the
@@ -252,7 +252,7 @@ TIMEZONE_MAP = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Blue_M
 
 
 ## ======== Logging Settings ========
-# Documentation: https://docs.djangoproject.com/en/3.2/ref/settings/#logging
+# Documentation: https://docs.djangoproject.com/en/4.2/ref/settings/#logging
 #                https://docs.python.org/3/library/logging.config.html#configuration-dictionary-schema
 LOGGING = {
     'version': 1,

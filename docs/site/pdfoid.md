@@ -28,7 +28,7 @@ Install `exiftool`, which is used to set PDF titles.
 $ apt install exiftool
 ```
 
-Install [ChromeDriver](https://chromedriver.chromium.org/downloads), a special version of the Chromium engine needed by
+Install [ChromeDriver](https://developer.chrome.com/docs/chromedriver/downloads), a special version of the Chromium engine needed by
 Selenium to create PDFs.
 
 ```shell-session

@@ -158,5 +158,5 @@ Optional: an explanation of how the Sample Output was produced goes here, clarif
 
 A prime number has exactly two divisors: ~1~ and itself. The prime numbers in ~A~ are ~2, 3~ and ~5~, so the output is ~2 + 3 + 5 = 10~.
 
-  [1]: https://google.ca
-  [2]: https://www.google.ca/doodle4google/images/splashes/featured.png
+  [1]: https://www.google.ca/
+  [2]: https://doodles.google.ca/d4g/images/splashes/featured.png
