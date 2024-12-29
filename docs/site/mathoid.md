@@ -4,11 +4,11 @@ The DMOJ platform is capable of rendering LaTeX math for constraints and formula
 For example, [this problem](https://dmoj.ca/problem/fibonacci) makes extensive use of this functionality to present
 crisp math rendering in browsers.
 
-The DMOJ makes use of the [Wikimedia Mathoid](https://github.com/wikimedia/mathoid) project to render math.
+The DMOJ makes use of the [Wikimedia Mathoid](https://github.com/wikimedia/mediawiki-services-mathoid) project to render math.
 
 ## Installing Mathoid
 
-Follow the [installation instructions](https://github.com/wikimedia/mathoid) of Mathoid. Moving forward, we'll assume that
+Follow the [installation instructions](https://github.com/wikimedia/mediawiki-services-mathoid) of Mathoid. Moving forward, we'll assume that
 you are running Mathoid on `localhost:8888`.
 
 ## Configuring DMOJ to use Mathoid

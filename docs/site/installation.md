@@ -47,7 +47,7 @@ You should see `(dmojsite)` prepended to your shell. Henceforth, `(dmojsite)` co
 Now, fetch the site source code. If you plan to install a judge [from PyPI](https://pypi.org/project/dmoj/), check out a matching version of the site repository. For example, for judge v4.0.0:
 
 ```shell-session
-(dmojsite) $ git clone https://github.com/DMOJ/site.git
+(dmojsite) $ git clone https://github.com/DMOJ/online-judge.git
 (dmojsite) $ cd site
 (dmojsite) $ git checkout v4.0.0  # only if planning to install a judge from PyPI, otherwise skip this step
 (dmojsite) $ git submodule init
