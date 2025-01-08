@@ -53,7 +53,7 @@ connecting it to the site. It expects problems to be placed on the host under
 `/mnt/problems/judge.yml`.
 
 ```shell-session
-$ git clone --recursive https://github.com/DMOJ/judge.git
+$ git clone --recursive https://github.com/DMOJ/judge-server.git
 $ cd judge/.docker
 $ make judge-tier1
 $ docker run \
