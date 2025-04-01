@@ -126,6 +126,12 @@ You should create an admin account with which to log in initially.
 
 The DMOJ uses Celery workers to perform most of its heavy lifting, such as batch rescoring submissions. We will use Redis as its broker, though note that other brokers that Celery supports will work as well.
 
+You need to install `redis`.
+
+```shell-session
+(dmojsite) $ pip3 install redis
+```
+
 Start up the Redis server, which is needed by the Celery workers.
 
 ```shell-session
