@@ -22,7 +22,7 @@ DMOJ_USER_DATA_DOWNLOAD_RATELIMIT = datetime.timedelta(days=1)
 ```
 
 Also, uncomment the relevant section in your Nginx configuration if you wish to take
-advantage of Nginx's [X-Accel-Redirect](https://www.nginx.com/resources/wiki/start/topics/examples/x-accel/#x-accel-redirect)
+advantage of Nginx's [X-Accel-Redirect](https://github.com/nginxinc/nginx-wiki/blob/master/source/start/topics/examples/x-accel.rst#x-accel-redirect)
 feature.
 
 ```nginx
