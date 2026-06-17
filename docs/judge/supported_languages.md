@@ -1,13 +1,13 @@
 # Supported languages
 
-The DMOJ supports grading in [56 languages](https://github.com/DMOJ/judge-server/tree/master/dmoj/executors):
-Ada, Assembly (x64/x86), AWK, Brain\*\*\*\*,
+The DMOJ supports grading in [58 languages](https://github.com/DMOJ/judge-server/tree/master/dmoj/executors):
+Ada, ALGOL 68, Assembly (x64/x86), AWK, Brain\*\*\*\*,
 C (Clang/GCC), C#, C++14 (Clang/GCC),
 C++03/11/17/20, C11, COBOL, D, Dart, F#, Forth,
 Fortran, Go, Groovy, Haskell, INTERCAL,
 Java 8/latest, JavaScript (Node.js and V8),
 Kotlin, Lean 4, Lisp, LLVM IR, Lua, NASM,
-NASM64, OCaml, Pascal, Perl, PHP, Pike, Prolog,
+NASM64, Objective-C, OCaml, Pascal, Perl, PHP, Pike, Prolog,
 PyPy 2/3, Python 2/3, Racket, Ruby, Rust, Scala,
 Scheme, Sed, Swift, TCL, Text, Turing,
 Visual Basic, Zig.
