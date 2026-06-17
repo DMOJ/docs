@@ -52,10 +52,28 @@ std::string readLine(char min_char = 0, char max_char = 127) {
   return line;
 }
 
+bool validateInt(const std::string &token) {
+  if (token == "0") {
+    return true;
+  }
+  auto i = 0u;
+  if (i < token.size() && token[i] == '-') {
+    ++i;
+  }
+  if (i >= token.size() || token[i] < '1' || '9' < token[i]) {
+    return false;
+  }
+  for (i++; i < token.size(); i++) {
+    if (token[i] < '0' || '9' < token[i]) {
+      return false;
+    }
+  }
+  return true;
+}
+
 long long readInt(long long lo, long long hi) {
-  static regex_t re = regex_helpers::compile("^(0|-?[1-9][0-9]*)$");
   std::string token = readToken();
-  assert(regex_helpers::match(re, token));
+  assert(validateInt(token));
 
   long long parsedInt = stoll(token); // May throw.
   assert(lo <= parsedInt && parsedInt <= hi);
